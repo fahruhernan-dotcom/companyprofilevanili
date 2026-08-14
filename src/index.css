@@ -1,0 +1,26 @@
+@import './styles/tokens.css';
+@import './styles/typography.css';
+@import './styles/layout.css';
+@import './styles/animations.css';
+
+/* Global Body & HTML Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--bg-primary);
+}
+
+/* Root Layout Container */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+}

@@ -1,0 +1,98 @@
+/* ==============================================================================
+   DESIGN SYSTEM TOKENS (QUIET LUXURY & RESTRAINT)
+   Brand: Luxury Indonesian Single-Origin Vanilla
+   ============================================================================== */
+
+:root {
+  /* Surface & Background Colors */
+  --bg-primary: #F6F2EA;           /* Warm Ivory — primary breathing canvas */
+  --bg-surface: #EFE9DF;           /* Soft Sandstone — delicate alternating surface */
+  --bg-surface-elevated: #FAF7F2;  /* Slightly lighter ivory for subtle elevated areas */
+  --bg-dark: #171512;              /* Obsidian Charcoal — dramatic closing canvas */
+  --bg-dark-surface: #221E19;      /* Elevated dark surface */
+
+  /* Text & Ink */
+  --text-primary: #241C17;         /* Deep Roasted Espresso — high contrast, warm ink */
+  --text-secondary: #5E544A;       /* Warm Earth — body copy and narrative */
+  --text-muted: #8E8478;           /* Warm Taupe — overlines, index numbers, metadata */
+  --text-inverse-primary: #F6F2EA; /* Ivory text on dark canvas */
+  --text-inverse-secondary: #C5BCB1;/* Muted ivory on dark canvas */
+  --text-inverse-muted: #8E8478;   /* Taupe on dark canvas */
+
+  /* Accent & Materiality (Gold strictly as ~5% accent) */
+  --accent-gold: #C8A96B;          /* Vanilla Gold */
+  --accent-gold-hover: #B89758;
+  --accent-gold-subtle: rgba(200, 169, 107, 0.12);
+  --accent-pod: #3D2D24;           /* Cured bean deep umber */
+
+  /* Structural Borders */
+  --border-light: rgba(36, 28, 23, 0.08);
+  --border-medium: rgba(36, 28, 23, 0.16);
+  --border-gold: rgba(200, 169, 107, 0.4);
+  --border-dark: rgba(246, 242, 234, 0.1);
+  --border-dark-gold: rgba(200, 169, 107, 0.25);
+
+  /* Typography Families */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Fluid Spacing Scale */
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 140px;
+
+  /* Container & Grid */
+  --container-max-width: 1320px;
+  --container-narrow-width: 980px;
+  --header-height: 80px;
+  --header-height-scrolled: 68px;
+
+  /* Border Radius (Subtle, refined corners) */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* Shadows (Quiet & Diffused) */
+  --shadow-subtle: 0 4px 20px rgba(36, 28, 23, 0.04);
+  --shadow-medium: 0 12px 36px rgba(36, 28, 23, 0.08);
+  --shadow-cinematic: 0 24px 60px rgba(23, 21, 18, 0.12);
+
+  /* Motion & Easing (80% Static, 20% Calm Motion) */
+  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease-editorial);
+  --transition-normal: 0.35s var(--ease-editorial);
+  --transition-slow: 0.6s var(--ease-editorial);
+
+  /* Accessibility & Focus Rings */
+  --focus-ring: 2px solid var(--accent-gold);
+  --focus-offset: 3px;
+
+  /* Z-Index Hierarchy Discipline */
+  --z-base: 1;
+  --z-header: 100;
+  --z-floating-action: 200;
+  --z-grain-overlay: 500;
+  --z-modal-backdrop: 1000;
+  --z-modal-content: 1010;
+  --z-skip-link: 9999;
+}
+
+/* Reduced Motion Preference (WCAG AAA Compliance) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
