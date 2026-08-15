@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { brandConfig } from '../config/brandConfig';
-import vanillaLinenImg from '../assets/images/vanilla_linen_cloth.jpg';
+import vanillaLinenImg from '../assets/images/vanilla_linen_cloth.webp';
 import { SectionHeader } from '../components/SectionHeader';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
@@ -221,7 +221,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     <video
                       ref={caviarVideoRef}
                       src="/videos/vanilla_slomo_macro_texture.mp4"
-                      preload="auto"
+                      preload="none"
                       muted
                       playsInline
                       loop={false}
@@ -276,7 +276,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     <video
                       ref={pliabilityVideoRef}
                       src="/videos/vanilla_slomo_smooth_1080p.mp4"
-                      preload="auto"
+                      preload="none"
                       muted
                       playsInline
                       loop={false}

@@ -100,6 +100,7 @@ export const TheCraft = () => {
                     src={activeStep.image}
                     alt={activeStep.alt}
                     className="img-hover-zoom"
+                    loading="lazy"
                     style={{
                       width: '100%',
                       height: '100%',
@@ -107,6 +108,7 @@ export const TheCraft = () => {
                       animation: 'craftFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                   />
+
                   
                   {/* Step Badge */}
                   <div

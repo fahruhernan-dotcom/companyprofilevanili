@@ -72,8 +72,10 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
                       src={aboutStory.genesis.image}
                       alt="Volcanic mountain rainforest estate where vanilla vines flourish"
                       className="img-hover-zoom"
+                      loading="lazy"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
+
                     <div
                       style={{
                         position: 'absolute',
@@ -174,7 +176,7 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
                 <div className="double-bezel-outer" style={{ height: '100%' }}>
                   <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
                     <img
-                      src="/images/catalog_products/plantation_vine_tree.jpg"
+                      src="/images/catalog_products/plantation_vine_tree.webp"
                       alt="Living vanilla orchid vine on natural shade trellis"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       loading="lazy"
@@ -190,7 +192,7 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
                 <div className="double-bezel-outer" style={{ height: '100%' }}>
                   <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
                     <img
-                      src="/images/catalog_products/plantation_green_pods.jpg"
+                      src="/images/catalog_products/plantation_green_pods.webp"
                       alt="Fresh green vanilla pod cluster on vine"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       loading="lazy"
@@ -206,7 +208,7 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
                 <div className="double-bezel-outer" style={{ height: '100%' }}>
                   <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
                     <img
-                      src="/images/catalog_products/real_warehouse_sorting.jpg"
+                      src="/images/catalog_products/real_warehouse_sorting.webp"
                       alt="Real hand-picked harvest and warehouse grading"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       loading="lazy"

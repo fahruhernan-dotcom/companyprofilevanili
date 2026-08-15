@@ -24,7 +24,7 @@ export const vanillaProducts = [
     condition: '100% Pure & Natural',
     bestUse: 'Ideal for baking, ice cream, chocolate, vanilla extract.',
     badge: 'Flagship Origin',
-    image: '/images/catalog_products/planifolia_vanilla_official.jpg',
+    image: '/images/catalog_products/planifolia_vanilla_official.webp',
     pdfPage: 4
   },
   {
@@ -46,7 +46,7 @@ export const vanillaProducts = [
     condition: '100% Pure & Natural',
     bestUse: 'Commonly used in perfumes, gourmet desserts, and premium pastries.',
     badge: 'Floral Profile',
-    image: '/images/catalog_products/tahitensis_vanilla_official.jpg',
+    image: '/images/catalog_products/tahitensis_vanilla_official.webp',
     pdfPage: 5
   },
   {
@@ -68,7 +68,7 @@ export const vanillaProducts = [
     condition: '100% Pure and Natural, No additives, preservatives, or artificial flavorings, GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Gourmet pastry and confectionery, chocolates and pralines, vanilla bean infusions, artisan desserts and premium bakery, specialty gift products and culinary displays.',
     badge: 'Reserve Grade',
-    image: '/images/catalog_products/crystallized_vanilla_official.jpg',
+    image: '/images/catalog_products/crystallized_vanilla_official.webp',
     pdfPage: 6
   },
   {
@@ -90,7 +90,7 @@ export const vanillaProducts = [
     condition: '100% Pure and Natural, No additives, preservatives, or artificial flavorings, GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Pastry toppings, ice cream, sauces, bakery decoration.',
     badge: 'Pure Seed Mass',
-    image: '/images/catalog_products/vanilla_caviar_official.jpg',
+    image: '/images/catalog_products/vanilla_caviar_official.webp',
     pdfPage: 7
   },
   {
@@ -112,7 +112,7 @@ export const vanillaProducts = [
     condition: '100% Pure and Natural, Made from premium vanilla beans, No additives, No preservatives, No artificial flavorings, GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Baking, confectionery, chocolate, ice cream, beverages, spice blends, dry mixes, seasonings.',
     badge: 'Low Moisture',
-    image: '/images/catalog_products/dried_vanilla_seeds_official.jpg',
+    image: '/images/catalog_products/dried_vanilla_seeds_official.webp',
     pdfPage: 8
   },
   {
@@ -134,7 +134,7 @@ export const vanillaProducts = [
     condition: '100% Pure and Natural, No additives, preservatives, or artificial flavorings, GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Ideal for baking, beverage mixes, premium desserts, sauces, spice blends, and dry rubs. Excellent for applications where liquid extract is not suitable.',
     badge: '100% Pure Ground',
-    image: '/images/catalog_products/vanilla_powder_official.jpg',
+    image: '/images/catalog_products/vanilla_powder_official.webp',
     pdfPage: 9
   },
   {
@@ -157,7 +157,7 @@ export const vanillaProducts = [
     condition: '100% Pure & Natural. Rich flavor with strong vanilla notes. No additives, no preservatives, no artificial flavors or colors. GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Premium gelato, ice cream, pastry creams, gourmet desserts, chocolate & beverage flavoring.',
     badge: 'Visible Specks',
-    image: '/images/catalog_products/vanilla_paste_official.jpg',
+    image: '/images/catalog_products/vanilla_paste_official.webp',
     pdfPage: 10
   },
   {
@@ -180,7 +180,7 @@ export const vanillaProducts = [
     condition: '100% Pure & Natural. No additives, preservatives, or artificial colors/flavors. GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'Premium pastries, gourmet sauces, luxury gelato, high-end desserts, beverages, and flavoring for savory dishes.',
     badge: 'Single Fold 1X',
-    image: '/images/catalog_products/vanilla_extract_alcohol_official.jpg',
+    image: '/images/catalog_products/vanilla_extract_alcohol_official.webp',
     pdfPage: 11
   },
   {
@@ -203,7 +203,7 @@ export const vanillaProducts = [
     condition: '100% Pure & Natural. No additives, preservatives, or artificial colors/flavors. GMO-Free, Gluten-Free, Allergen-Free, Food-Grade.',
     bestUse: 'High-end beverage formulations, chocolate centers, dairy manufacturing, and alcohol-free certified products.',
     badge: 'Double Fold 2X',
-    image: '/images/catalog_products/vanilla_extract_non_alcohol_official.jpg',
+    image: '/images/catalog_products/vanilla_extract_non_alcohol_official.webp',
     pdfPage: 12
   },
   {
@@ -227,7 +227,7 @@ export const vanillaProducts = [
     bestUse: 'Mass-market cakes, cookies, beverages, confectionery, bakery where cost efficiency is key.',
     certificates: 'Halal Certified, PIRT, ISO 22000',
     badge: 'Commercial Solution',
-    image: '/images/catalog_products/vanilla_essence_official.jpg',
+    image: '/images/catalog_products/vanilla_essence_official.webp',
     pdfPage: 13
   }
 ];

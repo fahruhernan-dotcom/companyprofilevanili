@@ -16,7 +16,7 @@ export const vanillaSpecifications = {
     {
       title: "Planifolia Indonesia (Gourmet / Grade A, B, C)",
       species: "Vanilla planifolia (Andrews)",
-      image: "/images/catalog_products/planifolia_vanilla_official.jpg",
+      image: "/images/catalog_products/planifolia_vanilla_official.webp",
       targetAudience: "Haute Pastry, Fine Chocolatiers, Artisan Gelato, Vanilla Extracts",
       specs: [
         { label: "HS Code", value: "0905.10", verified: true },
@@ -32,7 +32,7 @@ export const vanillaSpecifications = {
     {
       title: "Tahitensis Vanilla (Gourmet / Grade A, B, C)",
       species: "Vanilla tahitensis (J.W. Moore)",
-      image: "/images/catalog_products/tahitensis_vanilla_official.jpg",
+      image: "/images/catalog_products/tahitensis_vanilla_official.webp",
       targetAudience: "Perfumes, Gourmet Desserts, Luxury Patisserie, Infusions",
       specs: [
         { label: "HS Code", value: "0905.10", verified: true },
@@ -81,7 +81,7 @@ export const organicAccreditations = [
     id: 'rainforest-alliance',
     name: 'Rainforest Alliance',
     standard: 'Sustainable Agriculture Standard',
-    logo: '/images/certifications/logo_rainforest_alliance.png',
+    logo: '/images/certifications/logo_rainforest_alliance.webp',
     scope: 'Canopy Agroforestry & Farmer Welfare',
     badge: 'People & Nature',
     auditBody: 'Rainforest Alliance Certified',

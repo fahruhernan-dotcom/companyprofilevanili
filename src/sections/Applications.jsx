@@ -98,6 +98,7 @@ export const Applications = ({ onOpenInquiry }) => {
                       key={currentApp.image}
                       src={currentApp.image}
                       alt={currentApp.name}
+                      loading="lazy"
                       style={{
                         width: '100%',
                         height: '100%',

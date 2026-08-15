@@ -1,7 +1,7 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { brandStory } from '../data/brandStory';
-import terroirImg from '../assets/images/terroir_origin.jpg';
+import terroirImg from '../assets/images/terroir_origin.webp';
 import { SectionHeader } from '../components/SectionHeader';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { Compass, Mountain, CloudRain, Sprout } from 'lucide-react';

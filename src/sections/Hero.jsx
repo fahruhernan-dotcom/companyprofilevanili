@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { ScrollReveal } from '../components/ScrollReveal';
-import heroMacroImg from '../assets/images/hero_macro.jpg';
+import heroMacroImg from '../assets/images/hero_macro.webp';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 
 export const Hero = ({ onOpenInquiry }) => {
@@ -177,7 +177,7 @@ export const Hero = ({ onOpenInquiry }) => {
           poster={heroMacroImg}
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           style={{
             position: 'absolute',
             inset: 0,

@@ -3,9 +3,9 @@
  * 5 Culinary & Sensory Realms
  */
 
-import chocolateImg from '../assets/images/application_chocolate.jpg';
-import distillationImg from '../assets/images/application_distillation.jpg';
-import fragranceImg from '../assets/images/application_fragrance.jpg';
+import chocolateImg from '../assets/images/application_chocolate.webp';
+import distillationImg from '../assets/images/application_distillation.webp';
+import fragranceImg from '../assets/images/application_fragrance.webp';
 
 export const culinaryApplications = [
   {

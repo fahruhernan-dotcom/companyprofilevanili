@@ -3,10 +3,10 @@
  * Verified story grounded in official company catalog and ethical trade principles.
  */
 
-import curingMasterImg from '../assets/images/craft_curing.jpg';
-import agronomistImg from '../assets/images/craft_pollination.jpg';
-import qualityDirectorImg from '../assets/images/craft_grading.jpg';
-import estateTerraceImg from '../assets/images/terroir_origin.jpg';
+import curingMasterImg from '../assets/images/craft_curing.webp';
+import agronomistImg from '../assets/images/craft_pollination.webp';
+import qualityDirectorImg from '../assets/images/craft_grading.webp';
+import estateTerraceImg from '../assets/images/terroir_origin.webp';
 
 export const aboutStory = {
   hero: {

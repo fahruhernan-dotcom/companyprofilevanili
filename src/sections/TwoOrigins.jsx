@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollReveal } from '../components/ScrollReveal';
-import coffeeTerroirImg from '../assets/images/terroir_origin.jpg';
+import coffeeTerroirImg from '../assets/images/terroir_origin.webp';
 import { ArrowRight } from 'lucide-react';
 
-const vanillaImg = '/images/catalog_products/origin_planifolia_hero.jpg';
+const vanillaImg = '/images/catalog_products/origin_planifolia_hero.webp';
 
 export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
   const handleNav = (e, targetRoute) => {

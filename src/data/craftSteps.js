@@ -3,10 +3,10 @@
  * 4 Pillars of Traditional Indonesian Vanilla Artisanship
  */
 
-import pollinationImg from '../assets/images/craft_pollination.jpg';
-import harvestImg from '../assets/images/craft_harvest.jpg';
-import curingImg from '../assets/images/craft_curing.jpg';
-import gradingImg from '../assets/images/craft_grading.jpg';
+import pollinationImg from '../assets/images/craft_pollination.webp';
+import harvestImg from '../assets/images/craft_harvest.webp';
+import curingImg from '../assets/images/craft_curing.webp';
+import gradingImg from '../assets/images/craft_grading.webp';
 
 export const craftSteps = [
   {

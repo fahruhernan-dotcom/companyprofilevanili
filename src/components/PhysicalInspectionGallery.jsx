@@ -23,7 +23,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Multi-layer EVOH Vacuum Barrier',
           aspectRatio: '9/16',
           note: 'Full-length ruler calibration verifying elongation exceeding 20.5 cm with intact, plump seed chambers and rich vanillin glaze.',
-          image: '/images/inspection_proofs/proof_length_planifolia_20cm.jpg'
+          image: '/images/inspection_proofs/proof_length_planifolia_20cm.webp'
         },
         {
           id: 'tahitensis-16cm',
@@ -35,7 +35,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Multi-layer EVOH Vacuum Barrier',
           aspectRatio: '9/16',
           note: 'Full-length measurement of authentic Tahitensis cured pods exhibiting distinct shorter, plumper morphology and high moisture.',
-          image: '/images/inspection_proofs/proof_length_tahitensis_16cm.jpg'
+          image: '/images/inspection_proofs/proof_length_tahitensis_16cm.webp'
         }
       ]
     },
@@ -57,7 +57,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Export Ready',
           aspectRatio: '9/16',
           note: 'Digital scale measurement confirming heavy single pod mass and dense essential oil and seed cavity mass per cured pod.',
-          image: '/images/inspection_proofs/proof_weight_planifolia_scale.jpg'
+          image: '/images/inspection_proofs/proof_weight_planifolia_scale.webp'
         },
         {
           id: 'weight-tahitensis',
@@ -69,7 +69,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Export Ready',
           aspectRatio: '9/16',
           note: 'Digital scale verification of Tahitensis pods demonstrating high natural essential oil and seed density per bean.',
-          image: '/images/inspection_proofs/proof_weight_tahitensis_scale.jpg'
+          image: '/images/inspection_proofs/proof_weight_tahitensis_scale.webp'
         }
       ]
     },
@@ -91,7 +91,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Glass Tube / Vacuum Sealed',
           aspectRatio: '3/4',
           note: 'Full specimen view of authentic white vanillin frost crystals blooming across the outer pod skin — unmistakable proof of supreme vanillin purity.',
-          image: '/images/inspection_proofs/proof_vanillin_frost_crystallization.jpg'
+          image: '/images/inspection_proofs/proof_vanillin_frost_crystallization.webp'
         },
         {
           id: 'real-caviar',
@@ -103,7 +103,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Vacuum Plastic 1 KG',
           aspectRatio: '9/16',
           note: 'Direct macro inspection of extracted interior caviar mass, showcasing millions of black aromatic seeds with natural essential oils.',
-          image: '/images/inspection_proofs/proof_real_caviar_extraction.jpg'
+          image: '/images/inspection_proofs/proof_real_caviar_extraction.webp'
         }
       ]
     },
@@ -125,7 +125,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: '1 kg, 5 kg, 10 kg Export Cartons',
           aspectRatio: '3/4',
           note: 'Authentic 1.00 KG master vacuum-sealed export pack with raffia-tied bundles, ready for customs clearance and direct port departure.',
-          image: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.jpg'
+          image: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.webp'
         },
         {
           id: 'bulk-bales',
@@ -137,7 +137,7 @@ export const PhysicalInspectionGallery = () => {
           packaging: 'Bulk Protective Liner',
           aspectRatio: '9/16',
           note: 'High-volume commercial grading for industrial flavour extraction, oleoresin processing, and fragrance distillation facilities.',
-          image: '/images/inspection_proofs/proof_bulk_grade_c_bales.jpg'
+          image: '/images/inspection_proofs/proof_bulk_grade_c_bales.webp'
         }
       ]
     }

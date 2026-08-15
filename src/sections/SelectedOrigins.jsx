@@ -1,6 +1,6 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
-import terroirImg from '../assets/images/terroir_origin.jpg';
+import terroirImg from '../assets/images/terroir_origin.webp';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { Mountain, Sun, Sparkles, Compass } from 'lucide-react';
 

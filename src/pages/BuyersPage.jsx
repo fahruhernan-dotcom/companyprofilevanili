@@ -181,7 +181,7 @@ export const BuyersPage = ({
                 <div className="double-bezel-outer">
                   <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
                     <img
-                      src="/images/inspection_proofs/proof_export_packaging_1kg_vacuum.jpg"
+                      src="/images/inspection_proofs/proof_export_packaging_1kg_vacuum.webp"
                       alt="1kg commercial export vacuum barrier pack"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       loading="lazy"

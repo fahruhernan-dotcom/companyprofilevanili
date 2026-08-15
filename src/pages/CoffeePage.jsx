@@ -2,7 +2,7 @@ import React from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
-import coffeeImg from '../assets/images/terroir_origin.jpg';
+import coffeeImg from '../assets/images/terroir_origin.webp';
 import { ArrowLeft, Coffee, MessageCircle, ShieldCheck, FileText, CheckCircle, Sparkles } from 'lucide-react';
 
 export const CoffeePage = ({

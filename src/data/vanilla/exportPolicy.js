@@ -20,7 +20,7 @@ export const exportPolicy = {
       category: 'Solid Vanilla Products',
       products: 'Vanilla Beans, Crystallized Vanilla, Vanilla Powder, Vanilla Caviar, Dried Vanilla Seeds',
       packaging: 'Vacuum-sealed packaging, packed in 1 kg, 5 kg, or 10 kg boxes',
-      packagingImage: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.jpg',
+      packagingImage: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.webp',
       qualityStandard: [
         '100% pure vanilla, no additives',
         'Cured & processed naturally',
@@ -33,7 +33,7 @@ export const exportPolicy = {
       category: 'Liquid Vanilla Products',
       products: 'Vanilla Extract (Alcohol/Non-Alcohol), Vanilla Paste, Vanilla Essence',
       packaging: 'HDPE bottle – 1 liter',
-      packagingImage: '/images/catalog_products/real_extract_bottles_trio.jpg',
+      packagingImage: '/images/catalog_products/real_extract_bottles_trio.webp',
       qualityStandard: [
         'Extracted from fully matured vanilla',
         'Alcohol-based (35%) or non-alcohol',

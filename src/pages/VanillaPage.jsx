@@ -2,7 +2,7 @@ import React from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
-import heroMacroImg from '../assets/images/hero_macro.jpg';
+import heroMacroImg from '../assets/images/hero_macro.webp';
 import { TheVanilla } from '../sections/TheVanilla';
 import { TheCraft } from '../sections/TheCraft';
 import { QualitySpecs } from '../sections/QualitySpecs';
