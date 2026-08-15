@@ -177,7 +177,7 @@ export const Hero = ({ onOpenInquiry }) => {
           poster={heroMacroImg}
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           style={{
             position: 'absolute',
             inset: 0,

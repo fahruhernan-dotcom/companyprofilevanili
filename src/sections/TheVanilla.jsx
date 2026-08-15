@@ -221,7 +221,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     <video
                       ref={caviarVideoRef}
                       src="/videos/vanilla_slomo_macro_texture.mp4"
-                      preload="none"
+                      preload="metadata"
                       muted
                       playsInline
                       loop={false}
@@ -276,7 +276,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     <video
                       ref={pliabilityVideoRef}
                       src="/videos/vanilla_slomo_smooth_1080p.mp4"
-                      preload="none"
+                      preload="metadata"
                       muted
                       playsInline
                       loop={false}
