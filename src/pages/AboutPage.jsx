@@ -37,38 +37,6 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
       >
         <div className="container">
           <ScrollReveal animation="fade-up">
-            
-            {/* Back to Home Breadcrumb Pill */}
-            <div style={{ marginBottom: '18px' }}>
-              <button
-                type="button"
-                onClick={onNavigateHome}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  backgroundColor: 'var(--bg-surface)',
-                  border: '1px solid var(--border-light)',
-                  padding: '6px 14px',
-                  borderRadius: 'var(--radius-pill)',
-                  color: 'var(--text-secondary)',
-                  fontSize: '0.75rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-gold)';
-                  e.currentTarget.style.color = 'var(--text-primary)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = 'var(--border-light)';
-                  e.currentTarget.style.color = 'var(--text-secondary)';
-                }}
-              >
-                <ArrowLeft size={13} style={{ color: 'var(--accent-gold)' }} />
-                <span>Return to Vanilla Showcase</span>
-              </button>
-            </div>
 
             <SectionHeader
               overline={aboutStory.hero.overline}
@@ -188,6 +156,68 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
               </ScrollReveal>
             </div>
 
+          </div>
+
+          {/* Living Plantation & Harvest Gallery */}
+          <div style={{ marginTop: '56px', borderTop: '1px solid var(--border-light)', paddingTop: '40px' }}>
+            <div style={{ maxWidth: '640px', marginBottom: '28px' }}>
+              <span className="overline overline-accent" style={{ display: 'block', marginBottom: '8px' }}>
+                Equatorial Agroforestry in Practice
+              </span>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)', color: 'var(--text-primary)', margin: 0 }}>
+                From High-Canopy Vines to Harvest Selection
+              </h3>
+            </div>
+
+            <div className="grid-12" style={{ gap: '20px' }}>
+              <div style={{ gridColumn: 'span 4' }}>
+                <div className="double-bezel-outer" style={{ height: '100%' }}>
+                  <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <img
+                      src="/images/catalog_products/plantation_vine_tree.jpg"
+                      alt="Living vanilla orchid vine on natural shade trellis"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                    <div style={{ position: 'absolute', bottom: '10px', left: '10px', padding: '4px 10px', backgroundColor: 'rgba(23, 21, 18, 0.88)', color: 'var(--accent-gold)', borderRadius: 'var(--radius-pill)', fontSize: '0.625rem', fontWeight: 600 }}>
+                      🌿 Living Vine Plantation
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ gridColumn: 'span 4' }}>
+                <div className="double-bezel-outer" style={{ height: '100%' }}>
+                  <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <img
+                      src="/images/catalog_products/plantation_green_pods.jpg"
+                      alt="Fresh green vanilla pod cluster on vine"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                    <div style={{ position: 'absolute', bottom: '10px', left: '10px', padding: '4px 10px', backgroundColor: 'rgba(23, 21, 18, 0.88)', color: 'var(--accent-gold)', borderRadius: 'var(--radius-pill)', fontSize: '0.625rem', fontWeight: 600 }}>
+                      🌱 Mature Green Pod Harvest
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ gridColumn: 'span 4' }}>
+                <div className="double-bezel-outer" style={{ height: '100%' }}>
+                  <div className="double-bezel-inner" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
+                    <img
+                      src="/images/catalog_products/real_warehouse_sorting.jpg"
+                      alt="Real hand-picked harvest and warehouse grading"
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                    <div style={{ position: 'absolute', bottom: '10px', left: '10px', padding: '4px 10px', backgroundColor: 'rgba(23, 21, 18, 0.88)', color: 'var(--accent-gold)', borderRadius: 'var(--radius-pill)', fontSize: '0.625rem', fontWeight: 600 }}>
+                      ✂️ Hand-Picked Sorting & Grading
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

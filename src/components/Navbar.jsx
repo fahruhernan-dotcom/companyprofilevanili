@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { useScrollHeader } from '../hooks/useScrollHeader';
-import { useScrollSpy } from '../hooks/useScrollSpy';
 import { useScrollProgress } from '../hooks/useScrollProgress';
-import { Menu, X, ArrowUpRight, Sparkles, ArrowLeft } from 'lucide-react';
+import { Menu, X, ArrowUpRight, ChevronDown, Leaf, Coffee, ShieldCheck, Info, Briefcase } from 'lucide-react';
 
-export const Navbar = ({ currentPage = 'home', onNavigate, onOpenInquiry }) => {
+export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => {
   const isScrolled = useScrollHeader(40);
   const scrollProgress = useScrollProgress();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [originsDropdownOpen, setOriginsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
-  const homeSectionIds = ['philosophy', 'experience-3d', 'the-vanilla', 'terroir', 'craft', 'quality', 'applications'];
-  const aboutSectionIds = ['genesis', 'stewards', 'impact', 'milestones', 'visit'];
-  
-  const activeSection = useScrollSpy(currentPage === 'home' ? homeSectionIds : aboutSectionIds, 160);
-
-  // Close mobile menu on resize to desktop
+  // Close mobile menu and dropdown on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 992) {
@@ -35,27 +31,44 @@ export const Navbar = ({ currentPage = 'home', onNavigate, onOpenInquiry }) => {
     }
   }, [mobileMenuOpen]);
 
-  const homeNavLinks = [
-    { id: 'philosophy', label: 'Philosophy', href: '#philosophy' },
-    { id: 'experience-3d', label: '3D Orbit', href: '#experience-3d' },
-    { id: 'the-vanilla', label: 'Our Vanilla', href: '#the-vanilla' },
-    { id: 'terroir', label: 'Terroir', href: '#terroir' },
-    { id: 'craft', label: 'The Craft', href: '#craft' },
-    { id: 'quality', label: 'Quality', href: '#quality' },
-    { id: 'applications', label: 'Applications', href: '#applications' },
-  ];
+  // Handle click outside dropdown to close
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOriginsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
-  const aboutNavLinks = [
-    { id: 'genesis', label: 'The Genesis', href: '#genesis' },
-    { id: 'stewards', label: 'The Stewards', href: '#stewards' },
-    { id: 'impact', label: 'Impact & Soil', href: '#impact' },
-    { id: 'milestones', label: 'Milestones', href: '#milestones' },
-    { id: 'visit', label: 'Estate Visit', href: '#visit' },
-  ];
+  // Handle Escape key to close open menus
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setOriginsDropdownOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleLinkClick = (route, hash) => {
+    setMobileMenuOpen(false);
+    setOriginsDropdownOpen(false);
+    if (onNavigate) {
+      onNavigate(route, hash);
+    } else if (hash) {
+      window.location.hash = hash;
+    }
+  };
+
+  const isOriginsActive = currentRoute === 'origins' || currentRoute === 'vanilla' || currentRoute === 'coffee';
 
   return (
     <>
-      {/* Dynamic Top Scroll Reading Progress Line */}
+      {/* Top Scroll Reading Progress Line */}
       <div
         className="scroll-progress-bar"
         style={{ width: `${scrollProgress}%` }}
@@ -73,7 +86,7 @@ export const Navbar = ({ currentPage = 'home', onNavigate, onOpenInquiry }) => {
           top: '12px',
           left: 0,
           right: 0,
-          zIndex: 100,
+          zIndex: 'var(--z-header)',
           display: 'flex',
           justifyContent: 'center',
           padding: '0 var(--space-md)',
@@ -89,370 +102,438 @@ export const Navbar = ({ currentPage = 'home', onNavigate, onOpenInquiry }) => {
             backgroundColor: isScrolled ? 'rgba(246, 242, 234, 0.95)' : 'rgba(246, 242, 234, 0.85)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
-            border: isScrolled ? '1px solid rgba(200, 169, 107, 0.35)' : '1px solid rgba(36, 28, 23, 0.08)',
+            border: isScrolled ? '1px solid var(--border-gold)' : '1px solid var(--border-light)',
             borderRadius: 'var(--radius-pill)',
             boxShadow: isScrolled ? 'var(--shadow-medium)' : 'var(--shadow-subtle)',
             padding: '0 12px 0 18px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)'
+            transition: 'all 0.35s var(--ease-editorial)'
           }}
         >
-          {/* Brand Monogram / Logo */}
+          {/* Brand Logo & Title */}
           <a
             href="#home"
             onClick={(e) => {
               e.preventDefault();
-              if (onNavigate) onNavigate('home');
-              else window.location.hash = 'home';
+              handleLinkClick('home', 'home');
             }}
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '8px',
+              gap: '10px',
               textDecoration: 'none',
               color: 'var(--text-primary)'
             }}
-            aria-label={`${brandConfig.fullName} Homepage`}
+            aria-label={`${brandConfig.name} Homepage`}
           >
+            <img
+              src="/logo-emblem.svg"
+              alt={`${brandConfig.name} Emblem`}
+              width="24"
+              height="24"
+              style={{
+                objectFit: 'contain',
+                display: 'block',
+                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))'
+              }}
+            />
+            
             <span
               style={{
-                width: '24px',
-                height: '24px',
-                borderRadius: '50%',
-                backgroundColor: 'var(--text-primary)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'var(--accent-gold)',
                 fontFamily: 'var(--font-display)',
-                fontSize: '0.8125rem',
-                fontWeight: 600
+                fontSize: '1.05rem',
+                fontWeight: 600,
+                letterSpacing: '0.08em',
+                color: 'var(--text-primary)',
+                whiteSpace: 'nowrap'
               }}
             >
-              {brandConfig.name.charAt(0)}
+              {brandConfig.name}
             </span>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-              <span
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.05rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  color: 'var(--text-primary)'
-                }}
-              >
-                {brandConfig.name}
-              </span>
-              <span
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.5rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.18em',
-                  color: 'var(--text-muted)',
-                  marginTop: '1px',
-                  textTransform: 'uppercase'
-                }}
-              >
-                {brandConfig.surname}
-              </span>
-            </div>
           </a>
 
-          {/* Desktop Nav Links with Dynamic Multi-Page Support */}
+          {/* Desktop Navigation Links */}
           <nav
-            style={{
-              display: 'none',
-              alignItems: 'center',
-              gap: '18px'
-            }}
             className="desktop-nav"
             aria-label="Main Navigation"
           >
-            {currentPage === 'home' ? (
-              <>
-                {homeNavLinks.map((link) => {
-                  const isActive = activeSection === link.id;
-                  return (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      style={{
-                        fontSize: '0.78125rem',
-                        fontWeight: isActive ? 600 : 500,
-                        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                        textDecoration: 'none',
-                        letterSpacing: '0.02em',
-                        transition: 'all 0.2s ease',
-                        padding: '4px 3px',
-                        position: 'relative'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isActive) e.currentTarget.style.color = 'var(--text-primary)';
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isActive) e.currentTarget.style.color = 'var(--text-secondary)';
-                      }}
-                    >
-                      <span>{link.label}</span>
-                      {isActive && (
-                        <span
-                          style={{
-                            position: 'absolute',
-                            bottom: '-2px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: '12px',
-                            height: '1.5px',
-                            backgroundColor: 'var(--accent-gold)',
-                            borderRadius: '1px'
-                          }}
-                        />
-                      )}
-                    </a>
-                  );
-                })}
+            {/* Origins with Dropdown */}
+            <div
+              className="origins-nav-group"
+              ref={dropdownRef}
+              onMouseEnter={() => setOriginsDropdownOpen(true)}
+              onMouseLeave={() => setOriginsDropdownOpen(false)}
+            >
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick('origins', 'origins');
+                }}
+                aria-expanded={originsDropdownOpen}
+                aria-haspopup="true"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '0.8125rem',
+                  fontWeight: isOriginsActive ? 600 : 500,
+                  color: isOriginsActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  padding: '6px 4px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  letterSpacing: '0.02em',
+                  transition: 'color 0.2s ease'
+                }}
+              >
+                <span>Origins</span>
+                <ChevronDown
+                  size={12}
+                  style={{
+                    transform: originsDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.25s ease'
+                  }}
+                />
+              </button>
 
-                {/* Dedicated About Page Link */}
+              {/* Sub-menu Dropdown */}
+              <div
+                className={`origins-dropdown ${originsDropdownOpen ? 'is-open' : ''}`}
+                role="menu"
+                aria-label="Origins Submenu"
+              >
                 <a
-                  href="#about"
+                  href="#vanilla"
+                  role="menuitem"
+                  className="origins-dropdown-item"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (onNavigate) onNavigate('about');
-                    else window.location.hash = 'about';
-                  }}
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    color: 'var(--accent-pod)',
-                    textDecoration: 'none',
-                    letterSpacing: '0.02em',
-                    backgroundColor: 'rgba(200, 169, 107, 0.16)',
-                    border: '1px solid var(--border-gold)',
-                    padding: '3px 10px',
-                    borderRadius: 'var(--radius-pill)',
-                    transition: 'all 0.2s ease',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
-                    e.currentTarget.style.color = '#FFFFFF';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(200, 169, 107, 0.16)';
-                    e.currentTarget.style.color = 'var(--accent-pod)';
+                    handleLinkClick('vanilla', 'vanilla');
                   }}
                 >
-                  <Sparkles size={10} />
-                  <span>Our Story</span>
+                  <Leaf size={14} color="var(--accent-gold)" />
+                  <span>Vanilla</span>
                 </a>
-              </>
-            ) : (
-              <>
-                {/* About Page Sub-Section Anchor Navigation */}
-                {aboutNavLinks.map((link) => {
-                  const isActive = activeSection === link.id;
-                  return (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      style={{
-                        fontSize: '0.78125rem',
-                        fontWeight: isActive ? 600 : 500,
-                        color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                        textDecoration: 'none',
-                        letterSpacing: '0.02em',
-                        transition: 'all 0.2s ease',
-                        padding: '4px 3px',
-                        position: 'relative'
-                      }}
-                      onMouseEnter={(e) => {
-                        if (!isActive) e.currentTarget.style.color = 'var(--text-primary)';
-                      }}
-                      onMouseLeave={(e) => {
-                        if (!isActive) e.currentTarget.style.color = 'var(--text-secondary)';
-                      }}
-                    >
-                      <span>{link.label}</span>
-                      {isActive && (
-                        <span
-                          style={{
-                            position: 'absolute',
-                            bottom: '-2px',
-                            left: '50%',
-                            transform: 'translateX(-50%)',
-                            width: '12px',
-                            height: '1.5px',
-                            backgroundColor: 'var(--accent-gold)',
-                            borderRadius: '1px'
-                          }}
-                        />
-                      )}
-                    </a>
-                  );
-                })}
 
-                {/* Return to Products Pill */}
-                <button
-                  type="button"
-                  onClick={() => onNavigate('home')}
-                  style={{
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)',
-                    backgroundColor: 'var(--bg-surface)',
-                    border: '1px solid var(--border-light)',
-                    padding: '3px 10px',
-                    borderRadius: 'var(--radius-pill)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    transition: 'all 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-gold)';
-                    e.currentTarget.style.backgroundColor = 'var(--bg-primary)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--border-light)';
-                    e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
+                <a
+                  href="#coffee"
+                  role="menuitem"
+                  className="origins-dropdown-item"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('coffee', 'coffee');
                   }}
                 >
-                  <ArrowLeft size={11} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Vanilla Showcase</span>
-                </button>
-              </>
-            )}
+                  <Coffee size={14} color="var(--accent-gold)" />
+                  <span>Coffee</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Quality Route */}
+            <a
+              href="#quality"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('quality', 'quality');
+              }}
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: currentRoute === 'quality' ? 600 : 500,
+                color: currentRoute === 'quality' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                padding: '6px 4px',
+                transition: 'color 0.2s ease'
+              }}
+            >
+              Quality
+            </a>
+
+            {/* About Route */}
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('about', 'about');
+              }}
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: currentRoute === 'about' ? 600 : 500,
+                color: currentRoute === 'about' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                padding: '6px 4px',
+                transition: 'color 0.2s ease'
+              }}
+            >
+              About
+            </a>
+
+            {/* For Buyers Route */}
+            <a
+              href="#buyers"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('buyers', 'buyers');
+              }}
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: currentRoute === 'buyers' ? 600 : 500,
+                color: currentRoute === 'buyers' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                padding: '6px 4px',
+                transition: 'color 0.2s ease'
+              }}
+            >
+              For Buyers
+            </a>
+
+            {/* Inquiry Action Button */}
+            <button
+              type="button"
+              onClick={onOpenInquiry}
+              style={{
+                background: 'var(--text-primary)',
+                color: 'var(--bg-primary)',
+                border: 'none',
+                borderRadius: 'var(--radius-pill)',
+                padding: '5px 14px',
+                fontSize: '0.75rem',
+                fontWeight: 600,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'background-color 0.2s ease, transform 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#000000';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'var(--text-primary)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <span>Inquiry</span>
+              <ArrowUpRight size={13} color="var(--accent-gold)" />
+            </button>
           </nav>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '32px',
-              height: '32px',
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-              color: 'var(--text-primary)',
-              padding: 0
-            }}
-            className="mobile-nav-toggle"
-            aria-expanded={mobileMenuOpen}
-            aria-label="Toggle Menu"
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          {/* Mobile Menu Trigger */}
+          <div className="mobile-nav-trigger">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'var(--text-primary)',
+                cursor: 'pointer',
+                padding: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+              aria-expanded={mobileMenuOpen}
+            >
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation */}
-      {mobileMenuOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            backgroundColor: 'var(--bg-primary)',
-            zIndex: 99,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            padding: 'var(--space-2xl) var(--space-xl)',
-            animation: 'fadeIn 0.3s ease'
-          }}
-        >
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: '16px', textAlign: 'center' }}>
+      {/* Mobile Navigation Drawer / Overlay */}
+      <div
+        className={`mobile-nav-overlay ${mobileMenuOpen ? 'is-open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden={!mobileMenuOpen}
+      />
+
+      <div
+        className={`mobile-nav-panel ${mobileMenuOpen ? 'is-open' : ''}`}
+        role="dialog"
+        aria-label="Mobile Navigation"
+        aria-modal="true"
+      >
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          {/* Origins Header */}
+          <div>
             <a
-              href="#home"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavigate) onNavigate('home');
+              href="#origins"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('origins', 'origins');
               }}
               style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                color: currentPage === 'home' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                display: 'block',
                 textDecoration: 'none',
-                fontWeight: 600
+                color: 'var(--accent-gold)',
+                fontSize: '0.6875rem',
+                fontWeight: 600,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                marginBottom: '8px'
               }}
             >
-              Vanilla Showcase
+              Origins Overview →
+            </a>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '8px' }}>
+              <a
+                href="#vanilla"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick('vanilla', 'vanilla');
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  textDecoration: 'none',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  padding: '8px 10px',
+                  borderRadius: 'var(--radius-xs)',
+                  backgroundColor: currentRoute === 'vanilla' ? 'rgba(200, 169, 107, 0.15)' : 'transparent'
+                }}
+              >
+                <Leaf size={16} color="var(--accent-gold)" />
+                <span>Vanilla</span>
+              </a>
+
+              <a
+                href="#coffee"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick('coffee', 'coffee');
+                }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  textDecoration: 'none',
+                  color: 'var(--text-primary)',
+                  fontSize: '0.9375rem',
+                  fontWeight: 600,
+                  padding: '8px 10px',
+                  borderRadius: 'var(--radius-xs)',
+                  backgroundColor: currentRoute === 'coffee' ? 'rgba(200, 169, 107, 0.15)' : 'transparent'
+                }}
+              >
+                <Coffee size={16} color="var(--accent-gold)" />
+                <span>Coffee</span>
+              </a>
+            </div>
+          </div>
+
+          <hr style={{ border: 'none', height: '1px', backgroundColor: 'var(--border-light)', margin: '4px 0' }} />
+
+          {/* Direct Section Links */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <a
+              href="#quality"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('quality', 'quality');
+              }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textDecoration: 'none',
+                color: currentRoute === 'quality' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                fontSize: '0.9375rem',
+                fontWeight: 600,
+                padding: '8px 10px'
+              }}
+            >
+              <ShieldCheck size={16} color="var(--accent-gold)" />
+              <span>Quality & Compliance</span>
             </a>
 
             <a
               href="#about"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavigate) onNavigate('about');
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('about', 'about');
               }}
               style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.75rem',
-                color: currentPage === 'about' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
                 textDecoration: 'none',
-                fontWeight: 600
+                color: currentRoute === 'about' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                fontSize: '0.9375rem',
+                fontWeight: 600,
+                padding: '8px 10px'
               }}
             >
-              Our Story (Heritage)
+              <Info size={16} color="var(--accent-gold)" />
+              <span>About Essence Indonesia</span>
             </a>
 
-            {(currentPage === 'home' ? homeNavLinks : aboutNavLinks).map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.25rem',
-                  color: 'var(--text-secondary)',
-                  textDecoration: 'none'
-                }}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <div style={{ marginTop: '32px', borderTop: '1px solid var(--border-light)', paddingTop: '20px' }}>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenInquiry();
+            <a
+              href="#buyers"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('buyers', 'buyers');
               }}
-              className="btn-agency btn-agency-primary"
-              style={{ width: '100%', padding: '10px 14px 10px 24px', justifyContent: 'center' }}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                textDecoration: 'none',
+                color: currentRoute === 'buyers' ? 'var(--accent-gold)' : 'var(--text-primary)',
+                fontSize: '0.9375rem',
+                fontWeight: 600,
+                padding: '8px 10px'
+              }}
             >
-              <span>Inquire Sourcing Concierge</span>
-              <span className="btn-agency-icon-wrapper">
-                <ArrowUpRight size={14} strokeWidth={2} />
-              </span>
-            </button>
+              <Briefcase size={16} color="var(--accent-gold)" />
+              <span>For International Buyers</span>
+            </a>
           </div>
-        </div>
-      )}
 
-      {/* Embedded CSS for responsive navbar toggle */}
-      <style>{`
-        @media (min-width: 992px) {
-          .desktop-nav {
-            display: flex !important;
-          }
-          .mobile-nav-toggle {
-            display: none !important;
-          }
-        }
-      `}</style>
+          {/* Action CTA in Mobile Drawer */}
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              if (onOpenInquiry) onOpenInquiry();
+            }}
+            style={{
+              width: '100%',
+              backgroundColor: 'var(--text-primary)',
+              color: 'var(--bg-primary)',
+              border: 'none',
+              borderRadius: 'var(--radius-pill)',
+              padding: '12px',
+              fontSize: '0.8125rem',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              marginTop: '12px'
+            }}
+          >
+            <span>Start Sourcing Inquiry</span>
+            <ArrowUpRight size={15} color="var(--accent-gold)" />
+          </button>
+        </div>
+      </div>
     </>
   );
 };

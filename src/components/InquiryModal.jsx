@@ -2,21 +2,30 @@ import React, { useState, useEffect, useRef } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { generateWhatsAppUrl } from '../utils/whatsapp';
 import { validateInquiryForm } from '../utils/validation';
-import { X, Send, MessageCircle, Mail, CheckCircle2 } from 'lucide-react';
+import { X, Send, MessageCircle, Mail, CheckCircle2, ShieldCheck, Globe, Sparkles } from 'lucide-react';
 
-export const InquiryModal = ({ isOpen, onClose }) => {
+export const InquiryModal = ({ isOpen, onClose, initialCommodity = 'Indonesian Vanilla — Gourmet Grade A Planifolia' }) => {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
     email: '',
-    inquiryType: 'Gourmet Grade A Sourcing',
-    volume: '',
+    commodity: initialCommodity,
+    destination: '',
+    incoterms: 'FOB (Free on Board - Indonesia)',
+    volume: 'Commercial Trial Batch (25 – 100 kg)',
     message: ''
   });
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const modalRef = useRef(null);
+
+  // Sync initialCommodity if passed
+  useEffect(() => {
+    if (initialCommodity) {
+      setFormData((prev) => ({ ...prev, commodity: initialCommodity }));
+    }
+  }, [initialCommodity]);
 
   // Close modal on Escape key
   useEffect(() => {
@@ -57,13 +66,12 @@ export const InquiryModal = ({ isOpen, onClose }) => {
       setErrors(validation.errors);
       return;
     }
-    // Simulate successful inquiry dispatch
     setIsSubmitted(true);
   };
 
   const whatsappUrl = generateWhatsAppUrl({
     phoneNumber: brandConfig.contact.whatsappNumber,
-    brandName: brandConfig.name,
+    brandName: brandConfig.brandName,
     formData
   });
 
@@ -77,10 +85,10 @@ export const InquiryModal = ({ isOpen, onClose }) => {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 'var(--space-md)',
-        backgroundColor: 'rgba(23, 21, 18, 0.72)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        animation: 'fadeIn 0.25s ease-out'
+        backgroundColor: 'rgba(15, 13, 11, 0.78)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        animation: 'fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)'
       }}
       role="dialog"
       aria-modal="true"
@@ -93,14 +101,14 @@ export const InquiryModal = ({ isOpen, onClose }) => {
         ref={modalRef}
         style={{
           width: '100%',
-          maxWidth: '580px',
+          maxWidth: '640px',
           backgroundColor: 'var(--bg-primary)',
           borderRadius: 'var(--radius-sm)',
           border: '1px solid var(--border-medium)',
           boxShadow: 'var(--shadow-cinematic)',
-          padding: 'clamp(24px, 4vw, 40px)',
+          padding: 'clamp(24px, 4vw, 36px)',
           position: 'relative',
-          maxHeight: '90vh',
+          maxHeight: '92vh',
           overflowY: 'auto'
         }}
       >
@@ -116,17 +124,24 @@ export const InquiryModal = ({ isOpen, onClose }) => {
             border: 'none',
             color: 'var(--text-muted)',
             cursor: 'pointer',
-            padding: '4px',
+            padding: '6px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'color 0.2s ease'
+            borderRadius: '50%',
+            transition: 'all 0.2s ease'
           }}
           aria-label="Close modal"
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-muted)')}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = 'var(--text-primary)';
+            e.currentTarget.style.backgroundColor = 'var(--bg-surface)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'var(--text-muted)';
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {isSubmitted ? (
@@ -134,8 +149,8 @@ export const InquiryModal = ({ isOpen, onClose }) => {
           <div style={{ textAlign: 'center', padding: 'var(--space-xl) var(--space-md)' }}>
             <div
               style={{
-                width: '60px',
-                height: '60px',
+                width: '64px',
+                height: '64px',
                 borderRadius: '50%',
                 backgroundColor: 'var(--accent-gold-subtle)',
                 color: 'var(--accent-gold)',
@@ -145,56 +160,59 @@ export const InquiryModal = ({ isOpen, onClose }) => {
                 marginBottom: '20px'
               }}
             >
-              <CheckCircle2 size={32} />
+              <CheckCircle2 size={34} />
             </div>
             <h3 className="heading-sub" style={{ marginBottom: '12px' }}>
-              Inquiry Dispatched
+              Commercial Inquiry Dispatched
             </h3>
-            <p className="body-regular" style={{ maxWidth: '420px', margin: '0 auto 28px' }}>
-              Thank you, {formData.name}. Our procurement concierge has received your request for {formData.company} and will reach out within 24 business hours.
+            <p className="body-regular" style={{ maxWidth: '460px', margin: '0 auto 28px', color: 'var(--text-secondary)' }}>
+              Thank you, <strong>{formData.name}</strong>. Our global export desk has logged your request for <strong>{formData.company}</strong> ({formData.commodity}) and will respond with formal quotation terms within 24 business hours.
             </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-gold"
-                style={{ width: '100%' }}
+                style={{ width: '100%', justifyContent: 'center' }}
               >
                 <MessageCircle size={16} />
-                <span>Continue via WhatsApp Concierge</span>
+                <span>Instant Trade Desk WhatsApp</span>
               </a>
               <button
                 type="button"
                 onClick={onClose}
                 className="btn btn-secondary"
-                style={{ width: '100%' }}
+                style={{ width: '100%', justifyContent: 'center' }}
               >
-                Return to Site
+                Close & Return
               </button>
             </div>
           </div>
         ) : (
           /* Form State */
           <div>
-            <div style={{ marginBottom: '24px' }}>
-              <span className="overline overline-accent" style={{ color: 'var(--accent-gold)' }}>
-                B2B Sourcing Concierge
-              </span>
-              <h3 id="inquiry-title" className="heading-sub" style={{ marginTop: '6px' }}>
-                Procurement & Sample Inquiry
+            <div style={{ marginBottom: '22px', borderBottom: '1px solid var(--border-light)', paddingBottom: '16px' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', marginBottom: '6px' }}>
+                <Globe size={13} style={{ color: 'var(--accent-gold)' }} />
+                <span className="overline overline-accent" style={{ color: 'var(--accent-gold)', fontSize: '0.6875rem' }}>
+                  Global Sourcing Concierge
+                </span>
+              </div>
+              <h3 id="inquiry-title" className="heading-sub" style={{ margin: 0, fontSize: 'clamp(1.4rem, 2.5vw, 1.75rem)' }}>
+                Commercial Export Quotation
               </h3>
-              <p className="body-small" style={{ marginTop: '8px' }}>
-                Directly connect with our estate managers for wholesale supply, export specifications, and chef sample kits.
+              <p className="body-small" style={{ marginTop: '6px', color: 'var(--text-secondary)' }}>
+                Direct B2B procurement for Indonesian Vanilla & Selected Green Coffee. Request allocation contracts, Phytosanitary CoA, and evaluation lots.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {/* Name & Company Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
                 <div>
-                  <label htmlFor="name" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
-                    Full Name *
+                  <label htmlFor="name" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    Contact Name *
                   </label>
                   <input
                     id="name"
@@ -206,20 +224,21 @@ export const InquiryModal = ({ isOpen, onClose }) => {
                     placeholder="e.g. Jean-Luc Dubois"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       backgroundColor: '#FFFFFF',
                       border: errors.name ? '1px solid #D9381E' : '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.875rem',
-                      color: 'var(--text-primary)'
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
                     }}
                   />
-                  {errors.name && <span style={{ color: '#D9381E', fontSize: '0.75rem', marginTop: '4px', display: 'block' }}>{errors.name}</span>}
+                  {errors.name && <span style={{ color: '#D9381E', fontSize: '0.6875rem', marginTop: '3px', display: 'block' }}>{errors.name}</span>}
                 </div>
 
                 <div>
-                  <label htmlFor="company" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
-                    Establishment / Business *
+                  <label htmlFor="company" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    Company / Establishment *
                   </label>
                   <input
                     id="company"
@@ -228,25 +247,26 @@ export const InquiryModal = ({ isOpen, onClose }) => {
                     required
                     value={formData.company}
                     onChange={handleChange}
-                    placeholder="e.g. Maison de Pâtisserie"
+                    placeholder="e.g. Maison de Pâtisserie Ltd"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       backgroundColor: '#FFFFFF',
                       border: errors.company ? '1px solid #D9381E' : '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.875rem',
-                      color: 'var(--text-primary)'
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
                     }}
                   />
-                  {errors.company && <span style={{ color: '#D9381E', fontSize: '0.75rem', marginTop: '4px', display: 'block' }}>{errors.company}</span>}
+                  {errors.company && <span style={{ color: '#D9381E', fontSize: '0.6875rem', marginTop: '3px', display: 'block' }}>{errors.company}</span>}
                 </div>
               </div>
 
-              {/* Email & Volume Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+              {/* Email & Destination Country Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
                 <div>
-                  <label htmlFor="email" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                  <label htmlFor="email" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
                     Corporate Email *
                   </label>
                   <input
@@ -256,132 +276,201 @@ export const InquiryModal = ({ isOpen, onClose }) => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="concierge@establishment.com"
+                    placeholder="procurement@company.com"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       backgroundColor: '#FFFFFF',
                       border: errors.email ? '1px solid #D9381E' : '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.875rem',
-                      color: 'var(--text-primary)'
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
                     }}
                   />
-                  {errors.email && <span style={{ color: '#D9381E', fontSize: '0.75rem', marginTop: '4px', display: 'block' }}>{errors.email}</span>}
+                  {errors.email && <span style={{ color: '#D9381E', fontSize: '0.6875rem', marginTop: '3px', display: 'block' }}>{errors.email}</span>}
                 </div>
 
                 <div>
-                  <label htmlFor="volume" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
-                    Estimated Volume
+                  <label htmlFor="destination" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    Destination Country / Port
                   </label>
                   <input
-                    id="volume"
-                    name="volume"
+                    id="destination"
+                    name="destination"
                     type="text"
-                    value={formData.volume}
+                    value={formData.destination}
                     onChange={handleChange}
-                    placeholder="e.g. 5 kg sample / 50 kg wholesale"
+                    placeholder="e.g. Rotterdam, Netherlands / Tokyo, Japan"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
+                      padding: '9px 12px',
                       backgroundColor: '#FFFFFF',
                       border: '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.875rem',
-                      color: 'var(--text-primary)'
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
                     }}
                   />
                 </div>
               </div>
 
-              {/* Inquiry Type Select */}
+              {/* Commodity & Incoterms Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
+                <div>
+                  <label htmlFor="commodity" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    Target Commodity
+                  </label>
+                  <select
+                    id="commodity"
+                    name="commodity"
+                    value={formData.commodity}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '9px 12px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid var(--border-medium)',
+                      borderRadius: 'var(--radius-xs)',
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="Vanilla Planifolia — Gourmet / Grade A">Vanilla: Planifolia Beans (Gourmet / Grade A / B / C)</option>
+                    <option value="Vanilla Tahitensis — Gourmet / Grade A">Vanilla: Tahitensis Beans (Gourmet / Grade A / B / C)</option>
+                    <option value="Crystallized Vanilla — Frosted Pods">Vanilla: Crystallized Vanilla (Frosted Pods, &gt;2.5% Vanillin)</option>
+                    <option value="Vanilla Caviar — Pure Seed Mass">Vanilla: Pure Vanilla Caviar (30–35% Moisture)</option>
+                    <option value="Dried Vanilla Seeds — Low Moisture">Vanilla: Dried Vanilla Seeds (≤10% Moisture)</option>
+                    <option value="Vanilla Powder — 100% Pure Natural">Vanilla: Pure Vanilla Powder (Natural)</option>
+                    <option value="Vanilla Paste — Natural with Specks">Vanilla: Vanilla Paste (Natural with Visible Seeds)</option>
+                    <option value="Vanilla Extract — Alcohol / Non-Alcohol">Vanilla: Vanilla Extract (Alcohol / Non-Alcohol 1L)</option>
+                    <option value="Vanilla Essence — Food Grade">Vanilla: Vanilla Essence (Commercial Grade 1L)</option>
+                    <option value="Selected Indonesian Green Coffee">Coffee: Selected Indonesian Green Coffee</option>
+                    <option value="Custom Mixed Allocation">Custom Multi-Commodity Allocation</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="incoterms" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                    Preferred Incoterms
+                  </label>
+                  <select
+                    id="incoterms"
+                    name="incoterms"
+                    value={formData.incoterms}
+                    onChange={handleChange}
+                    style={{
+                      width: '100%',
+                      padding: '9px 12px',
+                      backgroundColor: '#FFFFFF',
+                      border: '1px solid var(--border-medium)',
+                      borderRadius: 'var(--radius-xs)',
+                      fontSize: '0.8125rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none'
+                    }}
+                  >
+                    <option value="FOB Semarang / Tanjung Priok">FOB (FOB Semarang / Tanjung Priok / Surabaya)</option>
+                    <option value="CIF (Cost, Insurance & Freight)">CIF (Port of Destination)</option>
+                    <option value="EXW (Ex Works Indonesia)">EXW (Ex Works Indonesia)</option>
+                    <option value="Air Courier Trial (DHL / FedEx / UPS 5-7 Days)">Air Courier Express Trial (DHL / FedEx / UPS 5–7 Days)</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Volume Requirement */}
               <div>
-                <label htmlFor="inquiryType" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
-                  Inquiry Category
+                <label htmlFor="volume" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                  Estimated Volume Requirement
                 </label>
                 <select
-                  id="inquiryType"
-                  name="inquiryType"
-                  value={formData.inquiryType}
+                  id="volume"
+                  name="volume"
+                  value={formData.volume}
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '10px 12px',
+                    padding: '9px 12px',
                     backgroundColor: '#FFFFFF',
                     border: '1px solid var(--border-medium)',
                     borderRadius: 'var(--radius-xs)',
-                    fontSize: '0.875rem',
-                    color: 'var(--text-primary)'
+                    fontSize: '0.8125rem',
+                    color: 'var(--text-primary)',
+                    outline: 'none'
                   }}
                 >
-                  <option value="Gourmet Grade A Sourcing">Gourmet Grade A Whole Beans (Pastry & Culinary)</option>
-                  <option value="Extraction Grade B Wholesale">Extraction Grade B Sourcing (Extracts & Brewing)</option>
-                  <option value="Chef & Laboratory Sample Kit">Request Verified Sample Kit</option>
-                  <option value="Long-term Agricultural Partnership">Direct Plantation Agroforestry Contract</option>
+                  <option value="Evaluation Sample Kit (1 – 5 kg)">Evaluation Sample Kit (1 – 5 kg air courier)</option>
+                  <option value="Commercial Trial Batch (25 – 100 kg)">Commercial Trial Batch (25 – 100 kg)</option>
+                  <option value="Wholesale Pallet (250 – 500 kg)">Wholesale Pallet (250 – 500 kg)</option>
+                  <option value="Container Commercial Lot (1 MT – 5 MT+)">Container Commercial Lot (1 MT – 5 MT+)</option>
+                  <option value="Annual Supply Contract / Custom Volume">Annual Supply Allocation / Custom</option>
                 </select>
               </div>
 
               {/* Message Notes */}
               <div>
-                <label htmlFor="message" style={{ display: 'block', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
-                  Specific Requirements or Destination Country
+                <label htmlFor="message" style={{ display: 'block', fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '6px', color: 'var(--text-primary)' }}>
+                  Specific Requirements or Target Specifications
                 </label>
                 <textarea
                   id="message"
                   name="message"
-                  rows={3}
+                  rows={2}
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Provide any port of entry requirements, moisture preferences, or custom packaging notes..."
+                  placeholder="Mention desired moisture %, pod length, custom vacuum bag size, or specific phytosanitary lab test requirements..."
                   style={{
                     width: '100%',
-                    padding: '10px 12px',
+                    padding: '9px 12px',
                     backgroundColor: '#FFFFFF',
                     border: '1px solid var(--border-medium)',
                     borderRadius: 'var(--radius-xs)',
-                    fontSize: '0.875rem',
+                    fontSize: '0.8125rem',
                     color: 'var(--text-primary)',
-                    resize: 'vertical'
+                    resize: 'vertical',
+                    outline: 'none'
                   }}
                 />
               </div>
 
               {/* Action Buttons */}
-              <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <div style={{ marginTop: '6px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ width: '100%' }}
+                  style={{ width: '100%', justifyContent: 'center', padding: '11px 20px', fontSize: '0.8125rem' }}
                 >
-                  <Send size={15} />
-                  <span>Submit Sourcing Request</span>
+                  <Send size={14} />
+                  <span>Submit Commercial Quotation Request</span>
                 </button>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', margin: '4px 0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', margin: '2px 0' }}>
                   <span style={{ height: '1px', flex: 1, backgroundColor: 'var(--border-light)' }}></span>
-                  <span className="overline" style={{ fontSize: '0.65rem' }}>or instant direct channels</span>
+                  <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>or direct trade channels</span>
                   <span style={{ height: '1px', flex: 1, backgroundColor: 'var(--border-light)' }}></span>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-secondary"
-                    style={{ fontSize: '0.75rem', padding: '10px 14px' }}
+                    style={{ fontSize: '0.75rem', padding: '8px 12px', justifyContent: 'center' }}
                   >
                     <MessageCircle size={14} style={{ color: '#25D366' }} />
-                    <span>WhatsApp</span>
+                    <span>WhatsApp Desk</span>
                   </a>
 
                   <a
-                    href={`mailto:${brandConfig.contact.email}?subject=${encodeURIComponent(`Sourcing Inquiry from ${formData.company || 'Client'}`)}`}
+                    href={`mailto:${brandConfig.contact.email}?subject=${encodeURIComponent(`Commercial Sourcing Inquiry — ${formData.company || 'Client'}`)}&body=${encodeURIComponent(`Hello Essence Indonesia Trade Desk,\n\nI would like to request export terms for:\n- Commodity: ${formData.commodity}\n- Company: ${formData.company}\n- Destination: ${formData.destination || 'To be specified'}\n- Incoterms: ${formData.incoterms}\n- Volume: ${formData.volume}\n\nPlease provide quotation and availability.\n\nBest regards,\n${formData.name}`)}`}
                     className="btn btn-secondary"
-                    style={{ fontSize: '0.75rem', padding: '10px 14px' }}
+                    style={{ fontSize: '0.75rem', padding: '8px 12px', justifyContent: 'center' }}
                   >
                     <Mail size={14} style={{ color: 'var(--accent-gold)' }} />
-                    <span>Direct Email</span>
+                    <span>Email Desk</span>
                   </a>
                 </div>
               </div>

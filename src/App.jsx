@@ -1,140 +1,173 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { brandConfig } from './config/brandConfig';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { InquiryModal } from './components/InquiryModal';
-import { SpecSheetModal } from './components/SpecSheetModal';
-import { FloatingConcierge } from './components/FloatingConcierge';
+import { PageLayout } from './components/PageLayout';
+import { RoutePlaceholder } from './components/RoutePlaceholder';
 
-// Pages & Sections
+// Dedicated Pages
 import { AboutPage } from './pages/AboutPage';
+import { VanillaPage } from './pages/VanillaPage';
+import { CoffeePage } from './pages/CoffeePage';
+import { QualityPage } from './pages/QualityPage';
+import { BuyersPage } from './pages/BuyersPage';
+
+// Homepage Sections (The 6-Section Gateway)
 import { Hero } from './sections/Hero';
+import { TwoOrigins } from './sections/TwoOrigins';
+import { SelectedOrigins } from './sections/SelectedOrigins';
 import { Philosophy } from './sections/Philosophy';
-import { ScrollytellingShowcase } from './sections/ScrollytellingShowcase';
-import { TheVanilla } from './sections/TheVanilla';
-import { TerroirOrigin } from './sections/TerroirOrigin';
-import { TheCraft } from './sections/TheCraft';
-import { QualitySpecs } from './sections/QualitySpecs';
-import { Applications } from './sections/Applications';
+import { ExportTrust } from './sections/ExportTrust';
 import { ClosingInquiry } from './sections/ClosingInquiry';
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState(() => {
-    return window.location.hash === '#about' ? 'about' : 'home';
+  // Parse initial route from hash
+  const parseRouteFromHash = useCallback(() => {
+    const rawHash = (window.location.hash || '').replace(/^#\/?/, '').toLowerCase();
+    
+    if (rawHash === 'about') return 'about';
+    if (rawHash === 'origins') return 'origins';
+    if (rawHash === 'vanilla') return 'vanilla';
+    if (rawHash === 'coffee') return 'coffee';
+    if (rawHash === 'quality') return 'quality';
+    if (rawHash === 'buyers' || rawHash === 'for-buyers') return 'buyers';
+    if (rawHash === 'inquiry') return 'home'; // Inquiry triggers modal
+    return 'home';
+  }, []);
+
+  const [currentRoute, setCurrentRoute] = useState(parseRouteFromHash);
+  const [isInquiryOpen, setIsInquiryOpen] = useState(() => {
+    return window.location.hash === '#inquiry';
   });
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [inquiryCommodity, setInquiryCommodity] = useState('Indonesian Vanilla — Gourmet Grade A Planifolia');
   const [isSpecSheetOpen, setIsSpecSheetOpen] = useState(false);
 
-  // Sync hash with page state
+  const openInquiry = (commodity) => {
+    if (commodity && typeof commodity === 'string') {
+      setInquiryCommodity(commodity);
+    }
+    setIsInquiryOpen(true);
+  };
+
+  // Synchronize hash changes with state
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#about') {
-        setCurrentPage('about');
+      const route = parseRouteFromHash();
+      setCurrentRoute(route);
+
+      if (window.location.hash === '#inquiry') {
+        setIsInquiryOpen(true);
+      }
+
+      // Page-level vs In-page section scroll behavior
+      if (['about', 'vanilla', 'coffee', 'quality', 'buyers'].includes(route)) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (window.location.hash === '' || window.location.hash === '#home' || window.location.hash.startsWith('#')) {
-        if (currentPage === 'about' && (window.location.hash === '' || window.location.hash === '#home')) {
-          setCurrentPage('home');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (['origins', 'selected-origins'].includes(route)) {
+        const el = document.getElementById(route);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }, 60);
         }
       }
     };
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [currentPage]);
+  }, [parseRouteFromHash]);
 
-  const navigateTo = (page) => {
-    setCurrentPage(page);
-    if (page === 'about') {
-      window.location.hash = 'about';
-    } else {
+  // Navigate handler for links
+  const navigateTo = (route, targetHash) => {
+    setCurrentRoute(route);
+    const hash = targetHash || route;
+    if (hash === 'home') {
       window.location.hash = 'home';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.hash = hash;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Sync document title with dynamic brand name
+  // Update document title dynamically based on active route
   useEffect(() => {
-    if (currentPage === 'home') {
-      document.title = `${brandConfig.fullName} — ${brandConfig.tagline}`;
-    }
-  }, [currentPage]);
+    const titles = {
+      home: `${brandConfig.name} — ${brandConfig.heroStatement}`,
+      about: `Our Heritage & Origins — ${brandConfig.name}`,
+      origins: `Indonesian Origins (Vanilla & Coffee) — ${brandConfig.name}`,
+      vanilla: `Indonesian Vanilla Sourcing — ${brandConfig.name}`,
+      coffee: `Indonesian Green Coffee Sourcing — ${brandConfig.name}`,
+      quality: `Quality & Export Standards — ${brandConfig.name}`,
+      buyers: `For International Buyers — ${brandConfig.name}`
+    };
+    document.title = titles[currentRoute] || titles.home;
+  }, [currentRoute]);
 
   return (
-    <>
-      {/* A11y Skip Link */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
+    <PageLayout
+      currentRoute={currentRoute}
+      onNavigate={navigateTo}
+      isInquiryOpen={isInquiryOpen}
+      inquiryCommodity={inquiryCommodity}
+      onOpenInquiry={openInquiry}
+      onCloseInquiry={() => setIsInquiryOpen(false)}
+      isSpecSheetOpen={isSpecSheetOpen}
+      onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
+      onCloseSpecSheet={() => setIsSpecSheetOpen(false)}
+    >
+      {/* Dynamic Route View Switching */}
+      {currentRoute === 'about' && (
+        <AboutPage
+          onNavigateHome={() => navigateTo('home')}
+          onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
+        />
+      )}
 
-      {/* Global Navigation with Scroll Progress & Page Routing */}
-      <Navbar
-        currentPage={currentPage}
-        onNavigate={navigateTo}
-        onOpenInquiry={() => setIsInquiryOpen(true)}
-      />
+      {currentRoute === 'vanilla' && (
+        <VanillaPage
+          onNavigateHome={() => navigateTo('home')}
+          onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
+          onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
+        />
+      )}
 
-      {/* Main Content Area */}
-      <main id="main-content">
-        {currentPage === 'about' ? (
-          <AboutPage
-            onNavigateHome={() => navigateTo('home')}
-            onOpenInquiry={() => setIsInquiryOpen(true)}
+      {currentRoute === 'coffee' && (
+        <CoffeePage
+          onNavigateHome={() => navigateTo('home')}
+          onOpenInquiry={() => openInquiry('Selected Indonesian Green Coffee — Commercial Export')}
+        />
+      )}
+
+      {currentRoute === 'quality' && (
+        <QualityPage
+          onNavigateHome={() => navigateTo('home')}
+          onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
+          onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
+        />
+      )}
+
+      {currentRoute === 'buyers' && (
+        <BuyersPage
+          onNavigateHome={() => navigateTo('home')}
+          onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
+          onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
+        />
+      )}
+
+      {(currentRoute === 'home' || currentRoute === 'origins') && (
+        <>
+          <Hero onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')} />
+          <TwoOrigins onNavigate={navigateTo} onOpenInquiry={openInquiry} />
+          <SelectedOrigins />
+          <Philosophy />
+          <ExportTrust
+            onNavigate={navigateTo}
+            onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
           />
-        ) : (
-          <>
-            <Hero onOpenInquiry={() => setIsInquiryOpen(true)} />
-            <Philosophy />
-            
-            {/* Apple-Style Interactive 360 Scrollytelling Showcase */}
-            <ScrollytellingShowcase onOpenInquiry={() => setIsInquiryOpen(true)} />
-            
-            <TheVanilla
-              onOpenInquiry={() => setIsInquiryOpen(true)}
-              onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
-            />
-            <TerroirOrigin />
-            <TheCraft />
-            <QualitySpecs
-              onOpenInquiry={() => setIsInquiryOpen(true)}
-              onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
-            />
-            <Applications onOpenInquiry={() => setIsInquiryOpen(true)} />
-            <ClosingInquiry
-              onOpenInquiry={() => setIsInquiryOpen(true)}
-              onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
-            />
-          </>
-        )}
-      </main>
-
-      {/* Footer */}
-      <Footer
-        currentPage={currentPage}
-        onNavigate={navigateTo}
-        onOpenInquiry={() => setIsInquiryOpen(true)}
-        onOpenSpecSheet={() => setIsSpecSheetOpen(true)}
-      />
-
-      {/* Floating Concierge Action Pill */}
-      <FloatingConcierge onOpenInquiry={() => setIsInquiryOpen(true)} />
-
-      {/* B2B Sourcing Inquiry Modal */}
-      <InquiryModal
-        isOpen={isInquiryOpen}
-        onClose={() => setIsInquiryOpen(false)}
-      />
-
-      {/* Technical Quality Dossier Modal */}
-      <SpecSheetModal
-        isOpen={isSpecSheetOpen}
-        onClose={() => setIsSpecSheetOpen(false)}
-        onOpenInquiry={() => {
-          setIsSpecSheetOpen(false);
-          setIsInquiryOpen(true);
-        }}
-      />
-    </>
+          <ClosingInquiry
+            onOpenInquiry={() => openInquiry('Indonesian Vanilla — Gourmet Grade A Planifolia')}
+          />
+        </>
+      )}
+    </PageLayout>
   );
 }
 

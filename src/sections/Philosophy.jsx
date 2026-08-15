@@ -1,140 +1,193 @@
 import React from 'react';
-import { brandStory } from '../data/brandStory';
+import { brandConfig } from '../config/brandConfig';
 import { ScrollReveal } from '../components/ScrollReveal';
-import flowerImg from '../assets/images/brand_flower.jpg';
+import { Compass, Award, ShieldCheck, TreePine, Sparkles } from 'lucide-react';
 
 export const Philosophy = () => {
+  const pillars = [
+    {
+      number: '01',
+      title: '100% Authentic Indonesian Origin',
+      subtitle: 'Optimal Tropical Terroir',
+      icon: Compass,
+      description: 'Harvested from optimal tropical soils, our vanilla possesses a signature rich aroma, moist texture, and naturally high vanillin concentration unique to Indonesia.'
+    },
+    {
+      number: '02',
+      title: 'Craftsmanship & Strict Quality Control',
+      subtitle: 'Family Heritage Rigor',
+      icon: Award,
+      description: 'Evolving from a trusted family business, every batch is meticulously hand-selected, naturally cured, and rigorously tested to ensure uniform sizing, proper moisture, and zero contamination.'
+    },
+    {
+      number: '03',
+      title: 'Export-Ready & International Standards',
+      subtitle: 'Global Compliance',
+      icon: ShieldCheck,
+      description: 'We understand global market compliance. Our products are processed, packaged, and documented to meet strict international food safety and import regulations for seamless customs clearance.'
+    },
+    {
+      number: '04',
+      title: 'Direct Sourcing & Sustainable Supply',
+      subtitle: 'Transparent Farm Supply',
+      icon: TreePine,
+      description: 'By eliminating unnecessary intermediaries, we offer competitive B2B pricing, guaranteed supply continuity, and transparent traceability back to the farm level.'
+    }
+  ];
+
   return (
     <section
       id="philosophy"
       className="section"
       style={{
-        backgroundColor: 'var(--bg-surface)',
-        borderTop: '1px solid var(--border-light)',
-        borderBottom: '1px solid var(--border-light)',
-        minHeight: '100dvh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center'
+        backgroundColor: 'var(--bg-primary)',
+        paddingTop: 'clamp(80px, 10vh, 120px)',
+        paddingBottom: 'clamp(80px, 10vh, 120px)',
+        position: 'relative'
       }}
+      aria-label="Essence Indonesia Philosophy and Principles"
     >
       <div className="container">
         
-        {/* Breathing Room Manifesto */}
-        <ScrollReveal animation="fade-up">
-          <div style={{ textAlign: 'center', marginBottom: 'clamp(1.5rem, 3vh, 2.5rem)' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
-              <span className="overline overline-accent" style={{ color: 'var(--accent-gold)' }}>
-                Brand Philosophy
-              </span>
-              <span style={{ width: '24px', height: '1px', backgroundColor: 'var(--border-gold)', display: 'inline-block' }}></span>
-            </div>
+        {/* Section Header */}
+        <div style={{ maxWidth: '720px', marginBottom: 'clamp(40px, 6vh, 64px)' }}>
+          <ScrollReveal animation="fade-up" delay={50}>
+            <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
+              04 · Philosophy & Principles
+            </span>
+          </ScrollReveal>
 
+          <ScrollReveal animation="fade-up" delay={100}>
             <h2
-              className="heading-section"
               style={{
-                maxWidth: '840px',
-                margin: '0 auto 14px',
-                lineHeight: 1.15
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.2rem, 4.5vw, 3.5rem)',
+                fontWeight: 300,
+                color: 'var(--text-primary)',
+                lineHeight: 1.15,
+                margin: '0 0 16px 0',
+                letterSpacing: '0.02em'
               }}
             >
-              {brandStory.manifesto.lead}{' '}
-              <span style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--text-primary)' }}>
-                {brandStory.manifesto.statement}
-              </span>
+              ESSENCE INDONESIA.
             </h2>
+          </ScrollReveal>
 
+          <ScrollReveal animation="fade-up" delay={150}>
             <p
-              className="body-lead"
               style={{
-                maxWidth: '680px',
-                margin: '0 auto',
+                fontFamily: 'var(--font-body)',
+                fontSize: 'clamp(0.9375rem, 1.2vw, 1.0625rem)',
                 color: 'var(--text-secondary)',
-                fontSize: 'clamp(0.95rem, 1.2vw, 1.125rem)'
+                lineHeight: 1.7,
+                margin: 0
               }}
             >
-              {brandStory.manifesto.description}
+              Connecting Indonesia’s equatorial terroirs directly to international buyers through provenance integrity, strict quality standards, and dependable export operations.
             </p>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
 
-        {/* Integrated Visual & 3 Minimal Editorial Pillars */}
-        <div className="grid-12" style={{ alignItems: 'center', marginTop: 'clamp(1rem, 2vh, 2rem)' }}>
-          
-          {/* Left Col: Botanical Still Frame (Double-Bezel) */}
-          <div style={{ gridColumn: 'span 5' }}>
-            <ScrollReveal animation="fade-right" delay={80}>
-              <div className="double-bezel-outer">
-                <div className="double-bezel-inner img-container" style={{ aspectRatio: '16/10' }}>
-                  <img
-                    src={flowerImg}
-                    alt="Vanilla orchid flower blooming on volcanic plantation vine"
-                    className="img-hover-zoom"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-
-          {/* Right Col: 3 Pillars Stack */}
-          <div style={{ gridColumn: 'span 7', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {brandStory.pillars.map((pillar, idx) => (
-              <ScrollReveal key={idx} animation="fade-left" delay={idx * 100}>
+        {/* 4-Column Symmetrical Pillar Cards Grid */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
+            gap: 'clamp(18px, 2vw, 26px)',
+            alignItems: 'stretch'
+          }}
+        >
+          {pillars.map((pillar, idx) => {
+            const IconComp = pillar.icon;
+            return (
+              <ScrollReveal key={idx} animation="fade-up" delay={idx * 120 + 200} style={{ display: 'flex' }}>
                 <div
+                  className="philosophy-card"
                   style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '16px',
-                    padding: '12px 16px',
-                    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+                    flex: 1,
+                    backgroundColor: 'var(--bg-surface)',
                     border: '1px solid var(--border-light)',
                     borderRadius: 'var(--radius-sm)',
-                    transition: 'all 0.25s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#FFFFFF';
-                    e.currentTarget.style.borderColor = 'var(--border-gold)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-                    e.currentTarget.style.borderColor = 'var(--border-light)';
+                    padding: 'clamp(28px, 4vw, 36px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    boxShadow: 'var(--shadow-subtle)',
+                    transition: 'all 0.3s var(--ease-editorial)'
                   }}
                 >
-                  <span
-                    className="num-label"
-                    style={{
-                      fontSize: '0.75rem',
-                      color: 'var(--accent-gold)',
-                      marginTop: '2px',
-                      flexShrink: 0
-                    }}
-                  >
-                    {pillar.number}
-                  </span>
                   <div>
+                    {/* Top Meta: Number + Icon */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        marginBottom: '28px'
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          fontSize: '1.75rem',
+                          fontWeight: 400,
+                          color: 'var(--accent-gold)',
+                          letterSpacing: '0.04em'
+                        }}
+                      >
+                        {pillar.number}
+                      </span>
+                      <div
+                        style={{
+                          width: '38px',
+                          height: '38px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(200, 169, 107, 0.12)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          color: 'var(--accent-gold)'
+                        }}
+                      >
+                        <IconComp size={18} />
+                      </div>
+                    </div>
+
+                    {/* Pillar Title & Subtitle */}
                     <h3
                       style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: '1.2rem',
-                        marginBottom: '4px',
+                        fontSize: '1.45rem',
+                        fontWeight: 600,
                         color: 'var(--text-primary)',
-                        lineHeight: 1.2
+                        margin: '0 0 6px 0',
+                        lineHeight: 1.25
                       }}
                     >
                       {pillar.title}
                     </h3>
+                    
+                    <span
+                      style={{
+                        display: 'block',
+                        fontSize: '0.6875rem',
+                        fontWeight: 600,
+                        letterSpacing: '0.1em',
+                        textTransform: 'uppercase',
+                        color: 'var(--accent-gold)',
+                        marginBottom: '16px'
+                      }}
+                    >
+                      {pillar.subtitle}
+                    </span>
+
+                    {/* Pillar Body Description */}
                     <p
                       className="body-small"
                       style={{
                         color: 'var(--text-secondary)',
-                        margin: 0,
-                        lineHeight: 1.5
+                        lineHeight: 1.65,
+                        margin: 0
                       }}
                     >
                       {pillar.description}
@@ -142,12 +195,25 @@ export const Philosophy = () => {
                   </div>
                 </div>
               </ScrollReveal>
-            ))}
-          </div>
-
+            );
+          })}
         </div>
 
       </div>
+
+      <style>{`
+        .philosophy-card:hover {
+          transform: translateY(-4px);
+          border-color: var(--border-gold) !important;
+          box-shadow: var(--shadow-medium);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .philosophy-card {
+            transition: none !important;
+            transform: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

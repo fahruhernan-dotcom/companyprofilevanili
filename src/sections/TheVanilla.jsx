@@ -1,60 +1,115 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import vanillaLinenImg from '../assets/images/vanilla_linen_cloth.jpg';
 import { SectionHeader } from '../components/SectionHeader';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { Sparkles, Info } from 'lucide-react';
+import { Sparkles, Info, Play, RotateCcw } from 'lucide-react';
 
 export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
   const [activeHotspot, setActiveHotspot] = useState(null);
   const [activeFlavor, setActiveFlavor] = useState('rum');
+  const [activeVideoMode, setActiveVideoMode] = useState(null); // 'caviar' | 'pliability' | null
+
+  const caviarVideoRef = useRef(null);
+  const pliabilityVideoRef = useRef(null);
 
   const hotspots = [
     {
       id: 1,
-      top: '28%',
-      left: '35%',
+      top: '39%',
+      left: '28%',
       title: 'Dense Vanillin Glaze',
-      desc: 'Natural essential oils and vanillin concentrate on the surface through traditional sun-curing.'
+      desc: 'Natural essential oils and vanillin concentrate on the glossy outer surface through traditional sun-curing.',
+      videoMode: null
     },
     {
       id: 2,
-      top: '52%',
-      left: '60%',
+      top: '50%',
+      left: '40%',
       title: 'Plump Caviar Mass',
-      desc: 'Abundant interior seed cavity yielding dense visual speckling and intense culinary aromatic release.'
+      desc: 'Abundant interior seed cavity yielding dense visual speckling and intense culinary aromatic release.',
+      videoMode: 'caviar'
     },
     {
       id: 3,
-      top: '74%',
-      left: '80%',
+      top: '58%',
+      left: '74%',
       title: 'Supple Pliability',
-      desc: 'Optimal 30–35% moisture allows smooth slicing without brittle cracking or dryness.'
+      desc: 'Optimal 30–35% moisture allows smooth slicing and bending without brittle cracking or dryness.',
+      videoMode: 'pliability'
     }
   ];
+
+  const handleHotspotClick = (spot) => {
+    if (spot.videoMode) {
+      const mode = spot.videoMode;
+      const targetVideo = mode === 'caviar' ? caviarVideoRef.current : pliabilityVideoRef.current;
+      
+      setActiveVideoMode(mode);
+      setActiveHotspot(spot.id);
+
+      if (targetVideo) {
+        targetVideo.currentTime = 0;
+        targetVideo.play().catch(() => {});
+      }
+    } else {
+      setActiveHotspot(activeHotspot === spot.id ? null : spot.id);
+    }
+  };
+
+  const handleBackToAnatomy = () => {
+    setActiveVideoMode(null);
+    setActiveHotspot(null);
+    if (caviarVideoRef.current) {
+      caviarVideoRef.current.pause();
+    }
+    if (pliabilityVideoRef.current) {
+      pliabilityVideoRef.current.pause();
+    }
+  };
 
   const flavorNotes = {
     rum: {
       name: 'Dark Rum & Bourbon Warmth',
-      description: 'Deep, rich molasses undertones developed through 90 days of slow wooden box sweating.'
+      description: 'Deep, rich molasses undertones developed through 90 days of slow wooden box sweating.',
+      scores: [
+        { label: 'Molasses & Warmth', score: 95 },
+        { label: 'Vanillin Potency', score: 92 },
+        { label: 'Balsamic Depth', score: 85 }
+      ]
     },
     floral: {
       name: 'Equatorial Floral High Notes',
-      description: 'Delicate botanical sweetness characteristic of Indonesian volcanic high-canopy shade.'
+      description: 'Delicate botanical sweetness characteristic of Indonesian volcanic high-canopy shade.',
+      scores: [
+        { label: 'Floral Sweetness', score: 94 },
+        { label: 'Aromatic Lift', score: 90 },
+        { label: 'Vanillin Potency', score: 84 }
+      ]
     },
     woody: {
       name: 'Balsamic & Cedar Resonance',
-      description: 'Enduring woody base notes that hold structural integrity in high-heat culinary baking.'
+      description: 'Enduring woody base notes that hold structural integrity in high-heat culinary baking.',
+      scores: [
+        { label: 'Cedar & Woody Core', score: 96 },
+        { label: 'Oven Heat Stability', score: 92 },
+        { label: 'Earthy Resonance', score: 88 }
+      ]
     },
     cream: {
       name: 'Buttery Custard Sweetness',
-      description: 'Smooth, rounded vanillin that blossoms into rich dairy, gelato, and ganache preparations.'
+      description: 'Smooth, rounded vanillin that blossoms into rich dairy, gelato, and ganache preparations.',
+      scores: [
+        { label: 'Cream & Dairy Blossom', score: 96 },
+        { label: 'Round Sweet Finish', score: 94 },
+        { label: 'Caviar Visual Release', score: 90 }
+      ]
     }
   };
 
   return (
-    <section id="the-vanilla" className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <section id="vanilla" className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         
         <ScrollReveal animation="fade-up">
@@ -67,63 +122,208 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
 
         <div className="grid-12" style={{ alignItems: 'center' }}>
           
-          {/* Col 1-6: Artisanal Bundle with Interactive Hotspots & Double-Bezel Architecture */}
-          <div style={{ gridColumn: 'span 6' }}>
+          {/* Col 1-6: Artisanal Bundle with Hardware-Accelerated Smooth Morphing Video Engine */}
+          <div style={{ gridColumn: 'span 7' }}>
             <ScrollReveal animation="fade-right">
               {/* Outer Shell (Doppelrand) */}
               <div className="double-bezel-outer" style={{ position: 'relative' }}>
                 {/* Inner Core */}
                 <div
                   className="double-bezel-inner img-container"
-                  style={{ position: 'relative', aspectRatio: '16/11' }}
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '16/10',
+                    overflow: 'hidden',
+                    backgroundColor: '#171512'
+                  }}
                 >
-                  <img
-                    src={vanillaLinenImg}
-                    alt="Artisanal Indonesian vanilla pods on natural organic linen cloth"
-                    className="img-hover-zoom"
+                  {/* LAYER 1: BASE HIGH-RES PHOTO & INTERACTIVE HOTSPOT PINS */}
+                  <div
                     style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: 1,
+                      transition: 'opacity 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1)',
+                      opacity: activeVideoMode ? 0.05 : 1,
+                      transform: activeVideoMode ? 'scale(1.04)' : 'scale(1)',
+                      pointerEvents: activeVideoMode ? 'none' : 'auto'
                     }}
-                    loading="lazy"
-                  />
+                  >
+                    <img
+                      src={vanillaLinenImg}
+                      alt="Artisanal Indonesian vanilla pods on natural organic linen cloth"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                      loading="lazy"
+                    />
 
-                  {/* Interactive Hotspot Pins with Edge-Aware Tooltips */}
-                  {hotspots.map((spot) => {
-                    const leftVal = parseFloat(spot.left);
-                    const alignClass = leftVal > 65 ? 'hotspot-pin-right' : leftVal < 30 ? 'hotspot-pin-left' : '';
-                    return (
-                      <div
-                        key={spot.id}
-                        className={`hotspot-pin ${alignClass} ${activeHotspot === spot.id ? 'active' : ''}`}
-                        style={{ top: spot.top, left: spot.left }}
-                        onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
-                        onMouseEnter={() => setActiveHotspot(spot.id)}
-                        onMouseLeave={() => setActiveHotspot(null)}
-                        role="button"
-                        tabIndex={0}
-                        aria-label={spot.title}
-                      >
-                        <Info size={14} />
-                        <div className="hotspot-tooltip">
-                          <strong style={{ fontSize: '0.75rem', display: 'block', color: 'var(--accent-gold)', marginBottom: '4px' }}>
-                            {spot.title}
-                          </strong>
-                          <span style={{ fontSize: '0.75rem', lineHeight: 1.4, display: 'block' }}>
-                            {spot.desc}
-                          </span>
+                    {/* Hotspot Pins */}
+                    {hotspots.map((spot) => {
+                      const leftVal = parseFloat(spot.left);
+                      const alignClass = leftVal > 65 ? 'hotspot-pin-right' : leftVal < 30 ? 'hotspot-pin-left' : '';
+                      const hasVideo = !!spot.videoMode;
+                      return (
+                        <div
+                          key={spot.id}
+                          className={`hotspot-pin ${alignClass} ${activeHotspot === spot.id ? 'active' : ''}`}
+                          style={{
+                            top: spot.top,
+                            left: spot.left
+                          }}
+                          onClick={() => handleHotspotClick(spot)}
+                          onMouseEnter={() => !activeVideoMode && setActiveHotspot(spot.id)}
+                          onMouseLeave={() => !activeVideoMode && setActiveHotspot(null)}
+                          role="button"
+                          tabIndex={0}
+                          aria-label={spot.title}
+                        >
+                          {hasVideo ? <Play size={11} fill="currentColor" /> : <Info size={14} />}
+                          <div className="hotspot-tooltip">
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '4px' }}>
+                              <strong style={{ fontSize: '0.75rem', color: 'var(--accent-gold)' }}>
+                                {spot.title}
+                              </strong>
+                              {hasVideo && (
+                                <span style={{ fontSize: '0.625rem', backgroundColor: 'rgba(200, 169, 107, 0.2)', padding: '2px 6px', borderRadius: '4px', color: 'var(--accent-gold)' }}>
+                                  ▶ Slomo
+                                </span>
+                              )}
+                            </div>
+                            <span style={{ fontSize: '0.75rem', lineHeight: 1.4, display: 'block', marginBottom: hasVideo ? '6px' : 0 }}>
+                              {spot.desc}
+                            </span>
+                            {hasVideo && (
+                              <span style={{ fontSize: '0.6875rem', color: 'var(--accent-gold)', display: 'block', fontWeight: 600 }}>
+                                Click pin to inspect 1080p macro video ↗
+                              </span>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
+
+                  {/* LAYER 2: 100% UNOBSTRUCTED CAVIAR VIDEO (Point 2) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: activeVideoMode === 'caviar' ? 10 : 2,
+                      transition: 'opacity 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1)',
+                      opacity: activeVideoMode === 'caviar' ? 1 : 0,
+                      transform: activeVideoMode === 'caviar' ? 'scale(1)' : 'scale(0.96)',
+                      pointerEvents: activeVideoMode === 'caviar' ? 'auto' : 'none'
+                    }}
+                  >
+                    <video
+                      ref={caviarVideoRef}
+                      src="/videos/vanilla_slomo_macro_texture.mp4"
+                      preload="auto"
+                      muted
+                      playsInline
+                      loop={false}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+
+                    {/* ONLY BACK BUTTON (Minimalist Glass Design) */}
+                    <button
+                      type="button"
+                      onClick={handleBackToAnatomy}
+                      style={{
+                        position: 'absolute',
+                        bottom: '12px',
+                        right: '12px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        padding: '6px 14px',
+                        borderRadius: 'var(--radius-pill)',
+                        border: '1px solid var(--border-gold)',
+                        color: 'var(--text-inverse-primary)',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+                      }}
+                    >
+                      <RotateCcw size={12} style={{ color: 'var(--accent-gold)' }} />
+                      <span>Back to Anatomy View</span>
+                    </button>
+                  </div>
+
+                  {/* LAYER 3: 100% UNOBSTRUCTED PLIABILITY VIDEO (Point 3) */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      zIndex: activeVideoMode === 'pliability' ? 10 : 3,
+                      transition: 'opacity 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1)',
+                      opacity: activeVideoMode === 'pliability' ? 1 : 0,
+                      transform: activeVideoMode === 'pliability' ? 'scale(1)' : 'scale(0.96)',
+                      pointerEvents: activeVideoMode === 'pliability' ? 'auto' : 'none'
+                    }}
+                  >
+                    <video
+                      ref={pliabilityVideoRef}
+                      src="/videos/vanilla_slomo_smooth_1080p.mp4"
+                      preload="auto"
+                      muted
+                      playsInline
+                      loop={false}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+
+                    {/* ONLY BACK BUTTON (Minimalist Glass Design) */}
+                    <button
+                      type="button"
+                      onClick={handleBackToAnatomy}
+                      style={{
+                        position: 'absolute',
+                        bottom: '12px',
+                        right: '12px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        padding: '6px 14px',
+                        borderRadius: 'var(--radius-pill)',
+                        border: '1px solid var(--border-gold)',
+                        color: 'var(--text-inverse-primary)',
+                        fontSize: '0.75rem',
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+                      }}
+                    >
+                      <RotateCcw size={12} style={{ color: 'var(--accent-gold)' }} />
+                      <span>Back to Anatomy View</span>
+                    </button>
+                  </div>
+
                 </div>
               </div>
               
+              {/* Bottom Clean Legend Bar (Zero Clutter Buttons) */}
               <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span className="body-small" style={{ fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem' }}>
                   <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Tap pins to inspect bean anatomy</span>
+                  <span>Tap pins to inspect bean anatomy in live 1080p motion</span>
                 </span>
                 <span className="overline" style={{ fontSize: '0.625rem' }}>
                   Species: Vanilla planifolia
@@ -135,7 +335,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
           {/* Col 7-12: Sensory Profile & Interactive Flavor Note Explorer */}
           <div
             style={{
-              gridColumn: 'span 6',
+              gridColumn: 'span 5',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -176,24 +376,52 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                 ))}
               </div>
 
-              {/* Dynamic Flavor Card Display */}
+              {/* Dynamic Flavor Card Display with Visual Spectrum Meters */}
               <div
                 style={{
                   backgroundColor: 'var(--bg-surface)',
-                  padding: '14px 18px',
+                  padding: '16px 20px',
                   borderRadius: 'var(--radius-xs)',
                   border: '1px solid var(--border-light)',
                   marginBottom: '18px',
-                  minHeight: '74px',
                   transition: 'all 0.3s ease'
                 }}
               >
-                <span className="overline" style={{ fontSize: '0.65rem', display: 'block', color: 'var(--accent-gold)', marginBottom: '3px' }}>
-                  {flavorNotes[activeFlavor].name}
-                </span>
-                <p className="body-small" style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.8125rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <span className="overline" style={{ fontSize: '0.6875rem', color: 'var(--accent-gold)' }}>
+                    {flavorNotes[activeFlavor].name}
+                  </span>
+                  <span style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>90-Day Wooden Box Cured</span>
+                </div>
+
+                <p className="body-small" style={{ margin: '0 0 14px 0', color: 'var(--text-primary)', fontSize: '0.8125rem', lineHeight: 1.5 }}>
                   {flavorNotes[activeFlavor].description}
                 </p>
+
+                {/* Visual Aromatic Intensity Bars */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', borderTop: '1px solid var(--border-light)', paddingTop: '10px' }}>
+                  {flavorNotes[activeFlavor].scores.map((s, sIdx) => (
+                    <div key={sIdx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px' }}>
+                      <span style={{ fontSize: '0.6875rem', color: 'var(--text-secondary)', minWidth: '130px' }}>
+                        {s.label}
+                      </span>
+                      <div style={{ flex: 1, height: '4px', backgroundColor: 'var(--bg-primary)', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div
+                          style={{
+                            height: '100%',
+                            width: `${s.score}%`,
+                            backgroundColor: 'var(--accent-gold)',
+                            borderRadius: '2px',
+                            transition: 'width 0.4s ease'
+                          }}
+                        />
+                      </div>
+                      <span style={{ fontSize: '0.6875rem', fontWeight: 600, color: 'var(--text-primary)', minWidth: '32px', textAlign: 'right' }}>
+                        {s.score}%
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Spec Matrix Highlights */}
@@ -214,7 +442,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     Standard Grade
                   </span>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                    {brandConfig.claims.grade}
+                    {brandConfig.claims?.grade || 'Gourmet / Grade A'}
                   </span>
                 </div>
 
@@ -223,12 +451,12 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     Length & Moisture
                   </span>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                    {brandConfig.claims.length} · {brandConfig.claims.moisture}
+                    {brandConfig.claims?.length || '13 – 21 cm'} · {brandConfig.claims?.moisture || '30% – 35%'}
                   </span>
                 </div>
               </div>
 
-              {/* Action Buttons with Button-in-Button Architecture */}
+              {/* Action Buttons */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
                 <Button variant="primary" onClick={onOpenInquiry} style={{ padding: '4px 6px 4px 18px', minHeight: '42px', fontSize: '0.75rem' }}>
                   Inquire Harvest Sourcing

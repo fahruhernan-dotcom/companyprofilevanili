@@ -2,57 +2,68 @@ import React from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { MessageCircle, Mail, FileText } from 'lucide-react';
+import { MessageCircle, Mail, Globe, ArrowRight } from 'lucide-react';
 
-export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
+export const ClosingInquiry = ({ onOpenInquiry }) => {
   const whatsappUrl = `https://wa.me/${brandConfig.contact.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(brandConfig.contact.whatsappDefaultMessage)}`;
 
   return (
     <section
-      id="contact"
+      id="inquiry-section"
       className="section"
       style={{
         backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-inverse-primary)',
         borderTop: '1px solid var(--border-dark)',
-        position: 'relative'
+        paddingTop: 'clamp(90px, 12vh, 140px)',
+        paddingBottom: 'clamp(90px, 12vh, 140px)',
+        position: 'relative',
+        overflow: 'hidden'
       }}
+      aria-label="Global Sourcing Concierge"
     >
-      <div className="container-narrow" style={{ textAlign: 'center' }}>
+      <div className="container-narrow" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
         
         <ScrollReveal animation="fade-up">
-          {/* Overline Indicator */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-            <span className="overline overline-accent" style={{ color: 'var(--accent-gold)' }}>
-              Procurement & Collaboration
+          {/* Live Trade Desk Operational Badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(200, 169, 107, 0.12)', border: '1px solid rgba(200, 169, 107, 0.35)', marginBottom: '22px' }}>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#25D366', boxShadow: '0 0 8px #25D366', display: 'inline-block' }}></span>
+            <span style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-gold)' }}>
+              Trade Desk Active: 08:00–22:00 UTC+7 · Guaranteed Response &lt; 2 Hours
             </span>
-            <span style={{ width: '32px', height: '1px', backgroundColor: 'var(--border-gold)' }}></span>
           </div>
 
           {/* Dramatic Closing Heading */}
           <h2
-            className="heading-section"
             style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+              fontWeight: 300,
               color: 'var(--text-inverse-primary)',
-              maxWidth: '740px',
+              maxWidth: '820px',
               margin: '0 auto 24px',
-              lineHeight: 1.15
+              lineHeight: 1.15,
+              letterSpacing: '0.02em'
             }}
           >
-            Let's Curate Your Next <br />
-            <span style={{ fontStyle: 'italic', fontWeight: 300 }}>Culinary Masterpiece.</span>
+            INDONESIAN ORIGINS.<br />
+            <span style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--accent-gold)' }}>
+              Sourced for the World.
+            </span>
           </h2>
 
           {/* Supporting Paragraph */}
           <p
-            className="body-lead"
             style={{
-              maxWidth: '620px',
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(0.95rem, 1.2vw, 1.125rem)',
+              maxWidth: '660px',
               margin: '0 auto clamp(2.5rem, 5vw, 3.5rem)',
-              color: 'var(--text-inverse-secondary)'
+              color: 'var(--text-inverse-secondary)',
+              lineHeight: 1.75
             }}
           >
-            Whether securing a single harvest allocation for a luxury patisserie or establishing a multi-tonne wholesale export partnership, our estate concierge is at your service.
+            Direct commercial export of single-origin Indonesian Vanilla and Selected Green Coffee. Pre-shipment sample evaluation kits (100g–500g) dispatched internationally via express air courier within 48–72 hours.
           </p>
 
           {/* Main CTA Actions Bar */}
@@ -69,9 +80,14 @@ export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
             <Button
               variant="gold"
               onClick={onOpenInquiry}
-              style={{ padding: '16px 36px', fontSize: '0.875rem' }}
+              style={{
+                padding: '16px 36px',
+                fontSize: '0.875rem',
+                letterSpacing: '0.04em',
+                fontWeight: 600
+              }}
             >
-              Inquire Sourcing & Sample Kit
+              Request Commercial Quotation
             </Button>
 
             <a
@@ -83,7 +99,10 @@ export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
                 borderColor: 'var(--border-dark-gold)',
                 color: 'var(--text-inverse-primary)',
                 padding: '16px 28px',
-                fontSize: '0.8125rem'
+                fontSize: '0.8125rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px'
               }}
             >
               <MessageCircle size={16} style={{ color: '#25D366' }} />
@@ -98,9 +117,9 @@ export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
               flexWrap: 'wrap',
               justifyContent: 'center',
               alignItems: 'center',
-              gap: '28px',
+              gap: '32px',
               borderTop: '1px solid var(--border-dark)',
-              paddingTop: '28px',
+              paddingTop: '32px',
               color: 'var(--text-inverse-muted)',
               fontSize: '0.8125rem'
             }}
@@ -112,7 +131,8 @@ export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
                 textDecoration: 'none',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
+                transition: 'color 0.2s ease'
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
@@ -121,26 +141,17 @@ export const ClosingInquiry = ({ onOpenInquiry, onOpenSpecSheet }) => {
               <span>{brandConfig.contact.email}</span>
             </a>
 
-            <button
-              type="button"
-              onClick={onOpenSpecSheet}
+            <div
               style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
                 color: 'var(--text-inverse-secondary)',
-                fontSize: '0.8125rem',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px'
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
             >
-              <FileText size={14} style={{ color: 'var(--accent-gold)' }} />
-              <span>View Technical Dossier</span>
-            </button>
+              <Globe size={14} style={{ color: 'var(--accent-gold)' }} />
+              <span>Origin: Indonesia · Worldwide Export</span>
+            </div>
           </div>
         </ScrollReveal>
 

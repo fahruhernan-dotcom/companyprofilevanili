@@ -1,10 +1,18 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
-import { ArrowUp, Mail, MessageCircle, FileText, Sparkles } from 'lucide-react';
+import { ArrowUp, Mail, MessageCircle, ArrowUpRight, Leaf, Coffee } from 'lucide-react';
 
-export const Footer = ({ currentPage = 'home', onNavigate, onOpenInquiry, onOpenSpecSheet }) => {
+export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleLinkClick = (route, hash) => {
+    if (onNavigate) {
+      onNavigate(route, hash);
+    } else if (hash) {
+      window.location.hash = hash;
+    }
   };
 
   const currentYear = new Date().getFullYear();
@@ -15,171 +23,292 @@ export const Footer = ({ currentPage = 'home', onNavigate, onOpenInquiry, onOpen
         backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-inverse-primary)',
         borderTop: '1px solid var(--border-dark)',
-        paddingTop: 'clamp(4rem, 6vw, 6.5rem)',
-        paddingBottom: 'clamp(2.5rem, 4vw, 3.5rem)',
+        paddingTop: 'clamp(3.5rem, 6vw, 5.5rem)',
+        paddingBottom: 'clamp(2rem, 3.5vw, 3rem)',
         position: 'relative'
       }}
     >
       <div className="container">
-        {/* Top Footer Grid */}
+        {/* Top Footer Section */}
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: 'clamp(32px, 5vw, 64px)',
-            marginBottom: 'clamp(3rem, 5vw, 5rem)'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 'clamp(28px, 5vw, 56px)',
+            marginBottom: 'clamp(2.5rem, 4vw, 4rem)'
           }}
         >
-          {/* Col 1: Brand & Origin Identity */}
-          <div style={{ maxWidth: '340px' }}>
+          {/* Brand & Sourcing Statement */}
+          <div style={{ maxWidth: '380px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <span
+              <div
                 style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '36px',
+                  height: '36px',
                   borderRadius: '50%',
-                  backgroundColor: 'var(--bg-primary)',
+                  backgroundColor: 'rgba(246, 242, 234, 0.1)',
+                  border: '1px solid var(--border-dark-gold)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1rem',
-                  fontWeight: 600
+                  padding: '5px'
                 }}
               >
-                {brandConfig.name.charAt(0)}
-              </span>
+                <img
+                  src="/logo-emblem.svg"
+                  alt={`${brandConfig.name} Emblem`}
+                  width="22"
+                  height="22"
+                  style={{
+                    objectFit: 'contain',
+                    display: 'block'
+                  }}
+                />
+              </div>
               <span
                 style={{
                   fontFamily: 'var(--font-display)',
                   fontSize: '1.45rem',
-                  letterSpacing: '0.12em',
+                  letterSpacing: '0.1em',
                   color: 'var(--text-inverse-primary)'
                 }}
               >
-                {brandConfig.fullName}
+                {brandConfig.name}
               </span>
             </div>
 
-            <p style={{ color: 'var(--text-inverse-secondary)', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '20px' }}>
-              {brandConfig.subtitle}
+            <p
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '1.125rem',
+                color: 'var(--accent-gold)',
+                letterSpacing: '0.04em',
+                marginBottom: '12px',
+                lineHeight: 1.4
+              }}
+            >
+              {brandConfig.heroStatement}
             </p>
 
-            <span className="overline" style={{ color: 'var(--accent-gold)', fontSize: '0.6875rem' }}>
-              Terroir: {brandConfig.terroir}
+            <p
+              style={{
+                color: 'var(--text-inverse-secondary)',
+                fontSize: '0.8125rem',
+                lineHeight: 1.6,
+                marginBottom: '12px'
+              }}
+            >
+              {brandConfig.heroSubtitle}
+            </p>
+
+            <p
+              style={{
+                color: 'var(--accent-gold)',
+                fontSize: '0.75rem',
+                fontStyle: 'italic',
+                lineHeight: 1.5,
+                marginBottom: '16px'
+              }}
+            >
+              "{brandConfig.tagline}"
+            </p>
+
+            <span className="overline" style={{ color: 'var(--text-inverse-muted)', fontSize: '0.625rem', display: 'block' }}>
+              Positioning: {brandConfig.positioning}
             </span>
           </div>
 
-          {/* Col 2: Navigation Directory */}
+          {/* Col 1: EXPLORE */}
           <div>
-            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '20px' }}>
-              Navigation
+            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
+              Explore
             </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <li>
+                <a
+                  href="#origins"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('origins', 'origins');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  Indonesian Origins
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#vanilla"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('vanilla', 'vanilla');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  <Leaf size={12} color="var(--accent-gold)" />
+                  <span>Vanilla (Planifolia & Tahitensis)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#coffee"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('coffee', 'coffee');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  <Coffee size={12} color="var(--accent-gold)" />
+                  <span>Coffee (Green Coffee Beans)</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#quality"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('quality', 'quality');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  Quality & Export Standards
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 2: COMPANY */}
+          <div>
+            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
+              Company
+            </span>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <li>
                 <a
                   href="#about"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (onNavigate) onNavigate('about');
-                    else window.location.hash = 'about';
+                    handleLinkClick('about', 'about');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  About Essence Indonesia
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#buyers"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('buyers', 'buyers');
+                  }}
+                  style={{
+                    color: 'var(--text-inverse-secondary)',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    transition: 'color 0.2s ease'
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                >
+                  For International Buyers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#inquiry"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (onOpenInquiry) onOpenInquiry();
+                    else handleLinkClick('inquiry', 'inquiry');
                   }}
                   style={{
                     color: 'var(--accent-gold)',
                     textDecoration: 'none',
-                    fontSize: '0.875rem',
+                    fontSize: '0.8125rem',
                     fontWeight: 600,
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px'
+                    gap: '4px',
+                    transition: 'opacity 0.2s ease'
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
                 >
-                  <Sparkles size={12} />
-                  <span>Our Story (Estate Heritage Page)</span>
+                  <span>Start Sourcing Inquiry</span>
+                  <ArrowUpRight size={12} />
                 </a>
               </li>
-
-              {[
-                { label: 'Philosophy & Manifesto', href: '#philosophy' },
-                { label: 'Our Vanilla (Anatomy)', href: '#the-vanilla' },
-                { label: 'Volcanic Terroir & Origin', href: '#terroir' },
-                { label: 'The Craft (4 Pillars)', href: '#craft' },
-                { label: 'Quality & Specifications', href: '#quality' },
-                { label: 'Culinary Applications', href: '#applications' },
-              ].map((item, idx) => (
-                <li key={idx}>
-                  <a
-                    href={item.href}
-                    onClick={() => {
-                      if (currentPage === 'about' && onNavigate) onNavigate('home');
-                    }}
-                    style={{
-                      color: 'var(--text-inverse-secondary)',
-                      textDecoration: 'none',
-                      fontSize: '0.875rem',
-                      transition: 'color 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
             </ul>
           </div>
 
-          {/* Col 3: Direct Concierge & Sourcing */}
+          {/* Col 3: CONTACT (Verified from Official Catalog) */}
           <div>
-            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '20px' }}>
-              B2B Sourcing & Export
+            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
+              Contact
             </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <li>
-                <button
-                  type="button"
-                  onClick={onOpenInquiry}
+                <a
+                  href={`https://wa.me/${brandConfig.contact.whatsappNumber.replace(/\D/g, '')}?text=${encodeURIComponent(brandConfig.contact.whatsappDefaultMessage)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
-                    color: 'var(--text-inverse-primary)',
-                    cursor: 'pointer',
-                    fontSize: '0.875rem',
-                    fontWeight: 500,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
-                >
-                  <span>Inquire Sourcing & Sample Kit →</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  type="button"
-                  onClick={onOpenSpecSheet}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    padding: 0,
                     color: 'var(--text-inverse-secondary)',
-                    cursor: 'pointer',
-                    fontSize: '0.875rem',
-                    display: 'inline-flex',
+                    textDecoration: 'none',
+                    fontSize: '0.8125rem',
+                    display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '8px',
+                    transition: 'color 0.2s ease'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#25D366')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
                 >
-                  <FileText size={14} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Technical Specification Sheet</span>
-                </button>
+                  <MessageCircle size={14} color="#25D366" />
+                  <span>WhatsApp: (+62) 89-669-241-131 (Iwan)</span>
+                </a>
               </li>
 
               <li>
@@ -188,71 +317,61 @@ export const Footer = ({ currentPage = 'home', onNavigate, onOpenInquiry, onOpen
                   style={{
                     color: 'var(--text-inverse-secondary)',
                     textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    display: 'inline-flex',
+                    fontSize: '0.8125rem',
+                    display: 'flex',
                     alignItems: 'center',
-                    gap: '8px'
+                    gap: '8px',
+                    transition: 'color 0.2s ease'
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
                 >
-                  <Mail size={14} style={{ color: 'var(--accent-gold)' }} />
+                  <Mail size={14} color="var(--accent-gold)" />
                   <span>{brandConfig.contact.email}</span>
                 </a>
               </li>
 
               <li>
-                <a
-                  href={`https://wa.me/${brandConfig.contact.whatsappNumber.replace(/\D/g, '')}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.875rem',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-inverse-primary)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  <MessageCircle size={14} style={{ color: '#25D366' }} />
-                  <span>Direct WhatsApp Concierge</span>
-                </a>
+                <span style={{ color: 'var(--text-inverse-muted)', fontSize: '0.75rem', display: 'block', marginTop: '4px' }}>
+                  Web: {brandConfig.contact.websiteUrl.replace('https://', '')}
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar Divider & Copyright */}
+        {/* Divider */}
+        <div style={{ height: '1px', backgroundColor: 'var(--border-dark)', margin: '24px 0' }} />
+
+        {/* Bottom Bar: Copyright & Back to Top */}
         <div
           style={{
-            borderTop: '1px solid var(--border-dark)',
-            paddingTop: '28px',
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            justifyContent: 'space-between',
             gap: '16px',
-            fontSize: '0.8125rem',
+            fontSize: '0.75rem',
             color: 'var(--text-inverse-muted)'
           }}
         >
-          <div>
-            © {currentYear} {brandConfig.fullName}. All rights reserved. Sourced exclusively from {brandConfig.origin}.
-          </div>
+          <span>
+            © {currentYear} {brandConfig.name}. All rights reserved. Sourced exclusively from {brandConfig.origin}.
+          </span>
 
           <button
             type="button"
             onClick={scrollToTop}
             style={{
-              backgroundColor: 'transparent',
-              border: '1px solid var(--border-dark)',
+              background: 'rgba(246, 242, 234, 0.06)',
+              border: '1px solid var(--border-dark-gold)',
+              borderRadius: 'var(--radius-pill)',
+              padding: '6px 14px',
               color: 'var(--text-inverse-secondary)',
-              borderRadius: 'var(--radius-xs)',
-              padding: '6px 12px',
-              fontSize: '0.75rem',
+              fontSize: '0.6875rem',
+              fontWeight: 600,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
               cursor: 'pointer',
               display: 'inline-flex',
               alignItems: 'center',
@@ -260,16 +379,15 @@ export const Footer = ({ currentPage = 'home', onNavigate, onOpenInquiry, onOpen
               transition: 'all 0.2s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--accent-gold)';
-              e.currentTarget.style.color = 'var(--text-inverse-primary)';
+              e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
+              e.currentTarget.style.color = '#171512';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--border-dark)';
+              e.currentTarget.style.backgroundColor = 'rgba(246, 242, 234, 0.06)';
               e.currentTarget.style.color = 'var(--text-inverse-secondary)';
             }}
-            aria-label="Back to top of page"
           >
-            <span>Back to top</span>
+            <span>Back to Top</span>
             <ArrowUp size={12} />
           </button>
         </div>

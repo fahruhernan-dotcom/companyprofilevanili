@@ -1,64 +1,69 @@
 /**
- * ABOUT US / ESTATE HERITAGE DATA
- * Comprehensive editorial data for the dedicated About page
+ * ESSENCE INDONESIA — CORPORATE HERITAGE & ORIGINS
+ * Verified story grounded in official company catalog and ethical trade principles.
  */
 
-import agronomistImg from '../assets/images/craft_pollination.jpg';
 import curingMasterImg from '../assets/images/craft_curing.jpg';
+import agronomistImg from '../assets/images/craft_pollination.jpg';
 import qualityDirectorImg from '../assets/images/craft_grading.jpg';
 import estateTerraceImg from '../assets/images/terroir_origin.jpg';
 
 export const aboutStory = {
   hero: {
     overline: "Our Heritage & Purpose",
-    title: "Born from Volcanic Ash. Nurtured by Devotion.",
-    subtitle: "A modern agricultural atelier dedicated to elevating Indonesian vanilla from raw commodity to revered haute gastronomy."
+    title: "Rooted in Indonesian Soil. Sourced for the World.",
+    subtitle: "A premier Indonesian commodity exporter dedicated to connecting the rich agricultural terroirs of the archipelago directly to global markets."
   },
 
   genesis: {
-    headline: "The Genesis",
-    quote: "We set out to challenge the industrial status quo: where vanilla is rushed, chemically accelerated, and stripped of its soulful terroir.",
-    body: "Founded amidst the mist-shrouded volcanic ridges of the Indonesian archipelago, Svarna Vanilla was born from a fundamental reverence for botanical craft. Indonesia produces some of the world's most aromatic Vanilla Planifolia, yet for decades, the harvest was hurried by commercial pressure. We created an estate sanctuary where patience is uncompromising, trees remain living, and every blossom receives undivided human care.",
+    headline: "Our Heritage",
+    quote: "Evolving from a trusted family enterprise, we bridge Indonesia's fertile commodity origins with international standards of excellence.",
+    body: "Essence Indonesia was established with a singular mission: to deliver the true essence of Indonesian agricultural commodities to international markets without compromise. Harvesting from optimal tropical microclimates across the archipelago, our commodities possess rich flavor profiles, natural purity, and the high aromatic concentration unique to Indonesia. By maintaining direct relationships and stringent quality oversight, we ensure seamless export readiness and consistent supply continuity for global buyers.",
     image: estateTerraceImg
   },
 
   directives: [
     {
       number: "01",
-      title: "Beyond Synthetic Vanillin",
-      description: "Restoring the profound multidimensional complexity of 250+ natural organic aroma compounds that artificial lab synthetics can never replicate."
+      title: "100% Authentic Indonesian Origin",
+      description: "Harvested from optimal tropical soils, our vanilla possesses a signature rich aroma, moist texture, and naturally high vanillin concentration unique to Indonesia."
     },
     {
       number: "02",
-      title: "Living Canopy Agroforestry",
-      description: "Cultivating upon living host trees (Gamal and Albizia) under natural rainforest shade, preserving indigenous biodiversity and volcanic topsoil health."
+      title: "Craftsmanship & Strict Quality Control",
+      description: "Evolving from a trusted family business, every batch is meticulously hand-selected, naturally cured, and rigorously tested to ensure uniform sizing, proper moisture levels, and zero contamination."
     },
     {
       number: "03",
-      title: "Equitable Farmer Prosperity",
-      description: "Partnering directly with multi-generational smallholder farming families through guaranteed fair premiums and comprehensive botanical training."
+      title: "Export-Ready & International Standards",
+      description: "We understand global market compliance. Our products are processed, packaged, and documented to meet strict international food safety and import regulations for seamless customs clearance."
+    },
+    {
+      number: "04",
+      title: "Direct Sourcing & Sustainable Supply",
+      description: "By eliminating unnecessary intermediaries, we offer competitive B2B pricing, guaranteed supply continuity, and transparent traceability back to the farm level."
     }
   ],
 
   stewards: [
     {
-      name: "Budi Santoso",
-      role: "Master of Curing (3rd Generation)",
-      bio: "Carrying over 40 years of familial curing mastery, overseeing every sun blanket and cedar sweating session.",
+      name: "Curation & Curing Masters",
+      role: "Traditional Artisan Team",
+      bio: "Skilled specialists overseeing slow solar curing, moisture regulation, and aroma development.",
       image: curingMasterImg,
-      badge: "Curing Artisan"
+      badge: "Artisanal Curing"
     },
     {
-      name: "Dr. Maya Pratiwi",
-      role: "Lead Botanical Agronomist",
-      bio: "Horticultural researcher specializing in volcanic andosol micro-ecology and organic vine vitality.",
+      name: "Agronomy & Sourcing Team",
+      role: "Origin & Terroir Management",
+      bio: "Dedicated origin specialists working directly at source to select optimal harvest lots.",
       image: agronomistImg,
-      badge: "Soil & Agroforestry"
+      badge: "Origin Selection"
     },
     {
-      name: "Hendro Wijaya",
-      role: "Director of International Quality",
-      bio: "Former ISO and export inspector ensuring phytosanitary compliance and gourmet moisture standards.",
+      name: "International Quality Assurance",
+      role: "Export Compliance Division",
+      bio: "Technical inspectors ensuring physical grading, moisture accuracy, lab testing, and customs documentation.",
       image: qualityDirectorImg,
       badge: "Export Assurance"
     }
@@ -67,46 +72,46 @@ export const aboutStory = {
   sustainabilityMetrics: [
     {
       value: "100%",
-      label: "Parcel Traceability",
-      detail: "Every batch is tracked back to its specific agroforestry parcel."
+      label: "Authentic Indonesian Origin",
+      detail: "All commodities sourced directly from Indonesian archipelagos."
     },
     {
-      value: "0%",
-      label: "Synthetic Chemicals",
-      detail: "Zero synthetic pesticides or artificial ripening accelerators used."
+      value: "ISO 22000",
+      label: "Standard Compliance",
+      detail: "Committed to global food safety management protocols."
     },
     {
-      value: "820+",
-      label: "Hectares Canopy",
-      detail: "Rainforest buffer zones protected through sustainable polyculture."
+      value: "Halal & P-IRT",
+      label: "Verified Clearances",
+      detail: "Fully registered with statutory Indonesian health & food agencies."
     },
     {
-      value: "140+",
-      label: "Farmer Families",
-      detail: "Empowered with direct premium contracts and technical education."
+      value: "Direct Sourcing",
+      label: "Trade Transparency",
+      detail: "Eliminating middlemen for competitive B2B pricing and supply stability."
     }
   ],
 
   milestones: [
     {
-      year: "2018",
-      title: "The First Orchid Sanctuary",
-      description: "Establishment of our volcanic nursery and mother vine conservation in East Java & Bali."
+      year: "Origins",
+      title: "Family Enterprise Foundations",
+      description: "Beginning as a dedicated family enterprise focused on traditional agricultural commodities and local trade."
     },
     {
-      year: "2020",
-      title: "Traditional Cedar Curing Facility",
-      description: "Construction of ventilated sun decks and Indonesian teak-and-cedar conditioning chambers."
+      year: "Expansion",
+      title: "Curing & Standardized Facilities",
+      description: "Establishing controlled solar curing and conditioning facilities to standardize batch moisture and grading."
     },
     {
-      year: "2022",
-      title: "Global Organic & Export Accreditation",
-      description: "Achieved international phytosanitary and export compliance for European and North American markets."
+      year: "Accreditation",
+      title: "Food Safety & Export Registrations",
+      description: "Securing Halal, P-IRT, and export compliance certifications for seamless international customs clearance."
     },
     {
-      year: "2024",
-      title: "Direct Michelin Culinary Partnerships",
-      description: "Supplying premier pastry chefs, bean-to-bar chocolatiers, and craft distilleries worldwide."
+      year: "Global Sourcing",
+      title: "International B2B Supply House",
+      description: "Supplying international importers, culinary manufacturers, specialty roasters, and luxury brands worldwide."
     }
   ]
 };

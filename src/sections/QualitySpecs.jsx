@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { vanillaSpecifications } from '../data/specifications';
-import ceramicPedestalImg from '../assets/images/vanilla_ceramic_pedestal.jpg';
 import { SectionHeader } from '../components/SectionHeader';
 import { Button } from '../components/Button';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { FileText, ShieldCheck, Sparkles, Award } from 'lucide-react';
+import { PhysicalInspectionGallery } from '../components/PhysicalInspectionGallery';
 
 export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
   const [selectedGradeIndex, setSelectedGradeIndex] = useState(0);
@@ -34,22 +34,24 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
         {/* 2-Column Screen-Fit Grid: Left Visual Inspection, Right Spec Table */}
         <div className="grid-12" style={{ alignItems: 'center' }}>
           
-          {/* Left Col (5 cols): Visual Quality Inspection on Handcrafted Ceramic Pedestal */}
+          {/* Left Col (5 cols): Dynamic Authentic Specimen Inspection */}
           <div style={{ gridColumn: 'span 5' }}>
             <ScrollReveal animation="fade-right" delay={80}>
               <div className="double-bezel-outer">
                 <div
                   className="double-bezel-inner img-container"
-                  style={{ position: 'relative', aspectRatio: '4/3' }}
+                  style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'var(--bg-primary)' }}
                 >
                   <img
-                    src={ceramicPedestalImg}
-                    alt="Whole gourmet vanilla beans presented on artisanal ceramic pedestal"
+                    key={currentGrade.image}
+                    src={currentGrade.image}
+                    alt={currentGrade.title}
                     className="img-hover-zoom"
                     style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover'
+                      objectFit: 'cover',
+                      animation: 'fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
                     }}
                     loading="lazy"
                   />
@@ -60,7 +62,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       bottom: '12px',
                       left: '12px',
                       right: '12px',
-                      backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                      backgroundColor: 'rgba(23, 21, 18, 0.92)',
                       backdropFilter: 'blur(10px)',
                       WebkitBackdropFilter: 'blur(10px)',
                       color: 'var(--text-inverse-primary)',
@@ -68,7 +70,8 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       borderRadius: 'var(--radius-xs)',
                       display: 'flex',
                       justifyContent: 'space-between',
-                      alignItems: 'center'
+                      alignItems: 'center',
+                      border: '1px solid var(--border-dark-gold)'
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
@@ -78,7 +81,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       </span>
                     </div>
                     <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--accent-gold)' }}>
-                      Laboratory Inspected
+                      Laboratory Calibrated
                     </span>
                   </div>
                 </div>
@@ -149,10 +152,8 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                           alignItems: 'center'
                         }}
                       >
-                        <span className="overline" style={{ fontSize: '0.6875rem', color: 'var(--text-muted)' }}>
-                          {spec.label}
-                        </span>
-                        <span style={{ fontSize: '0.875rem', fontWeight: 500, color: 'var(--text-primary)' }}>
+                        <span className="spec-label" style={{ fontSize: '0.8125rem' }}>{spec.label}</span>
+                        <span className="spec-value" style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text-primary)' }}>
                           {spec.value}
                         </span>
                       </div>
@@ -162,20 +163,34 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                <Button variant="primary" onClick={onOpenInquiry} style={{ padding: '4px 6px 4px 16px', minHeight: '40px', fontSize: '0.75rem' }}>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <Button
+                  variant="primary"
+                  onClick={onOpenInquiry}
+                  style={{ flex: 1, minWidth: '180px', justifyContent: 'center' }}
+                >
                   Request Specs & Pricing
                 </Button>
-
-                <Button variant="secondary" onClick={onOpenSpecSheet} style={{ padding: '4px 6px 4px 16px', minHeight: '40px', fontSize: '0.75rem' }}>
-                  Inspect Full Technical Dossier
-                </Button>
+                
+                {onOpenSpecSheet && (
+                  <Button
+                    variant="secondary"
+                    onClick={onOpenSpecSheet}
+                    style={{ flex: 1, minWidth: '180px', justifyContent: 'center' }}
+                  >
+                    <FileText size={16} />
+                    <span>Inspect Full Technical Dossier</span>
+                  </Button>
+                )}
               </div>
 
             </ScrollReveal>
           </div>
 
         </div>
+
+        {/* Phase-Gated Physical Inspection Gallery */}
+        <PhysicalInspectionGallery />
 
       </div>
     </section>
