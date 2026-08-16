@@ -101,40 +101,24 @@ export function App() {
     document.title = titles[currentRoute] || titles.home;
   }, [currentRoute]);
 
-  // Comprehensive Media & Source Theft Protection (Anti-Save, Anti-RightClick, Anti-Drag, Anti-Inspect)
+  // Comprehensive Media Theft Protection (Anti-Save & Anti-Drag on Media)
   useEffect(() => {
     const handleContextMenu = (e) => {
-      e.preventDefault();
-      return false;
+      const isMedia = e.target.tagName === 'IMG' || 
+                      e.target.tagName === 'VIDEO' || 
+                      e.target.tagName === 'CANVAS' || 
+                      e.target.closest('img, video, canvas, [data-protected-media], .img-container, .media-frame, .lightbox-image-container, .proof-frame-inner');
+      if (isMedia) {
+        e.preventDefault();
+        return false;
+      }
     };
 
     const handleDragStart = (e) => {
-      e.preventDefault();
-      return false;
-    };
-
-    const handleKeyDown = (e) => {
-      // F12
-      if (e.key === 'F12' || e.keyCode === 123) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Picker)
-      if (e.ctrlKey && e.shiftKey && ['I', 'i', 'J', 'j', 'C', 'c'].includes(e.key)) {
-        e.preventDefault();
-        return false;
-      }
-      // Ctrl+U (View Source) or Ctrl+S (Save Page)
-      if (e.ctrlKey && ['u', 'U', 's', 'S'].includes(e.key)) {
-        e.preventDefault();
-        return false;
-      }
-      // Mac Cmd+Option+I / Cmd+Option+C / Cmd+S / Cmd+U
-      if (e.metaKey && e.altKey && ['i', 'I', 'c', 'C'].includes(e.key)) {
-        e.preventDefault();
-        return false;
-      }
-      if (e.metaKey && ['s', 'S', 'u', 'U'].includes(e.key)) {
+      const isMedia = e.target.tagName === 'IMG' || 
+                      e.target.tagName === 'VIDEO' || 
+                      e.target.closest('img, video');
+      if (isMedia) {
         e.preventDefault();
         return false;
       }
@@ -142,12 +126,10 @@ export function App() {
 
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('dragstart', handleDragStart);
-    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('dragstart', handleDragStart);
-      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 

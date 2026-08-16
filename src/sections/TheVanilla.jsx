@@ -129,7 +129,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
               <div className="double-bezel-outer" style={{ position: 'relative' }}>
                 {/* Inner Core */}
                 <div
-                  className="double-bezel-inner img-container"
+                  className="double-bezel-inner"
                   style={{
                     position: 'relative',
                     aspectRatio: '16/10',

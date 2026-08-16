@@ -38,7 +38,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 30 !important;
+  pointer-events: auto !important;
   animation: pulseRing 2.4s infinite cubic-bezier(0.45, 0, 0.55, 1);
   transition: transform 0.25s var(--ease-editorial), background-color 0.25s ease;
 }
