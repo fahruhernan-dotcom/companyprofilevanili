@@ -705,9 +705,10 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* ==========================================================================
-   COMPREHENSIVE MEDIA THEFT & COPYRIGHT PROTECTION
+   COMPREHENSIVE MEDIA THEFT & GHOST SHIELD PROTECTION
    ========================================================================== */
 
+/* 1. Underlying Media Elements (Cannot be directly clicked, dragged, or saved) */
 img,
 picture,
 video,
@@ -724,7 +725,36 @@ figure,
   -webkit-user-drag: none !important;
   user-drag: none !important;
   -webkit-touch-callout: none !important; /* Prevents long-press save image dialog on iOS/Android */
-  pointer-events: auto;
+  pointer-events: none !important; /* Media cannot be directly selected or right-clicked */
+}
+
+/* 2. Containers that host protected media */
+.img-container,
+.double-bezel-inner,
+.media-frame,
+.craft-media-frame,
+.gallery-item,
+.lightbox-image-container,
+.proof-frame-inner,
+.prod-card-inner {
+  position: relative !important;
+}
+
+/* 3. Ghost Shield Overlay (Transparent protective sheet on top of all images) */
+.img-container::after,
+.media-frame::after,
+.craft-media-frame::after,
+.lightbox-image-container::after,
+.media-ghost-shield {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: transparent;
+  pointer-events: auto !important;
+  -webkit-touch-callout: none !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
 }
 
 

@@ -123,8 +123,9 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                     borderRadius: 'var(--radius-xs)'
                   }}
                 >
-                  {/* Product Image Frame */}
+                  {/* Product Image Frame with Ghost Shield */}
                   <div
+                    className="img-container"
                     style={{
                       position: 'relative',
                       aspectRatio: '4/3',
