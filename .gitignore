@@ -26,3 +26,8 @@ dist-ssr
 # Environment variables
 .env
 .env*.local
+
+# Local deployment files
+Dokumen/
+deploy.zip
+scripts.zip
