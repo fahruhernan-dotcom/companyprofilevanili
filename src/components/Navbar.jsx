@@ -10,6 +10,24 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [originsDropdownOpen, setOriginsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
+
+  const handleMouseEnterOrigins = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setOriginsDropdownOpen(true);
+  };
+
+  const handleMouseLeaveOrigins = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+    }
+    closeTimeoutRef.current = setTimeout(() => {
+      setOriginsDropdownOpen(false);
+    }, 250);
+  };
 
   // Close mobile menu and dropdown on resize to desktop
   useEffect(() => {
@@ -19,7 +37,10 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
       }
     };
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
   }, []);
 
   // Prevent background scroll when mobile menu is open
@@ -163,14 +184,14 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             <div
               className="origins-nav-group"
               ref={dropdownRef}
-              onMouseEnter={() => setOriginsDropdownOpen(true)}
-              onMouseLeave={() => setOriginsDropdownOpen(false)}
+              onMouseEnter={handleMouseEnterOrigins}
+              onMouseLeave={handleMouseLeaveOrigins}
             >
               <button
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleLinkClick('origins', 'origins');
+                  setOriginsDropdownOpen(prev => !prev);
                 }}
                 aria-expanded={originsDropdownOpen}
                 aria-haspopup="true"
