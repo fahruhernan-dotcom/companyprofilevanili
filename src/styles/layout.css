@@ -541,8 +541,6 @@ body::before {
   background: transparent;
 }
 
-.origins-nav-group:hover .origins-dropdown,
-.origins-nav-group:focus-within .origins-dropdown,
 .origins-dropdown.is-open {
   opacity: 1;
   visibility: visible;

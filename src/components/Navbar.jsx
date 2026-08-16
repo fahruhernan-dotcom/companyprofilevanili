@@ -76,8 +76,15 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
   }, []);
 
   const handleLinkClick = (route, hash) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
     setMobileMenuOpen(false);
     setOriginsDropdownOpen(false);
+    if (document.activeElement && typeof document.activeElement.blur === 'function') {
+      document.activeElement.blur();
+    }
     if (onNavigate) {
       onNavigate(route, hash);
     } else if (hash) {
