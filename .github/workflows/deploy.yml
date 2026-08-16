@@ -38,6 +38,7 @@ jobs:
             set ftp:ssl-allow yes;
             set ftp:ssl-force no;
             set ftp:ssl-protect-data no;
+            set ssl:verify-certificate no;
             set net:timeout 30;
             set net:max-retries 3;
             open ftp://ftp.essenceindonesia.com;
@@ -45,6 +46,6 @@ jobs:
             mirror --reverse --verbose --delete \
               --exclude .git \
               --exclude node_modules \
-              ./dist/ essenceindonesia.com/;
+              ./dist/ public_html/;
             quit;
           "
