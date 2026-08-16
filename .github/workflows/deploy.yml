@@ -26,17 +26,25 @@ jobs:
       - name: 🏗️ Build production
         run: npm run build
 
-      - name: 📤 Deploy to cPanel via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ftp.essenceindonesia.com
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: /essenceindonesia.com/
-          protocol: ftp
-          port: 21
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+      - name: 🔧 Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: 📤 Deploy to cPanel via FTP (lftp)
+        env:
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+            set ftp:ssl-allow yes;
+            set ftp:ssl-force no;
+            set ftp:ssl-protect-data no;
+            set net:timeout 30;
+            set net:max-retries 3;
+            open ftp://ftp.essenceindonesia.com;
+            user $FTP_USER $FTP_PASS;
+            mirror --reverse --verbose --delete \
+              --exclude .git \
+              --exclude node_modules \
+              ./dist/ essenceindonesia.com/;
+            quit;
+          "
