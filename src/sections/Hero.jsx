@@ -216,7 +216,7 @@ export const Hero = ({ onOpenInquiry }) => {
           zIndex: 3,
           width: '100%',
           maxWidth: '920px',
-          padding: '0 var(--space-md)',
+          padding: '0 clamp(12px, 4vw, var(--space-md))',
           textAlign: 'center',
           boxSizing: 'border-box',
           marginTop: '-2vh'
@@ -227,24 +227,26 @@ export const Hero = ({ onOpenInquiry }) => {
           <h1
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2.4rem, 5.5vw, 4.5rem)',
+              fontSize: 'clamp(1.85rem, 5.5vw, 4.5rem)',
               fontWeight: 300,
               color: '#FFFFFF',
               margin: '0 0 16px 0',
-              lineHeight: 1.1,
-              letterSpacing: '0.04em',
-              textShadow: '0 4px 32px rgba(0, 0, 0, 0.9)'
+              lineHeight: 1.15,
+              letterSpacing: '0.03em',
+              textShadow: '0 4px 32px rgba(0, 0, 0, 0.9)',
+              wordBreak: 'break-word'
             }}
           >
             INDONESIAN ORIGINS.<br />
             <span
               style={{
-                display: 'block',
+                display: 'inline-block',
                 fontStyle: 'italic',
                 fontWeight: 300,
                 color: 'var(--accent-gold)',
-                fontSize: 'clamp(1.85rem, 4.3vw, 3.55rem)',
-                whiteSpace: 'nowrap',
+                fontSize: 'clamp(1.25rem, 4vw, 3.55rem)',
+                letterSpacing: '0.02em',
+                maxWidth: '100%',
                 marginTop: '6px'
               }}
             >

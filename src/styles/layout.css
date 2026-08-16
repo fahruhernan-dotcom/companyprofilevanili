@@ -77,8 +77,8 @@ button, input, textarea, select {
   max-width: var(--container-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+  padding-left: clamp(16px, 4vw, var(--space-md));
+  padding-right: clamp(16px, 4vw, var(--space-md));
 }
 
 .container-narrow {
@@ -86,8 +86,8 @@ button, input, textarea, select {
   max-width: var(--container-narrow-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--space-md);
-  padding-right: var(--space-md);
+  padding-left: clamp(16px, 4vw, var(--space-md));
+  padding-right: clamp(16px, 4vw, var(--space-md));
 }
 
 @media (min-width: 768px) {
@@ -121,7 +121,7 @@ button, input, textarea, select {
 @media (max-width: 991px) {
   .section {
     min-height: auto;
-    padding: clamp(48px, 6vh, 72px) 0;
+    padding: clamp(36px, 5vh, 60px) 0;
   }
 }
 
@@ -142,7 +142,33 @@ button, input, textarea, select {
   .grid-12 {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xl);
+    gap: var(--space-md);
+  }
+
+  .section {
+    padding: clamp(32px, 4.5vh, 48px) 0 !important;
+  }
+
+  .editorial-door {
+    min-height: 270px !important;
+    padding: 18px 16px !important;
+  }
+
+  .philosophy-card {
+    padding: 18px 16px !important;
+  }
+
+  .trust-card {
+    padding: 18px 16px !important;
+  }
+
+  .double-bezel-outer {
+    padding: 4px !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .double-bezel-inner {
+    border-radius: calc(var(--radius-md) - 4px) !important;
   }
 }
 
@@ -207,106 +233,201 @@ body::before {
   background-color: var(--accent-gold);
 }
 
-/* Button-in-Button Trailing Icon Architecture (Awwwards-tier) */
+/* ==========================================================================
+   LUXURY BUTTON DESIGN SYSTEM (Haute Editorial / Anti-Slop)
+   ========================================================================== */
+
+.btn,
 .btn-agency {
   display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 6px 8px 6px 24px;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 24px;
   border-radius: var(--radius-pill);
   font-size: 0.8125rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  min-height: 48px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 46px;
+  white-space: nowrap;
+  user-select: none;
 }
 
+.btn:active,
 .btn-agency:active {
-  transform: scale(0.98);
+  transform: scale(0.98) translateY(1px);
 }
 
-.btn-agency-icon-wrapper {
-  width: 34px;
-  height: 34px;
+.btn:disabled,
+.btn-agency:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button Sizes */
+.btn-sm,
+.btn-agency-sm {
+  min-height: 36px;
+  padding: 4px 14px;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+  gap: 8px;
+}
+
+.btn-lg,
+.btn-agency-lg {
+  min-height: 52px;
+  padding: 10px 32px;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  gap: 14px;
+}
+
+/* Trailing Icon Bubble Architecture */
+.btn-agency-icon-wrapper,
+.btn-icon-wrapper {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease;
 }
 
+.btn-sm .btn-agency-icon-wrapper,
+.btn-sm .btn-icon-wrapper {
+  width: 24px;
+  height: 24px;
+}
+
+/* Primary Variant (Deep Obsidian + Gold Border Accent) */
+.btn-primary,
 .btn-agency-primary {
   background-color: var(--text-primary);
   color: var(--bg-primary);
-  border-color: var(--text-primary);
-  box-shadow: 0 4px 14px rgba(36, 28, 23, 0.12);
+  border-color: rgba(200, 169, 107, 0.35);
+  box-shadow: 0 4px 16px rgba(23, 21, 18, 0.15);
 }
 
+.btn-primary .btn-agency-icon-wrapper,
 .btn-agency-primary .btn-agency-icon-wrapper {
-  background-color: rgba(246, 242, 234, 0.12);
+  background-color: rgba(246, 242, 234, 0.1);
   color: var(--accent-gold);
 }
 
+.btn-primary:hover,
 .btn-agency-primary:hover {
-  background-color: #000000;
+  background-color: #0A0908;
   border-color: var(--accent-gold);
   color: #FFFFFF;
-  box-shadow: 0 8px 24px rgba(36, 28, 23, 0.22);
+  box-shadow: 0 8px 26px rgba(23, 21, 18, 0.3);
 }
 
+.btn-primary:hover .btn-agency-icon-wrapper,
 .btn-agency-primary:hover .btn-agency-icon-wrapper {
   background-color: var(--accent-gold);
   color: #171512;
-  transform: translate(2px, -2px) scale(1.05);
+  transform: translate(2px, -2px) scale(1.08);
 }
 
+/* Gold Variant (Solid Imperial Gold + Dark Text) */
+.btn-gold,
 .btn-agency-gold {
   background-color: var(--accent-gold);
   color: #171512;
   border-color: var(--accent-gold);
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(200, 169, 107, 0.25);
 }
 
+.btn-gold .btn-agency-icon-wrapper,
 .btn-agency-gold .btn-agency-icon-wrapper {
-  background-color: rgba(23, 21, 18, 0.1);
+  background-color: rgba(23, 21, 18, 0.12);
   color: #171512;
 }
 
+.btn-gold:hover,
 .btn-agency-gold:hover {
   background-color: var(--accent-gold-hover);
-  box-shadow: 0 8px 24px rgba(200, 169, 107, 0.3);
+  border-color: var(--accent-gold-hover);
+  box-shadow: 0 8px 28px rgba(200, 169, 107, 0.4);
 }
 
+.btn-gold:hover .btn-agency-icon-wrapper,
 .btn-agency-gold:hover .btn-agency-icon-wrapper {
   background-color: #171512;
   color: var(--accent-gold);
-  transform: translate(2px, -2px) scale(1.05);
+  transform: translate(2px, -2px) scale(1.08);
 }
 
+/* Secondary Variant (Hairline Frosted Glass / Outline) */
+.btn-secondary,
 .btn-agency-secondary {
-  background-color: transparent;
+  background-color: rgba(246, 242, 234, 0.04);
   color: var(--text-primary);
   border-color: var(--border-medium);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
+.btn-secondary .btn-agency-icon-wrapper,
 .btn-agency-secondary .btn-agency-icon-wrapper {
-  background-color: rgba(36, 28, 23, 0.05);
+  background-color: rgba(36, 28, 23, 0.06);
   color: var(--text-primary);
 }
 
+.btn-secondary:hover,
 .btn-agency-secondary:hover {
-  border-color: var(--text-primary);
-  background-color: rgba(36, 28, 23, 0.03);
+  border-color: var(--accent-gold);
+  background-color: rgba(200, 169, 107, 0.08);
+  color: var(--text-primary);
 }
 
+.btn-secondary:hover .btn-agency-icon-wrapper,
 .btn-agency-secondary:hover .btn-agency-icon-wrapper {
-  background-color: var(--text-primary);
-  color: var(--bg-primary);
-  transform: translate(2px, -2px) scale(1.05);
+  background-color: var(--accent-gold);
+  color: #171512;
+  transform: translate(2px, -2px) scale(1.08);
+}
+
+/* WhatsApp Concierge Variant (Luxury Emerald Obsidian) */
+.btn-whatsapp,
+.btn-agency-whatsapp {
+  background-color: rgba(23, 21, 18, 0.92);
+  color: #F6F2EA;
+  border-color: rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-whatsapp .btn-agency-icon-wrapper,
+.btn-agency-whatsapp .btn-agency-icon-wrapper {
+  background-color: rgba(37, 211, 102, 0.15);
+  color: #25D366;
+}
+
+.btn-whatsapp:hover,
+.btn-agency-whatsapp:hover {
+  background-color: #0A0908;
+  border-color: #25D366;
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.2);
+}
+
+.btn-whatsapp:hover .btn-agency-icon-wrapper,
+.btn-agency-whatsapp:hover .btn-agency-icon-wrapper {
+  background-color: #25D366;
+  color: #171512;
+  transform: scale(1.1);
 }
 
 /* Thin Divider */
@@ -507,6 +628,52 @@ tr, .grade-card, .spec-card {
 input:focus, select:focus, textarea:focus {
   border-color: var(--accent-gold) !important;
   box-shadow: 0 0 0 3px rgba(200, 169, 107, 0.15) !important;
+}
+
+/* Mobile Specific Layout & Table Responsiveness */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-sm);
+}
+
+@media (max-width: 767px) {
+  .btn, .btn-agency {
+    min-height: 40px !important;
+    padding: 6px 16px !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.04em !important;
+    gap: 8px !important;
+  }
+  .btn-agency-icon-wrapper,
+  .btn-icon-wrapper {
+    width: 26px !important;
+    height: 26px !important;
+  }
+  .btn-sm,
+  .btn-agency-sm {
+    min-height: 32px !important;
+    padding: 4px 10px !important;
+    font-size: 0.6875rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  input, select, textarea {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS */
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .mobile-stack > * {
+    width: 100% !important;
+    justify-content: center !important;
+  }
 }
 
 /* Print Stylesheet for Official B2B Export Dossier */

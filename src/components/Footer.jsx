@@ -19,6 +19,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
 
   return (
     <footer
+      className="site-footer"
       style={{
         backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-inverse-primary)',
@@ -31,6 +32,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
       <div className="container">
         {/* Top Footer Section */}
         <div
+          className="footer-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -39,7 +41,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
           }}
         >
           {/* Brand & Sourcing Statement */}
-          <div style={{ maxWidth: '380px' }}>
+          <div className="footer-brand-col" style={{ maxWidth: '380px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
               <div
                 style={{
@@ -118,173 +120,176 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             </span>
           </div>
 
-          {/* Col 1: EXPLORE */}
-          <div>
-            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
-              Explore
-            </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li>
-                <a
-                  href="#origins"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('origins', 'origins');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  Indonesian Origins
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#vanilla"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('vanilla', 'vanilla');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  <Leaf size={12} color="var(--accent-gold)" />
-                  <span>Vanilla (Planifolia & Tahitensis)</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#coffee"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('coffee', 'coffee');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  <Coffee size={12} color="var(--accent-gold)" />
-                  <span>Coffee (Green Coffee Beans)</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#quality"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('quality', 'quality');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  Quality & Export Standards
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* Links Wrapper for 2-column mobile responsiveness */}
+          <div className="footer-links-group" style={{ display: 'contents' }}>
+            {/* Col 1: EXPLORE */}
+            <div className="footer-col">
+              <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
+                Explore
+              </span>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <li>
+                  <a
+                    href="#origins"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('origins', 'origins');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    Indonesian Origins
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#vanilla"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('vanilla', 'vanilla');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    <Leaf size={12} color="var(--accent-gold)" />
+                    <span>Vanilla (Planifolia & Tahitensis)</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#coffee"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('coffee', 'coffee');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    <Coffee size={12} color="var(--accent-gold)" />
+                    <span>Coffee (Green Coffee Beans)</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#quality"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('quality', 'quality');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    Quality & Export Standards
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Col 2: COMPANY */}
-          <div>
-            <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
-              Company
-            </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              <li>
-                <a
-                  href="#about"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('about', 'about');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  About Essence Indonesia
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#buyers"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('buyers', 'buyers');
-                  }}
-                  style={{
-                    color: 'var(--text-inverse-secondary)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    transition: 'color 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                >
-                  For International Buyers
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#inquiry"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (onOpenInquiry) onOpenInquiry();
-                    else handleLinkClick('inquiry', 'inquiry');
-                  }}
-                  style={{
-                    color: 'var(--accent-gold)',
-                    textDecoration: 'none',
-                    fontSize: '0.8125rem',
-                    fontWeight: 600,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    transition: 'opacity 0.2s ease'
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-                >
-                  <span>Start Sourcing Inquiry</span>
-                  <ArrowUpRight size={12} />
-                </a>
-              </li>
-            </ul>
+            {/* Col 2: COMPANY */}
+            <div className="footer-col">
+              <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
+                Company
+              </span>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <li>
+                  <a
+                    href="#about"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('about', 'about');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    About Essence Indonesia
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#buyers"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('buyers', 'buyers');
+                    }}
+                    style={{
+                      color: 'var(--text-inverse-secondary)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      transition: 'color 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
+                  >
+                    For International Buyers
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#inquiry"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (onOpenInquiry) onOpenInquiry();
+                      else handleLinkClick('inquiry', 'inquiry');
+                    }}
+                    style={{
+                      color: 'var(--accent-gold)',
+                      textDecoration: 'none',
+                      fontSize: '0.8125rem',
+                      fontWeight: 600,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      transition: 'opacity 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                  >
+                    <span>Start Sourcing Inquiry</span>
+                    <ArrowUpRight size={12} />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
           {/* Col 3: CONTACT (Verified from Official Catalog) */}
-          <div>
+          <div className="footer-contact-col">
             <span className="overline" style={{ color: 'var(--accent-gold)', display: 'block', marginBottom: '16px', fontSize: '0.6875rem' }}>
               Contact
             </span>
@@ -307,7 +312,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
                 >
                   <MessageCircle size={14} color="#25D366" />
-                  <span>WhatsApp: (+62) 89-669-241-131 (Iwan)</span>
+                  <span>WhatsApp: (+62) 89-669-241-131</span>
                 </a>
               </li>
 
@@ -345,6 +350,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
 
         {/* Bottom Bar: Copyright & Back to Top */}
         <div
+          className="footer-bottom-bar"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -392,6 +398,35 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
           </button>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .site-footer {
+            padding-top: 3rem !important;
+            padding-bottom: 2rem !important;
+          }
+          .footer-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 24px !important;
+            margin-bottom: 2rem !important;
+          }
+          .footer-links-group {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+          .footer-col span.overline,
+          .footer-contact-col span.overline {
+            margin-bottom: 8px !important;
+          }
+          .footer-bottom-bar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 12px !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

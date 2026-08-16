@@ -46,6 +46,7 @@ jobs:
             mirror --reverse --verbose --delete \
               --exclude .git \
               --exclude node_modules \
+              --exclude-glob cgi-bin/ \
               ./dist/ public_html/;
             quit;
           "

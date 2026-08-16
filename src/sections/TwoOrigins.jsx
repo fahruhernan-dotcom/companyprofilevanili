@@ -7,7 +7,7 @@ const vanillaImg = '/images/catalog_products/origin_planifolia_hero.webp';
 
 export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
   const handleNav = (e, targetRoute) => {
-    e.preventDefault();
+    if (e && e.preventDefault) e.preventDefault();
     if (onNavigate) {
       onNavigate(targetRoute, targetRoute);
     } else {
@@ -70,34 +70,40 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
 
         {/* Symmetrical Editorial Doors Grid */}
         <div
+          className="editorial-doors-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 460px), 1fr))',
-            gap: 'clamp(24px, 3.5vw, 40px)',
+            gap: 'clamp(14px, 3.5vw, 40px)',
             alignItems: 'stretch'
           }}
         >
           {/* =========================================================================
-              PANEL 01: VANILLA
+              PANEL 01: VANILLA (Entire Box Clickable)
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={200} style={{ display: 'flex' }}>
-            <div
+            <a
+              href="#vanilla"
+              onClick={(e) => handleNav(e, 'vanilla')}
               className="editorial-door"
               style={{
                 flex: 1,
                 position: 'relative',
-                minHeight: 'clamp(440px, 58vh, 540px)',
+                minHeight: 'clamp(380px, 52vh, 540px)',
                 borderRadius: 'var(--radius-sm)',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                padding: 'clamp(28px, 4vw, 44px)',
+                padding: 'clamp(20px, 4vw, 44px)',
                 boxSizing: 'border-box',
                 backgroundColor: 'var(--bg-dark)',
                 border: '1px solid var(--border-light)',
+                textDecoration: 'none',
+                cursor: 'pointer',
                 transition: 'transform 0.4s var(--ease-editorial), border-color 0.3s ease, box-shadow 0.4s var(--ease-editorial)'
               }}
+              aria-label="Explore Vanilla planifolia and tahitensis dossier"
             >
               {/* Background Image Layer */}
               <div
@@ -196,9 +202,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   Single-origin Gourmet Grade A beans and pure natural derivatives (caviar, paste, ground powder) cured under 90-day equatorial conditioning.
                 </p>
 
-                <a
-                  href="#vanilla"
-                  onClick={(e) => handleNav(e, 'vanilla')}
+                <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -209,7 +213,6 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     fontWeight: 600,
                     letterSpacing: '0.14em',
                     textTransform: 'uppercase',
-                    textDecoration: 'none',
                     paddingBottom: '4px',
                     borderBottom: '1px solid rgba(200, 169, 107, 0.4)',
                     transition: 'all 0.25s ease'
@@ -217,32 +220,37 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   className="door-cta"
                 >
                   <span>Explore Vanilla Dossier ↗</span>
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
           </ScrollReveal>
 
           {/* =========================================================================
-              PANEL 02: COFFEE
+              PANEL 02: COFFEE (Entire Box Clickable)
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={300} style={{ display: 'flex' }}>
-            <div
+            <a
+              href="#coffee"
+              onClick={(e) => handleNav(e, 'coffee')}
               className="editorial-door"
               style={{
                 flex: 1,
                 position: 'relative',
-                minHeight: 'clamp(440px, 58vh, 540px)',
+                minHeight: 'clamp(380px, 52vh, 540px)',
                 borderRadius: 'var(--radius-sm)',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                padding: 'clamp(28px, 4vw, 44px)',
+                padding: 'clamp(20px, 4vw, 44px)',
                 boxSizing: 'border-box',
                 backgroundColor: 'var(--bg-dark)',
                 border: '1px solid var(--border-light)',
+                textDecoration: 'none',
+                cursor: 'pointer',
                 transition: 'transform 0.4s var(--ease-editorial), border-color 0.3s ease, box-shadow 0.4s var(--ease-editorial)'
               }}
+              aria-label="Explore Selected Indonesian Green Coffee Beans dossier"
             >
               {/* Background Image Layer */}
               <div
@@ -341,9 +349,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   High-altitude Indonesian green coffee sourced from volcanic microclimates. Screen size grading and FOB/CIF contracting upon commercial request.
                 </p>
 
-                <a
-                  href="#coffee"
-                  onClick={(e) => handleNav(e, 'coffee')}
+                <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -354,7 +360,6 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     fontWeight: 600,
                     letterSpacing: '0.14em',
                     textTransform: 'uppercase',
-                    textDecoration: 'none',
                     paddingBottom: '4px',
                     borderBottom: '1px solid rgba(200, 169, 107, 0.4)',
                     transition: 'all 0.25s ease'
@@ -362,9 +367,9 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   className="door-cta"
                 >
                   <span>Explore Coffee Dossier ↗</span>
-                </a>
+                </div>
               </div>
-            </div>
+            </a>
           </ScrollReveal>
         </div>
       </div>
@@ -381,6 +386,40 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
         .editorial-door:hover .door-cta {
           color: #DFC182;
           border-bottom-color: var(--accent-gold);
+        }
+        @media (max-width: 767px) {
+          .editorial-doors-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .editorial-door {
+            min-height: 260px !important;
+            padding: 14px 12px !important;
+            border-radius: 6px !important;
+          }
+          .editorial-door h3 {
+            font-size: 1.05rem !important;
+            margin-bottom: 4px !important;
+            line-height: 1.15 !important;
+          }
+          .editorial-door p {
+            font-size: 0.72rem !important;
+            line-height: 1.4 !important;
+            margin-bottom: 12px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+          }
+          .editorial-door .door-cta {
+            font-size: 0.65rem !important;
+            letter-spacing: 0.08em !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .editorial-doors-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           .editorial-door,

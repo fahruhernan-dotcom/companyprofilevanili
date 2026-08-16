@@ -1,7 +1,7 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { ScrollReveal } from '../components/ScrollReveal';
-import { Compass, Award, ShieldCheck, TreePine, Sparkles } from 'lucide-react';
+import { Compass, Award, ShieldCheck, TreePine } from 'lucide-react';
 
 export const Philosophy = () => {
   const pillars = [
@@ -41,8 +41,8 @@ export const Philosophy = () => {
       className="section"
       style={{
         backgroundColor: 'var(--bg-primary)',
-        paddingTop: 'clamp(80px, 10vh, 120px)',
-        paddingBottom: 'clamp(80px, 10vh, 120px)',
+        paddingTop: 'clamp(60px, 9vh, 120px)',
+        paddingBottom: 'clamp(60px, 9vh, 120px)',
         position: 'relative'
       }}
       aria-label="Essence Indonesia Philosophy and Principles"
@@ -50,7 +50,7 @@ export const Philosophy = () => {
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ maxWidth: '720px', marginBottom: 'clamp(40px, 6vh, 64px)' }}>
+        <div style={{ maxWidth: '720px', marginBottom: 'clamp(32px, 5vh, 64px)' }}>
           <ScrollReveal animation="fade-up" delay={50}>
             <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
               04 · Philosophy & Principles
@@ -88,19 +88,20 @@ export const Philosophy = () => {
           </ScrollReveal>
         </div>
 
-        {/* 4-Column Symmetrical Pillar Cards Grid */}
+        {/* 4-Column on Desktop / 2-Column Haute Editorial on Mobile Grid */}
         <div
+          className="philosophy-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))',
-            gap: 'clamp(18px, 2vw, 26px)',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+            gap: 'clamp(12px, 2vw, 26px)',
             alignItems: 'stretch'
           }}
         >
           {pillars.map((pillar, idx) => {
             const IconComp = pillar.icon;
             return (
-              <ScrollReveal key={idx} animation="fade-up" delay={idx * 120 + 200} style={{ display: 'flex' }}>
+              <ScrollReveal key={idx} animation="fade-up" delay={idx * 80 + 120} style={{ display: 'flex' }}>
                 <div
                   className="philosophy-card"
                   style={{
@@ -108,7 +109,7 @@ export const Philosophy = () => {
                     backgroundColor: 'var(--bg-surface)',
                     border: '1px solid var(--border-light)',
                     borderRadius: 'var(--radius-sm)',
-                    padding: 'clamp(28px, 4vw, 36px)',
+                    padding: 'clamp(18px, 3.5vw, 36px)',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -119,14 +120,16 @@ export const Philosophy = () => {
                   <div>
                     {/* Top Meta: Number + Icon */}
                     <div
+                      className="pillar-meta"
                       style={{
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        marginBottom: '28px'
+                        marginBottom: '20px'
                       }}
                     >
                       <span
+                        className="pillar-num"
                         style={{
                           fontFamily: 'var(--font-display)',
                           fontSize: '1.75rem',
@@ -138,6 +141,7 @@ export const Philosophy = () => {
                         {pillar.number}
                       </span>
                       <div
+                        className="pillar-icon-box"
                         style={{
                           width: '38px',
                           height: '38px',
@@ -155,6 +159,7 @@ export const Philosophy = () => {
 
                     {/* Pillar Title & Subtitle */}
                     <h3
+                      className="pillar-title"
                       style={{
                         fontFamily: 'var(--font-display)',
                         fontSize: '1.45rem',
@@ -168,6 +173,7 @@ export const Philosophy = () => {
                     </h3>
                     
                     <span
+                      className="pillar-subtitle"
                       style={{
                         display: 'block',
                         fontSize: '0.6875rem',
@@ -175,7 +181,7 @@ export const Philosophy = () => {
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
                         color: 'var(--accent-gold)',
-                        marginBottom: '16px'
+                        marginBottom: '14px'
                       }}
                     >
                       {pillar.subtitle}
@@ -183,7 +189,7 @@ export const Philosophy = () => {
 
                     {/* Pillar Body Description */}
                     <p
-                      className="body-small"
+                      className="body-small pillar-desc"
                       style={{
                         color: 'var(--text-secondary)',
                         lineHeight: 1.65,
@@ -206,6 +212,46 @@ export const Philosophy = () => {
           transform: translateY(-4px);
           border-color: var(--border-gold) !important;
           box-shadow: var(--shadow-medium);
+        }
+        @media (max-width: 767px) {
+          .philosophy-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .philosophy-card {
+            padding: 14px 12px !important;
+            border-radius: 6px !important;
+          }
+          .pillar-meta {
+            margin-bottom: 8px !important;
+          }
+          .pillar-num {
+            font-size: 1.15rem !important;
+          }
+          .pillar-icon-box {
+            display: none !important;
+          }
+          .pillar-title {
+            font-size: 0.9375rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 4px !important;
+            font-weight: 600 !important;
+          }
+          .pillar-subtitle {
+            font-size: 0.5625rem !important;
+            letter-spacing: 0.08em !important;
+            margin-bottom: 6px !important;
+          }
+          .pillar-desc {
+            font-size: 0.72rem !important;
+            line-height: 1.45 !important;
+          }
+        }
+        @media (max-width: 380px) {
+          .philosophy-grid {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           .philosophy-card {

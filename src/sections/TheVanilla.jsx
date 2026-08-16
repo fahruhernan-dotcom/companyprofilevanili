@@ -122,7 +122,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
 
         <div className="grid-12" style={{ alignItems: 'center' }}>
           
-          {/* Col 1-6: Artisanal Bundle with Hardware-Accelerated Smooth Morphing Video Engine */}
+          {/* Col 1-7: Artisanal Bundle with Hardware-Accelerated Smooth Morphing Video Engine */}
           <div style={{ gridColumn: 'span 7' }}>
             <ScrollReveal animation="fade-right">
               {/* Outer Shell (Doppelrand) */}
@@ -142,10 +142,9 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      zIndex: 1,
-                      transition: 'opacity 0.45s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1)',
-                      opacity: activeVideoMode ? 0.05 : 1,
-                      transform: activeVideoMode ? 'scale(1.04)' : 'scale(1)',
+                      zIndex: activeVideoMode ? 1 : 4,
+                      transition: 'opacity 0.45s ease',
+                      opacity: activeVideoMode ? 0 : 1,
                       pointerEvents: activeVideoMode ? 'none' : 'auto'
                     }}
                   >
@@ -206,7 +205,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                     })}
                   </div>
 
-                  {/* LAYER 2: 100% UNOBSTRUCTED CAVIAR VIDEO (Point 2) */}
+                  {/* LAYER 2: 100% UNOBSTRUCTED CAVIAR SLOMO VIDEO (Point 2) */}
                   <div
                     style={{
                       position: 'absolute',
@@ -232,36 +231,38 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       }}
                     />
 
-                    {/* ONLY BACK BUTTON (Minimalist Glass Design) */}
+                    {/* Minimalist Icon-Only Back Button */}
                     <button
                       type="button"
                       onClick={handleBackToAnatomy}
+                      aria-label="Back to Anatomy View"
+                      title="Back to Anatomy View"
                       style={{
                         position: 'absolute',
-                        bottom: '12px',
-                        right: '12px',
+                        bottom: '10px',
+                        right: '10px',
+                        width: '32px',
+                        height: '32px',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '6px',
-                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(23, 21, 18, 0.85)',
                         backdropFilter: 'blur(10px)',
-                        padding: '6px 14px',
-                        borderRadius: 'var(--radius-pill)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                        borderRadius: '50%',
                         border: '1px solid var(--border-gold)',
-                        color: 'var(--text-inverse-primary)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
+                        color: 'var(--accent-gold)',
                         cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+                        transition: 'transform 0.2s ease, background-color 0.2s ease',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                        padding: 0
                       }}
                     >
-                      <RotateCcw size={12} style={{ color: 'var(--accent-gold)' }} />
-                      <span>Back to Anatomy View</span>
+                      <RotateCcw size={14} />
                     </button>
                   </div>
 
-                  {/* LAYER 3: 100% UNOBSTRUCTED PLIABILITY VIDEO (Point 3) */}
+                  {/* LAYER 3: 100% UNOBSTRUCTED PLIABILITY SLOMO VIDEO (Point 3) */}
                   <div
                     style={{
                       position: 'absolute',
@@ -287,47 +288,114 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       }}
                     />
 
-                    {/* ONLY BACK BUTTON (Minimalist Glass Design) */}
+                    {/* Minimalist Icon-Only Back Button */}
                     <button
                       type="button"
                       onClick={handleBackToAnatomy}
+                      aria-label="Back to Anatomy View"
+                      title="Back to Anatomy View"
                       style={{
                         position: 'absolute',
-                        bottom: '12px',
-                        right: '12px',
+                        bottom: '10px',
+                        right: '10px',
+                        width: '32px',
+                        height: '32px',
                         display: 'inline-flex',
                         alignItems: 'center',
-                        gap: '6px',
-                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                        justifyContent: 'center',
+                        backgroundColor: 'rgba(23, 21, 18, 0.85)',
                         backdropFilter: 'blur(10px)',
-                        padding: '6px 14px',
-                        borderRadius: 'var(--radius-pill)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                        borderRadius: '50%',
                         border: '1px solid var(--border-gold)',
-                        color: 'var(--text-inverse-primary)',
-                        fontSize: '0.75rem',
-                        fontWeight: 600,
+                        color: 'var(--accent-gold)',
                         cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)'
+                        transition: 'transform 0.2s ease, background-color 0.2s ease',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                        padding: 0
                       }}
                     >
-                      <RotateCcw size={12} style={{ color: 'var(--accent-gold)' }} />
-                      <span>Back to Anatomy View</span>
+                      <RotateCcw size={14} />
                     </button>
                   </div>
 
                 </div>
               </div>
               
-              {/* Bottom Clean Legend Bar (Zero Clutter Buttons) */}
-              <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span className="body-small" style={{ fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem' }}>
-                  <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Tap pins to inspect bean anatomy in live 1080p motion</span>
-                </span>
-                <span className="overline" style={{ fontSize: '0.625rem' }}>
-                  Species: Vanilla planifolia
-                </span>
+              {/* Dynamic Clean Editorial Inspection Box (Enclosed Card) */}
+              <div
+                className="vanilla-info-box"
+                style={{
+                  marginTop: '12px',
+                  backgroundColor: 'var(--bg-surface)',
+                  border: (activeVideoMode || activeHotspot === 1) ? '1px solid var(--border-gold)' : '1px solid var(--border-light)',
+                  borderRadius: 'var(--radius-xs)',
+                  padding: '12px 14px',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                {activeVideoMode === 'caviar' ? (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px', flexWrap: 'wrap', gap: '4px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
+                        <strong style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                          Plump Caviar Mass
+                        </strong>
+                      </div>
+                      <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>
+                        1080p Slomo Inspection
+                      </span>
+                    </div>
+                    <p className="body-small" style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.8125rem', lineHeight: 1.45 }}>
+                      Abundant interior seed cavity yielding dense visual speckling and intense culinary aromatic release.
+                    </p>
+                  </div>
+                ) : activeVideoMode === 'pliability' ? (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px', flexWrap: 'wrap', gap: '4px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
+                        <strong style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                          Supple Pliability
+                        </strong>
+                      </div>
+                      <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>
+                        30%–35% Moisture
+                      </span>
+                    </div>
+                    <p className="body-small" style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.8125rem', lineHeight: 1.45 }}>
+                      Optimal moisture balance allows smooth culinary slicing and bending without brittle cracking.
+                    </p>
+                  </div>
+                ) : activeHotspot === 1 ? (
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '4px', flexWrap: 'wrap', gap: '4px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
+                        <strong style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                          Dense Vanillin Glaze
+                        </strong>
+                      </div>
+                      <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>
+                        Natural Essential Oils
+                      </span>
+                    </div>
+                    <p className="body-small" style={{ margin: 0, color: 'var(--text-primary)', fontSize: '0.8125rem', lineHeight: 1.45 }}>
+                      Natural essential oils and vanillin concentrate on the glossy outer surface through traditional sun-curing.
+                    </p>
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '6px' }}>
+                    <span className="body-small" style={{ fontStyle: 'italic', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                      <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
+                      <span>Tap pins to inspect bean anatomy in live 1080p motion</span>
+                    </span>
+                    <span className="overline" style={{ fontSize: '0.625rem', color: 'var(--text-muted)' }}>
+                      Species: Vanilla planifolia
+                    </span>
+                  </div>
+                )}
               </div>
             </ScrollReveal>
           </div>
@@ -457,7 +525,7 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
                 <Button variant="primary" onClick={onOpenInquiry} style={{ padding: '4px 6px 4px 18px', minHeight: '42px', fontSize: '0.75rem' }}>
                   Inquire Harvest Sourcing
                 </Button>
@@ -472,6 +540,23 @@ export const TheVanilla = ({ onOpenSpecSheet, onOpenInquiry }) => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .hotspot-tooltip {
+            display: none !important;
+          }
+          .vanilla-legend-bar {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 4px !important;
+          }
+          .flavor-pill {
+            padding: 5px 10px !important;
+            font-size: 0.6875rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

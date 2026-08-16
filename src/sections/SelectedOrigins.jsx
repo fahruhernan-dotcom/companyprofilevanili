@@ -146,90 +146,94 @@ export const SelectedOrigins = () => {
               const IconComp = pillar.icon;
               return (
                 <ScrollReveal key={idx} animation="fade-left" delay={idx * 120 + 200}>
-                  <div
-                    style={{
-                      padding: '18px 22px',
-                      backgroundColor: 'var(--bg-primary)',
-                      border: '1px solid var(--border-light)',
-                      borderRadius: 'var(--radius-sm)',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: '16px',
-                      transition: 'all 0.25s var(--ease-editorial)',
-                      boxShadow: 'var(--shadow-subtle)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border-gold)';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = 'var(--shadow-medium)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'var(--border-light)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = 'var(--shadow-subtle)';
-                    }}
-                  >
                     <div
+                      className="terroir-pillar-card"
                       style={{
-                        width: '36px',
-                        height: '36px',
-                        borderRadius: '50%',
-                        backgroundColor: 'rgba(200, 169, 107, 0.12)',
-                        color: 'var(--accent-gold)',
+                        padding: '18px 22px',
+                        backgroundColor: 'var(--bg-primary)',
+                        border: '1px solid var(--border-light)',
+                        borderRadius: 'var(--radius-sm)',
                         display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0
+                        alignItems: 'flex-start',
+                        gap: '16px',
+                        transition: 'all 0.25s var(--ease-editorial)',
+                        boxShadow: 'var(--shadow-subtle)'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--border-gold)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                        e.currentTarget.style.boxShadow = 'var(--shadow-medium)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--border-light)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'var(--shadow-subtle)';
                       }}
                     >
-                      <IconComp size={18} />
-                    </div>
-
-                    <div style={{ flex: 1 }}>
                       <div
+                        className="terroir-icon-box"
                         style={{
+                          width: '36px',
+                          height: '36px',
+                          borderRadius: '50%',
+                          backgroundColor: 'rgba(200, 169, 107, 0.12)',
+                          color: 'var(--accent-gold)',
                           display: 'flex',
-                          alignItems: 'baseline',
-                          justifyContent: 'space-between',
-                          gap: '10px',
-                          marginBottom: '4px'
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          flexShrink: 0
                         }}
                       >
-                        <h3
-                          style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '1.2rem',
-                            fontWeight: 600,
-                            color: 'var(--text-primary)',
-                            margin: 0
-                          }}
-                        >
-                          {pillar.title}
-                        </h3>
-                        <span
-                          style={{
-                            fontSize: '0.6875rem',
-                            fontWeight: 600,
-                            letterSpacing: '0.08em',
-                            textTransform: 'uppercase',
-                            color: 'var(--accent-gold)'
-                          }}
-                        >
-                          {pillar.tag}
-                        </span>
+                        <IconComp size={18} />
                       </div>
-                      <p
-                        className="body-small"
-                        style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.6 }}
-                      >
-                        {pillar.description}
-                      </p>
+
+                      <div style={{ flex: 1 }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            alignItems: 'baseline',
+                            justifyContent: 'space-between',
+                            gap: '10px',
+                            marginBottom: '4px'
+                          }}
+                        >
+                          <h3
+                            className="terroir-title"
+                            style={{
+                              fontFamily: 'var(--font-display)',
+                              fontSize: '1.2rem',
+                              fontWeight: 600,
+                              color: 'var(--text-primary)',
+                              margin: 0
+                            }}
+                          >
+                            {pillar.title}
+                          </h3>
+                          <span
+                            className="terroir-tag"
+                            style={{
+                              fontSize: '0.6875rem',
+                              fontWeight: 600,
+                              letterSpacing: '0.08em',
+                              textTransform: 'uppercase',
+                              color: 'var(--accent-gold)'
+                            }}
+                          >
+                            {pillar.tag}
+                          </span>
+                        </div>
+                        <p
+                          className="body-small terroir-desc"
+                          style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.6 }}
+                        >
+                          {pillar.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
+                  </ScrollReveal>
+                );
+              })}
+            </div>
 
         </div>
 
@@ -270,6 +274,30 @@ export const SelectedOrigins = () => {
           </div>
         </ScrollReveal>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .terroir-pillar-card {
+            padding: 12px 14px !important;
+            gap: 12px !important;
+            border-radius: 6px !important;
+          }
+          .terroir-icon-box {
+            width: 28px !important;
+            height: 28px !important;
+          }
+          .terroir-title {
+            font-size: 1rem !important;
+          }
+          .terroir-tag {
+            font-size: 0.58rem !important;
+          }
+          .terroir-desc {
+            font-size: 0.75rem !important;
+            line-height: 1.45 !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

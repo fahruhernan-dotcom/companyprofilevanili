@@ -28,7 +28,7 @@ export const RoutePlaceholder = ({
       icon: Leaf,
       badge: 'Available for Export',
       body: 'Verified according to international standards (Halal, P-IRT, ISO 22000) with lab-tested vanillin concentrations and single-origin traceability.',
-      primaryActionLabel: 'Begin a Vanilla Inquiry →',
+      primaryActionLabel: 'Begin a Vanilla Inquiry',
       showSpecSheetBtn: true
     },
     coffee: {
@@ -38,7 +38,7 @@ export const RoutePlaceholder = ({
       icon: Coffee,
       badge: 'Available Upon Inquiry',
       body: 'Commercial specifications, origin details, lot sizes, and export terms are provided directly upon commercial inquiry.',
-      primaryActionLabel: 'Begin a Coffee Inquiry →',
+      primaryActionLabel: 'Begin a Coffee Inquiry',
       isCoffee: true
     },
     quality: {

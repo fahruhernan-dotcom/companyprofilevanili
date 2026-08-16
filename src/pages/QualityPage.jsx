@@ -81,7 +81,7 @@ export const QualityPage = ({
             </ScrollReveal>
 
             <ScrollReveal animation="fade-up" delay={200}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
                 <Button
                   variant="gold"
                   onClick={onOpenInquiry}
@@ -189,8 +189,8 @@ export const QualityPage = ({
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '600px', margin: '0 auto 32px' }}>
               Our trade compliance desk provides complete Certificates of Analysis, Phytosanitary documentation, and export logistics support.
             </p>
-            <Button variant="primary" onClick={onOpenInquiry} style={{ minHeight: '48px' }}>
-              Contact Quality & Compliance Desk →
+            <Button variant="gold" onClick={onOpenInquiry} style={{ minHeight: '48px', padding: '0 28px' }}>
+              Contact Quality & Compliance Desk
             </Button>
           </ScrollReveal>
         </div>

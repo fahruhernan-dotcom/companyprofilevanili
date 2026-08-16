@@ -770,7 +770,7 @@ export const PhysicalInspectionGallery = () => {
                   className="btn btn-primary"
                   style={{ width: '100%', padding: '9px 16px', fontSize: '0.75rem', justifyContent: 'center' }}
                 >
-                  <span>Request Sample Allocation →</span>
+                  <span>Request Sample Allocation</span>
                 </button>
                 <span style={{ fontSize: '0.625rem', color: 'var(--text-muted)', textAlign: 'center', display: 'block' }}>
                   Use keyboard ← / → arrows to inspect all 8 verification specimens

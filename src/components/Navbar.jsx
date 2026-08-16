@@ -143,7 +143,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             <span
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '1.05rem',
+                fontSize: 'clamp(0.875rem, 3.6vw, 1.05rem)',
                 fontWeight: 600,
                 letterSpacing: '0.08em',
                 color: 'var(--text-primary)',

@@ -109,7 +109,6 @@ export const TheCraft = () => {
                     }}
                   />
 
-                  
                   {/* Step Badge */}
                   <div
                     style={{
@@ -205,9 +204,16 @@ export const TheCraft = () => {
           </div>
         </div>
 
-        {/* Mobile Accordion Stack View */}
+        {/* Mobile 2x2 Architectural Grid View */}
         <div className="craft-mobile-view" style={{ display: 'none' }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div
+            className="craft-mobile-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '10px'
+            }}
+          >
             {craftSteps.map((step) => (
               <div
                 key={step.id}
@@ -215,27 +221,57 @@ export const TheCraft = () => {
                   backgroundColor: 'var(--bg-surface)',
                   borderRadius: 'var(--radius-xs)',
                   border: '1px solid var(--border-light)',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column'
                 }}
               >
-                <div style={{ aspectRatio: '16/10', overflow: 'hidden' }}>
+                <div style={{ aspectRatio: '4/3', overflow: 'hidden', position: 'relative' }}>
                   <img
                     src={step.image}
                     alt={step.alt}
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     loading="lazy"
                   />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '6px',
+                      left: '6px',
+                      backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                      backdropFilter: 'blur(6px)',
+                      color: 'var(--accent-gold)',
+                      padding: '2px 6px',
+                      borderRadius: 'var(--radius-pill)',
+                      fontSize: '0.5625rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.06em'
+                    }}
+                  >
+                    PHASE {step.step}
+                  </div>
                 </div>
-                <div style={{ padding: '16px' }}>
-                  <span className="num-label" style={{ fontSize: '0.75rem', display: 'block', marginBottom: '4px' }}>
-                    STEP {step.step}
-                  </span>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '8px' }}>
-                    {step.name}
-                  </h3>
-                  <p className="body-small" style={{ color: 'var(--text-secondary)' }}>
-                    {step.description}
-                  </p>
+                <div style={{ padding: '10px 8px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '0.9375rem', fontWeight: 600, margin: '0 0 4px 0', lineHeight: 1.2 }}>
+                      {step.name}
+                    </h3>
+                    <p
+                      className="body-small"
+                      style={{
+                        color: 'var(--text-secondary)',
+                        fontSize: '0.6875rem',
+                        lineHeight: 1.4,
+                        margin: 0,
+                        display: '-webkit-box',
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                      }}
+                    >
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -255,6 +291,11 @@ export const TheCraft = () => {
           }
           .craft-mobile-view {
             display: block !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .craft-mobile-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

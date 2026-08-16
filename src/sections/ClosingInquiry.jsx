@@ -25,25 +25,23 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
       <div className="container-narrow" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
         
         <ScrollReveal animation="fade-up">
-          {/* Live Trade Desk Operational Badge */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(200, 169, 107, 0.12)', border: '1px solid rgba(200, 169, 107, 0.35)', marginBottom: '22px' }}>
-            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: '#25D366', boxShadow: '0 0 8px #25D366', display: 'inline-block' }}></span>
-            <span style={{ fontSize: '0.6875rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--accent-gold)' }}>
-              Trade Desk Active: 08:00–22:00 UTC+7 · Guaranteed Response &lt; 2 Hours
-            </span>
-          </div>
+          {/* Section Overline */}
+          <span className="overline overline-accent" style={{ display: 'block', marginBottom: '16px' }}>
+            06 · Global Sourcing Concierge
+          </span>
 
           {/* Dramatic Closing Heading */}
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2.4rem, 5vw, 4rem)',
+              fontSize: 'clamp(1.85rem, 5vw, 4rem)',
               fontWeight: 300,
               color: 'var(--text-inverse-primary)',
               maxWidth: '820px',
               margin: '0 auto 24px',
               lineHeight: 1.15,
-              letterSpacing: '0.02em'
+              letterSpacing: '0.02em',
+              wordBreak: 'break-word'
             }}
           >
             INDONESIAN ORIGINS.<br />
@@ -56,9 +54,9 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: 'clamp(0.95rem, 1.2vw, 1.125rem)',
+              fontSize: 'clamp(0.9rem, 1.2vw, 1.125rem)',
               maxWidth: '660px',
-              margin: '0 auto clamp(2.5rem, 5vw, 3.5rem)',
+              margin: '0 auto clamp(2rem, 4vw, 3.5rem)',
               color: 'var(--text-inverse-secondary)',
               lineHeight: 1.75
             }}
@@ -68,12 +66,13 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
 
           {/* Main CTA Actions Bar */}
           <div
+            className="mobile-stack"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
               alignItems: 'center',
-              gap: '16px',
+              gap: '14px',
               marginBottom: 'clamp(2.5rem, 4vw, 3.5rem)'
             }}
           >
@@ -81,7 +80,7 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
               variant="gold"
               onClick={onOpenInquiry}
               style={{
-                padding: '16px 36px',
+                padding: '12px 32px',
                 fontSize: '0.875rem',
                 letterSpacing: '0.04em',
                 fontWeight: 600
@@ -90,24 +89,17 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
               Request Commercial Quotation
             </Button>
 
-            <a
+            <Button
+              variant="whatsapp"
               href={whatsappUrl}
               target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-secondary"
               style={{
-                borderColor: 'var(--border-dark-gold)',
-                color: 'var(--text-inverse-primary)',
-                padding: '16px 28px',
-                fontSize: '0.8125rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px'
+                padding: '12px 28px',
+                fontSize: '0.8125rem'
               }}
             >
-              <MessageCircle size={16} style={{ color: '#25D366' }} />
-              <span>WhatsApp Concierge</span>
-            </a>
+              WhatsApp Concierge
+            </Button>
           </div>
 
           {/* Secondary Direct Channels */}

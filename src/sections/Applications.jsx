@@ -182,6 +182,17 @@ export const Applications = ({ onOpenInquiry }) => {
             transform: scale(1);
           }
         }
+        @media (max-width: 767px) {
+          .app-item {
+            padding: 10px 14px !important;
+          }
+          .app-item h3 {
+            font-size: 1.05rem !important;
+          }
+          .app-card-content {
+            padding: 14px 14px !important;
+          }
+        }
       `}</style>
     </section>
   );

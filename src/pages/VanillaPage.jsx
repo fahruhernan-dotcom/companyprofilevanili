@@ -116,7 +116,7 @@ export const VanillaPage = ({
 
             {/* Compact Minimal Luxury Action Buttons */}
             <ScrollReveal animation="fade-up" delay={200}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
                 <button
                   type="button"
                   onClick={onOpenInquiry}
@@ -305,28 +305,18 @@ export const VanillaPage = ({
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '14px' }}>
-              <Button variant="primary" onClick={onOpenInquiry} style={{ minHeight: '48px', padding: '0 28px' }}>
-                Begin Vanilla Sourcing Inquiry →
+              <Button variant="gold" onClick={onOpenInquiry} style={{ minHeight: '48px', padding: '0 28px' }}>
+                Begin Vanilla Sourcing Inquiry
               </Button>
               
-              <a
+              <Button
+                variant="whatsapp"
                 href={whatsappUrl}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
-                style={{
-                  minHeight: '48px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  backgroundColor: 'rgba(255,255,255,0.06)',
-                  color: '#FFF',
-                  borderColor: 'rgba(255,255,255,0.2)'
-                }}
+                style={{ minHeight: '48px', padding: '0 24px' }}
               >
-                <MessageCircle size={16} style={{ color: '#25D366' }} />
-                <span>WhatsApp Concierge</span>
-              </a>
+                WhatsApp Concierge
+              </Button>
             </div>
           </ScrollReveal>
         </div>

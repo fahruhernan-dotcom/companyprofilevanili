@@ -49,8 +49,8 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
         backgroundColor: 'var(--bg-surface)',
         borderTop: '1px solid var(--border-light)',
         borderBottom: '1px solid var(--border-light)',
-        paddingTop: 'clamp(80px, 10vh, 120px)',
-        paddingBottom: 'clamp(80px, 10vh, 120px)',
+        paddingTop: 'clamp(60px, 9vh, 120px)',
+        paddingBottom: 'clamp(60px, 9vh, 120px)',
         position: 'relative'
       }}
       aria-label="Export Assurance and Quality Standards"
@@ -58,7 +58,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
       <div className="container">
         
         {/* Section Header */}
-        <div style={{ maxWidth: '720px', marginBottom: 'clamp(40px, 6vh, 60px)' }}>
+        <div style={{ maxWidth: '720px', marginBottom: 'clamp(32px, 5vh, 60px)' }}>
           <ScrollReveal animation="fade-up" delay={50}>
             <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
               05 · Export Assurance & Standards
@@ -96,13 +96,14 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
           </ScrollReveal>
         </div>
 
-        {/* 2x2 Grid of Export Trust Cards */}
+        {/* 4-Column on Desktop / 2-Column on Mobile Grid of Export Trust Cards */}
         <div
+          className="trust-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
-            gap: 'clamp(20px, 2.5vw, 28px)',
-            marginBottom: 'clamp(40px, 5vh, 56px)'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: 'clamp(12px, 2.5vw, 28px)',
+            marginBottom: 'clamp(36px, 5vh, 56px)'
           }}
         >
           {trustPillars.map((item, idx) => {
@@ -115,7 +116,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                     backgroundColor: 'var(--bg-primary)',
                     border: '1px solid var(--border-light)',
                     borderRadius: 'var(--radius-sm)',
-                    padding: 'clamp(24px, 3.5vw, 32px)',
+                    padding: 'clamp(20px, 3.5vw, 32px)',
                     height: '100%',
                     boxSizing: 'border-box',
                     display: 'flex',
@@ -128,6 +129,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                   <div>
                     {/* Top Row: Icon & Tag */}
                     <div
+                      className="trust-meta"
                       style={{
                         display: 'flex',
                         alignItems: 'center',
@@ -136,6 +138,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                       }}
                     >
                       <div
+                        className="trust-icon-box"
                         style={{
                           width: '38px',
                           height: '38px',
@@ -151,6 +154,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                       </div>
 
                       <span
+                        className="trust-tag"
                         style={{
                           fontSize: '0.6875rem',
                           fontWeight: 600,
@@ -165,6 +169,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
 
                     {/* Card Title */}
                     <h3
+                      className="trust-title"
                       style={{
                         fontFamily: 'var(--font-display)',
                         fontSize: '1.35rem',
@@ -179,7 +184,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
 
                     {/* Card Description */}
                     <p
-                      className="body-small"
+                      className="body-small trust-desc"
                       style={{
                         color: 'var(--text-secondary)',
                         lineHeight: 1.65,
@@ -199,8 +204,9 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
         <OrganicCertificationsShowcase onOpenInquiry={onOpenInquiry} />
 
         {/* Editorial Action Row */}
-        <ScrollReveal animation="fade-up" delay={300} style={{ marginTop: 'clamp(40px, 5vh, 56px)' }}>
+        <ScrollReveal animation="fade-up" delay={300} style={{ marginTop: 'clamp(32px, 5vh, 56px)' }}>
           <div
+            className="mobile-stack"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -233,7 +239,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
               </p>
             </div>
 
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+            <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
               <a
                 href="#quality"
                 onClick={handleQualityNav}
@@ -305,6 +311,39 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
           transform: translateY(-4px);
           border-color: var(--border-gold) !important;
           box-shadow: var(--shadow-medium);
+        }
+        @media (max-width: 767px) {
+          .trust-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .trust-card {
+            padding: 14px 12px !important;
+            border-radius: 6px !important;
+          }
+          .trust-meta {
+            margin-bottom: 8px !important;
+          }
+          .trust-icon-box {
+            display: none !important;
+          }
+          .trust-tag {
+            font-size: 0.5625rem !important;
+          }
+          .trust-title {
+            font-size: 0.9375rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 4px !important;
+          }
+          .trust-desc {
+            font-size: 0.72rem !important;
+            line-height: 1.45 !important;
+          }
+        }
+        @media (max-width: 380px) {
+          .trust-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
         @media (prefers-reduced-motion: reduce) {
           .trust-card {

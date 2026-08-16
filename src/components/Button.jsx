@@ -1,9 +1,10 @@
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, MessageCircle } from 'lucide-react';
 
 export const Button = ({
   children,
   variant = 'primary',
+  size = 'md',
   href,
   onClick,
   icon = true,
@@ -11,18 +12,38 @@ export const Button = ({
   type = 'button',
   ariaLabel,
   disabled = false,
+  target,
+  rel,
+  style = {},
   ...props
 }) => {
-  const baseClass = `btn-agency btn-agency-${variant} ${className}`.trim();
+  const sizeClass = size === 'sm' ? 'btn-agency-sm' : size === 'lg' ? 'btn-agency-lg' : '';
+  const baseClass = `btn-agency btn-agency-${variant} ${sizeClass} ${className}`.trim();
+
+  // Render Icon inside the bubble
+  const renderIcon = () => {
+    if (!icon) return null;
+    if (React.isValidElement(icon)) {
+      return <span className="btn-agency-icon-wrapper" aria-hidden="true">{icon}</span>;
+    }
+    if (variant === 'whatsapp') {
+      return (
+        <span className="btn-agency-icon-wrapper" aria-hidden="true">
+          <MessageCircle size={size === 'sm' ? 12 : 14} strokeWidth={2.2} />
+        </span>
+      );
+    }
+    return (
+      <span className="btn-agency-icon-wrapper" aria-hidden="true">
+        <ArrowUpRight size={size === 'sm' ? 12 : 14} strokeWidth={2} className="btn-agency-icon" />
+      </span>
+    );
+  };
 
   const content = (
     <>
       <span className="btn-agency-text">{children}</span>
-      {icon && (
-        <span className="btn-agency-icon-wrapper" aria-hidden="true">
-          <ArrowUpRight size={14} strokeWidth={2} className="btn-agency-icon" />
-        </span>
-      )}
+      {renderIcon()}
     </>
   );
 
@@ -32,7 +53,10 @@ export const Button = ({
         href={href}
         className={baseClass}
         onClick={onClick}
+        target={target}
+        rel={target === '_blank' ? (rel || 'noopener noreferrer') : rel}
         aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
+        style={style}
         {...props}
       >
         {content}
@@ -47,6 +71,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel || (typeof children === 'string' ? children : undefined)}
+      style={style}
       {...props}
     >
       {content}

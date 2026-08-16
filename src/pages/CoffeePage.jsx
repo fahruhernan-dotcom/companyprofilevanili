@@ -133,7 +133,7 @@ export const CoffeePage = ({
 
             {/* Compact Minimal Luxury Action Buttons */}
             <ScrollReveal animation="fade-up" delay={200}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '10px' }}>
                 <button
                   type="button"
                   onClick={onOpenInquiry}
@@ -362,8 +362,16 @@ export const CoffeePage = ({
             </p>
 
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '14px' }}>
-              <Button variant="primary" onClick={onOpenInquiry} style={{ minHeight: '48px' }}>
-                Submit Coffee Sourcing Inquiry →
+              <Button variant="gold" onClick={onOpenInquiry} style={{ minHeight: '48px', padding: '0 28px' }}>
+                Submit Coffee Sourcing Inquiry
+              </Button>
+              <Button
+                variant="whatsapp"
+                href={whatsappUrl}
+                target="_blank"
+                style={{ minHeight: '48px', padding: '0 24px' }}
+              >
+                WhatsApp Concierge
               </Button>
             </div>
           </ScrollReveal>

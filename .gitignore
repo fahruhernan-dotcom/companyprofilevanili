@@ -29,5 +29,4 @@ dist-ssr
 
 # Local deployment files
 Dokumen/
-deploy.zip
-scripts.zip
+*.zip

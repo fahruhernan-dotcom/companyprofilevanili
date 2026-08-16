@@ -81,7 +81,7 @@ export const BuyersPage = ({
             </ScrollReveal>
 
             <ScrollReveal animation="fade-up" delay={200}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
                 <Button
                   variant="gold"
                   onClick={onOpenInquiry}
@@ -114,12 +114,12 @@ export const BuyersPage = ({
             </h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', gap: '20px' }}>
             {steps.map((item, idx) => (
               <div
                 key={idx}
                 style={{
-                  padding: '28px 24px',
+                  padding: 'clamp(20px, 3.5vw, 28px)',
                   backgroundColor: 'var(--bg-primary)',
                   border: '1px solid var(--border-light)',
                   borderRadius: 'var(--radius-sm)',
@@ -296,8 +296,8 @@ export const BuyersPage = ({
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.7, maxWidth: '580px', margin: '0 auto 32px' }}>
               Direct export supply, transparent pricing, and structured trade documentation.
             </p>
-            <Button variant="primary" onClick={onOpenInquiry} style={{ minHeight: '48px' }}>
-              Begin Sourcing Quotation →
+            <Button variant="gold" onClick={onOpenInquiry} style={{ minHeight: '48px', padding: '0 28px' }}>
+              Begin Sourcing Quotation
             </Button>
           </ScrollReveal>
         </div>

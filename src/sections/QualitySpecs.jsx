@@ -101,7 +101,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
             <ScrollReveal animation="fade-left" delay={100}>
               
               {/* Grade Selector Switcher */}
-              <div style={{ display: 'flex', gap: '10px', marginBottom: '14px' }}>
+              <div className="grade-switcher-bar" style={{ display: 'flex', gap: '10px', marginBottom: '14px' }}>
                 {vanillaSpecifications.grades.map((grade, gIdx) => {
                   const isSelected = gIdx === selectedGradeIndex;
                   return (
@@ -109,6 +109,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       key={gIdx}
                       type="button"
                       onClick={() => setSelectedGradeIndex(gIdx)}
+                      className="grade-btn"
                       style={{
                         flex: 1,
                         padding: '10px 14px',
@@ -125,7 +126,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       <span className="num-label" style={{ fontSize: '0.625rem', display: 'block', marginBottom: '2px' }}>
                         {gIdx === 0 ? 'RECOMMENDED CULINARY' : 'WHOLESALE EXTRACTION'}
                       </span>
-                      <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', display: 'block' }}>
+                      <span className="grade-btn-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', display: 'block' }}>
                         {grade.title.split('(')[0]}
                       </span>
                     </button>
@@ -138,11 +139,12 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                 className="double-bezel-outer"
                 style={{ marginBottom: '16px' }}
               >
-                <div className="double-bezel-inner">
+                <div className="double-bezel-inner table-responsive">
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     {currentGrade.specs.map((spec, idx) => (
                       <div
                         key={idx}
+                        className="spec-row"
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -163,7 +165,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="mobile-stack" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <Button
                   variant="primary"
                   onClick={onOpenInquiry}
@@ -193,6 +195,23 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
         <PhysicalInspectionGallery />
 
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .grade-btn {
+            padding: 8px 10px !important;
+          }
+          .grade-btn-title {
+            font-size: 0.9375rem !important;
+          }
+          .spec-row {
+            padding: 8px 12px !important;
+          }
+          .spec-label, .spec-value {
+            font-size: 0.75rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

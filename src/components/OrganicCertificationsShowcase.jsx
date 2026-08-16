@@ -1,6 +1,7 @@
 import React from 'react';
 import { organicAccreditations } from '../data/specifications';
 import { ScrollReveal } from './ScrollReveal';
+import { Button } from './Button';
 import { ShieldCheck, CheckCircle2, Award, FileText, ArrowRight, Leaf } from 'lucide-react';
 
 export const OrganicCertificationsShowcase = ({ onOpenInquiry }) => {
@@ -223,18 +224,18 @@ export const OrganicCertificationsShowcase = ({ onOpenInquiry }) => {
               </div>
             </div>
 
-            <button
-              type="button"
+            <Button
+              variant="gold"
               onClick={onOpenInquiry}
-              className="btn btn-primary"
               style={{
-                padding: '9px 18px',
+                minHeight: '44px',
+                padding: '0 24px',
                 fontSize: '0.75rem',
                 flexShrink: 0
               }}
             >
-              <span>Request Certified Organic Lot Allocation →</span>
-            </button>
+              Request Certified Organic Lot
+            </Button>
           </div>
         </div>
       </ScrollReveal>

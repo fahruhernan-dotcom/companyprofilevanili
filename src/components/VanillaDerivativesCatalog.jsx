@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { vanillaProducts } from '../data/vanilla/specifications';
 import { ScrollReveal } from './ScrollReveal';
+import { Button } from './Button';
 import { Sparkles, Box, CheckCircle2, FileText, ArrowRight } from 'lucide-react';
 
 export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) => {
@@ -52,8 +53,9 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
           </div>
         </ScrollReveal>
 
-        {/* Category Filters */}
+        {/* Category Filters (Horizontally Scrollable on Mobile) */}
         <div
+          className="derivatives-category-bar"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -68,6 +70,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
+                className="category-pill-btn"
                 style={{
                   padding: '8px 16px',
                   borderRadius: 'var(--radius-pill)',
@@ -77,7 +80,9 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                   fontWeight: isActive ? 600 : 400,
                   fontSize: '0.75rem',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease'
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease',
+                  flexShrink: 0
                 }}
               >
                 {cat.label}
@@ -86,8 +91,9 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
           })}
         </div>
 
-        {/* Product Cards Grid */}
+        {/* Product Cards Grid: 4-Col Desktop / 2-Col Mobile Micro-Grid */}
         <div
+          className="derivatives-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
@@ -96,18 +102,18 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
           }}
         >
           {filteredProducts.map((prod, idx) => (
-            <ScrollReveal key={prod.id} animation="fade-up" delay={idx * 60}>
+            <ScrollReveal key={prod.id} animation="fade-up" delay={idx * 50} style={{ display: 'flex' }}>
               <div
-                className="double-bezel-outer"
+                className="double-bezel-outer prod-card-outer"
                 style={{
-                  height: '100%',
+                  flex: 1,
                   display: 'flex',
                   flexDirection: 'column',
                   transition: 'transform 0.3s ease, box-shadow 0.3s ease'
                 }}
               >
                 <div
-                  className="double-bezel-inner"
+                  className="double-bezel-inner prod-card-inner"
                   style={{
                     backgroundColor: 'var(--bg-surface)',
                     display: 'flex',
@@ -141,6 +147,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                       className="img-hover-zoom"
                     />
                     <div
+                      className="prod-badge"
                       style={{
                         position: 'absolute',
                         top: '8px',
@@ -160,6 +167,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                     </div>
 
                     <div
+                      className="prod-hscode"
                       style={{
                         position: 'absolute',
                         bottom: '8px',
@@ -180,6 +188,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                   <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                     <div>
                       <h3
+                        className="prod-title"
                         style={{
                           fontFamily: 'var(--font-display)',
                           fontSize: '1.2rem',
@@ -193,7 +202,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                       </h3>
 
                       <p
-                        className="body-small"
+                        className="body-small prod-desc"
                         style={{
                           color: 'var(--text-secondary)',
                           fontSize: '0.75rem',
@@ -207,7 +216,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
 
                     {/* Metadata Tags */}
                     <div>
-                      <div style={{ borderTop: '1px solid var(--border-light)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '12px' }}>
+                      <div className="prod-meta-box" style={{ borderTop: '1px solid var(--border-light)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '12px' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem' }}>
                           <span style={{ color: 'var(--text-muted)' }}>Packaging:</span>
                           <strong style={{ color: 'var(--text-primary)' }}>{prod.packaging}</strong>
@@ -224,7 +233,7 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                       <button
                         type="button"
                         onClick={onOpenInquiry}
-                        className="btn btn-primary"
+                        className="btn btn-primary prod-inquire-btn"
                         style={{
                           width: '100%',
                           padding: '7px 12px',
@@ -233,8 +242,8 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
                           gap: '6px'
                         }}
                       >
-                        <span>Inquire This Lot</span>
-                        <ArrowRight size={12} />
+                        <span>Inquire Lot</span>
+                        <ArrowRight size={11} />
                       </button>
                     </div>
                   </div>
@@ -245,28 +254,88 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
         </div>
 
         {/* CTA Footer */}
-        <div style={{ marginTop: '36px', textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          <button
-            type="button"
+        <div className="mobile-stack" style={{ marginTop: '36px', textAlign: 'center', display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          <Button
+            variant="secondary"
             onClick={onOpenSpecSheet}
-            className="btn btn-secondary"
-            style={{ fontSize: '0.75rem', padding: '9px 18px' }}
+            style={{ fontSize: '0.75rem', minHeight: '44px', padding: '0 20px' }}
           >
-            <FileText size={13} />
-            <span>Open Complete Technical Dossier & Grading Matrix</span>
-          </button>
+            Technical Dossier & Grading Matrix
+          </Button>
 
-          <button
-            type="button"
+          <Button
+            variant="gold"
             onClick={onOpenInquiry}
-            className="btn btn-primary"
-            style={{ fontSize: '0.75rem', padding: '9px 20px' }}
+            style={{ fontSize: '0.75rem', minHeight: '44px', padding: '0 22px' }}
           >
-            <Sparkles size={13} />
-            <span>Inquire for Lot Allocation & Pricing</span>
-          </button>
+            Inquire Lot Allocation
+          </Button>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .derivatives-category-bar {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            padding-bottom: 8px !important;
+            margin-bottom: 20px !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .derivatives-category-bar::-webkit-scrollbar {
+            display: none;
+          }
+          .category-pill-btn {
+            padding: 6px 12px !important;
+            font-size: 0.6875rem !important;
+          }
+          .derivatives-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .prod-card-inner {
+            padding: 10px 8px !important;
+          }
+          .prod-badge {
+            font-size: 0.5rem !important;
+            padding: 2px 6px !important;
+            top: 4px !important;
+            left: 4px !important;
+          }
+          .prod-hscode {
+            display: none !important;
+          }
+          .prod-title {
+            font-size: 0.9375rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 4px !important;
+          }
+          .prod-desc {
+            font-size: 0.6875rem !important;
+            line-height: 1.4 !important;
+            margin-bottom: 8px !important;
+            display: -webkit-box !important;
+            -webkit-line-clamp: 2 !important;
+            -webkit-box-orient: vertical !important;
+            overflow: hidden !important;
+          }
+          .prod-meta-box {
+            padding-top: 6px !important;
+            margin-bottom: 8px !important;
+            font-size: 0.625rem !important;
+          }
+          .prod-inquire-btn {
+            padding: 5px 8px !important;
+            font-size: 0.625rem !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .derivatives-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

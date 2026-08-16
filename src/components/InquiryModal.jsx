@@ -106,9 +106,9 @@ export const InquiryModal = ({ isOpen, onClose, initialCommodity = 'Indonesian V
           borderRadius: 'var(--radius-sm)',
           border: '1px solid var(--border-medium)',
           boxShadow: 'var(--shadow-cinematic)',
-          padding: 'clamp(24px, 4vw, 36px)',
+          padding: 'clamp(18px, 4vw, 36px)',
           position: 'relative',
-          maxHeight: '92vh',
+          maxHeight: '90svh',
           overflowY: 'auto'
         }}
       >
@@ -173,7 +173,7 @@ export const InquiryModal = ({ isOpen, onClose, initialCommodity = 'Indonesian V
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-gold"
+                className="btn btn-whatsapp"
                 style={{ width: '100%', justifyContent: 'center' }}
               >
                 <MessageCircle size={16} />
@@ -440,10 +440,10 @@ export const InquiryModal = ({ isOpen, onClose, initialCommodity = 'Indonesian V
                 <button
                   type="submit"
                   className="btn btn-primary"
-                  style={{ width: '100%', justifyContent: 'center', padding: '11px 20px', fontSize: '0.8125rem' }}
+                  style={{ width: '100%', minHeight: '40px', justifyContent: 'center', padding: '7px 16px', fontSize: '0.75rem' }}
                 >
-                  <Send size={14} />
-                  <span>Submit Commercial Quotation Request</span>
+                  <Send size={13} />
+                  <span>Submit Quotation Request</span>
                 </button>
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', margin: '2px 0' }}>
@@ -457,19 +457,19 @@ export const InquiryModal = ({ isOpen, onClose, initialCommodity = 'Indonesian V
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn btn-secondary"
-                    style={{ fontSize: '0.75rem', padding: '8px 12px', justifyContent: 'center' }}
+                    className="btn btn-whatsapp btn-sm"
+                    style={{ fontSize: '0.6875rem', minHeight: '34px', padding: '4px 8px', justifyContent: 'center', gap: '6px' }}
                   >
-                    <MessageCircle size={14} style={{ color: '#25D366' }} />
+                    <MessageCircle size={13} style={{ color: '#25D366' }} />
                     <span>WhatsApp Desk</span>
                   </a>
 
                   <a
                     href={`mailto:${brandConfig.contact.email}?subject=${encodeURIComponent(`Commercial Sourcing Inquiry — ${formData.company || 'Client'}`)}&body=${encodeURIComponent(`Hello Essence Indonesia Trade Desk,\n\nI would like to request export terms for:\n- Commodity: ${formData.commodity}\n- Company: ${formData.company}\n- Destination: ${formData.destination || 'To be specified'}\n- Incoterms: ${formData.incoterms}\n- Volume: ${formData.volume}\n\nPlease provide quotation and availability.\n\nBest regards,\n${formData.name}`)}`}
-                    className="btn btn-secondary"
-                    style={{ fontSize: '0.75rem', padding: '8px 12px', justifyContent: 'center' }}
+                    className="btn btn-secondary btn-sm"
+                    style={{ fontSize: '0.6875rem', minHeight: '34px', padding: '4px 8px', justifyContent: 'center', gap: '6px' }}
                   >
-                    <Mail size={14} style={{ color: 'var(--accent-gold)' }} />
+                    <Mail size={13} style={{ color: 'var(--accent-gold)' }} />
                     <span>Email Desk</span>
                   </a>
                 </div>
