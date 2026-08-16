@@ -44,6 +44,15 @@ export const craftSteps = [
     description: "Our founders and curation team directly inspect every batch on the drying tables, measuring pod length, testing suppleness, and verifying uniform moisture density before packaging.",
     image: gradingImg,
     alt: "Essence Indonesia founders and quality curation team directly inspecting sun-cured vanilla bean lots"
+  },
+  {
+    id: "packaging",
+    step: "05",
+    name: "Hermetic Packaging & Export",
+    tagline: "Preserving peak moisture and aromatic vanillin oils for global dispatch.",
+    description: "Graded beans are bundle-tied with natural raffia, vacuum-sealed into food-grade multi-layer EVOH barrier pouches, and boxed into heavy-duty master cartons ready for express international air cargo.",
+    image: "/images/inspection_proofs/proof_master_export_carton_boxes.webp",
+    alt: "Master export cartons packed with vacuum-sealed bundles of graded Indonesian vanilla beans ready for export"
   }
 ];
 

@@ -15,8 +15,8 @@ export const TheCraft = () => {
         <ScrollReveal animation="fade-up">
           <SectionHeader
             overline="Artisanal Methodology"
-            title="The Four Pillars of Vanilla Craft"
-            subtitle="From ephemeral morning blooms to ninety days of sun-curing — honoring traditional horticultural mastery."
+            title="The Five Pillars of Vanilla Craft"
+            subtitle="From ephemeral morning blooms to ninety days of sun-curing and hermetic export packaging."
           />
         </ScrollReveal>
 
@@ -26,8 +26,8 @@ export const TheCraft = () => {
             className="craft-desktop-nav"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '12px',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: '10px',
               borderBottom: '1px solid var(--border-light)',
               paddingBottom: '14px',
               marginBottom: '24px',
@@ -46,7 +46,7 @@ export const TheCraft = () => {
                     border: 'none',
                     textAlign: 'left',
                     cursor: 'pointer',
-                    padding: '10px 14px',
+                    padding: '10px 12px',
                     borderLeft: isActive ? '2px solid var(--accent-gold)' : '2px solid transparent',
                     backgroundColor: isActive ? 'var(--bg-surface)' : 'transparent',
                     borderRadius: 'var(--radius-xs)',
@@ -70,10 +70,13 @@ export const TheCraft = () => {
                   <span
                     style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: '1.15rem',
+                      fontSize: '1.05rem',
                       fontWeight: isActive ? 600 : 400,
                       color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                      display: 'block'
+                      display: 'block',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}
                   >
                     {step.name}
@@ -130,7 +133,7 @@ export const TheCraft = () => {
                     }}
                   >
                     <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
-                    <span>Phase {activeStep.step} of 04 · {activeStep.name}</span>
+                    <span>Phase {activeStep.step} of 05 · {activeStep.name}</span>
                   </div>
                 </div>
               </div>
@@ -147,7 +150,7 @@ export const TheCraft = () => {
               }}
             >
               <span className="num-label" style={{ fontSize: '0.875rem', marginBottom: '6px' }}>
-                {activeStep.step} / 04
+                {activeStep.step} / 05
               </span>
               
               <h3 className="heading-sub" style={{ marginBottom: '10px', fontSize: 'clamp(1.4rem, 2vw, 1.85rem)' }}>
@@ -195,7 +198,7 @@ export const TheCraft = () => {
                   onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
                 >
-                  <span>Next: Step 0{((activeStepIndex + 1) % craftSteps.length) + 1} ({craftSteps[(activeStepIndex + 1) % craftSteps.length].name})</span>
+                  <span>Next: Step {craftSteps[(activeStepIndex + 1) % craftSteps.length].step} ({craftSteps[(activeStepIndex + 1) % craftSteps.length].name})</span>
                   <ChevronRight size={14} style={{ color: 'var(--accent-gold)' }} />
                 </button>
               </div>
