@@ -717,7 +717,6 @@ video,
   -ms-user-select: none !important;
   user-select: none !important;
   -webkit-user-drag: none !important;
-  user-drag: none !important;
   -webkit-touch-callout: none !important; /* Prevents long-press save image dialog on iOS/Android */
   pointer-events: none !important; /* Media cannot be directly selected or right-clicked */
 }
