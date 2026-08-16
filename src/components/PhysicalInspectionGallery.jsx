@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { ShieldCheck, Ruler, Scale, Sparkles, Box, CheckCircle2, ZoomIn, X, ChevronLeft, ChevronRight, FileText, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Ruler, Scale, Sparkles, Box, PackageCheck, Truck, CheckCircle2, ZoomIn, X, ChevronLeft, ChevronRight, FileText, ArrowRight } from 'lucide-react';
 
 export const PhysicalInspectionGallery = () => {
-  // 4 Curated Verification Pillars (All full-resolution original uncropped photos)
+  // 5 Curated Verification Pillars (All full-resolution original uncropped photos)
   const inspectionStages = [
     {
       id: 'dimension',
@@ -48,28 +48,28 @@ export const PhysicalInspectionGallery = () => {
       description: 'Precision digital scale grammage checks ensuring optimal moisture density equilibrium and supple bean pliability without hollow weight loss.',
       variants: [
         {
-          id: 'weight-planifolia',
-          species: 'Vanilla Planifolia Mass',
-          grade: 'Super Premium Lot',
-          metric: 'Calibrated Single Pod Mass',
+          id: 'weight-batch-1245g',
+          species: 'Commercial Batch Mass Calibration',
+          grade: 'Gourmet Grade A Lot Consolidation',
+          metric: '1.245 KG Batch Mass on Digital Scale',
           moisture: '30 – 35% Moisture Equilibrium',
-          weight: '6.5 – 8.5 gr Average',
+          weight: '1,245 grams Calibrated Mass',
+          packaging: 'Export Batch Sorting Table',
+          aspectRatio: '9/16',
+          note: 'Direct digital scale verification confirming dense essential oil grammage and total weight accuracy for commercial batch consignments.',
+          image: '/images/inspection_proofs/proof_batch_scale_1245g.webp'
+        },
+        {
+          id: 'weight-planifolia',
+          species: 'Vanilla Planifolia Single Pod',
+          grade: 'Super Premium Lot',
+          metric: 'Calibrated Single Pod Mass (6.5–8.5 gr)',
+          moisture: '30 – 35% Moisture Equilibrium',
+          weight: '6.5 – 8.5 gr / pod',
           packaging: 'Export Ready',
           aspectRatio: '9/16',
           note: 'Digital scale measurement confirming heavy single pod mass and dense essential oil and seed cavity mass per cured pod.',
           image: '/images/inspection_proofs/proof_weight_planifolia_scale.webp'
-        },
-        {
-          id: 'weight-tahitensis',
-          species: 'Vanilla Tahitensis Mass',
-          grade: 'Floral Gourmet Lot',
-          metric: 'Heavy Plump Gourmet Density',
-          moisture: '> 30% Supple Moisture',
-          weight: '4.2 – 5.0 gr Average',
-          packaging: 'Export Ready',
-          aspectRatio: '9/16',
-          note: 'Digital scale verification of Tahitensis pods demonstrating high natural essential oil and seed density per bean.',
-          image: '/images/inspection_proofs/proof_weight_tahitensis_scale.webp'
         }
       ]
     },
@@ -116,18 +116,6 @@ export const PhysicalInspectionGallery = () => {
       description: 'Multi-layer food-grade EVOH vacuum packaging preventing aroma volatilization and humidity shifts during international air courier and ocean freight.',
       variants: [
         {
-          id: 'packaging-vacuum-master',
-          species: 'Gourmet Export Vacuum Consignment',
-          grade: 'Export Grade Cargo',
-          metric: 'Hermetic Vacuum Packs in Insulated Thermal Box',
-          moisture: 'Preserved 30–35% Moisture Equilibrium',
-          weight: 'Multi-Pouch Export Consolidation',
-          packaging: 'Insulated Thermal Styrofoam + Barrier Vacuum Pouches',
-          aspectRatio: '9/16',
-          note: 'Authentic vacuum-sealed vanilla packages systematically packed inside thermal-insulated export containers ready for direct international air and ocean dispatch.',
-          image: '/images/inspection_proofs/proof_export_packaging_vacuum_cargo.webp'
-        },
-        {
           id: 'packaging-1kg',
           species: '1.00 KG Master Vacuum Pack',
           grade: 'Standard Export Unit',
@@ -138,6 +126,64 @@ export const PhysicalInspectionGallery = () => {
           aspectRatio: '3/4',
           note: 'Authentic 1.00 KG master vacuum-sealed export pack with raffia-tied bundles, ready for customs clearance and direct port departure.',
           image: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.webp'
+        },
+        {
+          id: 'packaging-single-18cm',
+          species: 'Calibrated Single Export Vacuum Pouch (18cm)',
+          grade: 'Gourmet Grade A Planifolia',
+          metric: 'Hermetic Vacuum Pack with Dimension Grade 18',
+          moisture: 'Preserved 30–35% Moisture Equilibrium',
+          weight: 'Calibrated Single Pouch Weight',
+          packaging: 'Food-Grade Embossed Vacuum Seal Pouch',
+          aspectRatio: '3/4',
+          note: 'Individual inspection of vacuum-sealed 18 cm gourmet vanilla beans showing airtight seal, deep glossy mahogany color, and pristine bean alignment.',
+          image: '/images/inspection_proofs/proof_single_vacuum_pouch_18cm.webp'
+        }
+      ]
+    },
+    {
+      id: 'shipment',
+      stageNumber: '05',
+      title: 'Export Cargo & Shipment Logistics',
+      subtitle: 'Warehouse Staging & Port Dispatch',
+      icon: PackageCheck,
+      description: 'Full-scale commercial shipment staging, master double-wall shipping carton consolidation, and thermal-insulated air freight packing for direct international export dispatch.',
+      variants: [
+        {
+          id: 'shipment-warehouse-staging',
+          species: 'Commercial Warehouse Export Staging',
+          grade: 'International B2B Dispatch',
+          metric: 'Multi-Carton Master Freight Staging',
+          moisture: 'Vacuum Sealed in Double-Wall Cartons',
+          weight: 'Commercial Batch Consignments (50kg – 500kg+)',
+          packaging: 'Double-Wall Corrugated Master Shipping Boxes',
+          aspectRatio: '16/9',
+          note: 'Large-scale warehouse shipment staging with rows of export master cartons loaded with sealed vanilla packages for international customs and port dispatch.',
+          image: '/images/inspection_proofs/proof_warehouse_export_cargo_staging.webp'
+        },
+        {
+          id: 'shipment-master-carton',
+          species: 'Master Export Carton Interior Packing',
+          grade: 'Gourmet Export Lots (14–19cm Calibrated)',
+          metric: 'Stacked Vacuum Bundles with Sizing Tags',
+          moisture: '30 – 35% Hermetically Preserved',
+          weight: 'Master Carton Consolidation',
+          packaging: 'Heavy-Duty Export Outer Carton + Inner Vacuum Barrier',
+          aspectRatio: '16/9',
+          note: 'Direct interior view of export master carton packed with calibrated vanilla bean pouches with size labels (14, 19) ready for air and ocean freight.',
+          image: '/images/inspection_proofs/proof_master_export_carton_boxes.webp'
+        },
+        {
+          id: 'shipment-insulated-air',
+          species: 'Thermal Insulated Styrofoam Air Consignment',
+          grade: 'Express Air Freight Cargo',
+          metric: 'Hermetic Vacuum Packs in Thermal Cargo Box',
+          moisture: 'Zero Moisture Volatilization',
+          weight: 'Air Courier Batch Consolidation',
+          packaging: 'Insulated Styrofoam Box + Multi-Layer Vacuum Seal',
+          aspectRatio: '9/16',
+          note: 'Insulated temperature-regulated styrofoam master units designed for perishable international express air courier without humidity fluctuation.',
+          image: '/images/inspection_proofs/proof_export_styrofoam_insulated_box.webp'
         }
       ]
     }
@@ -211,11 +257,11 @@ export const PhysicalInspectionGallery = () => {
           Physical Quality & Grading Verification
         </h3>
         <p className="body-small" style={{ color: 'var(--text-secondary)', fontSize: '0.9375rem', lineHeight: 1.6, margin: 0 }}>
-          Interactive workbench documenting real specimen measurements, digital scale calibrations, vanillin frost blooms, and hermetic export packs.
+          Interactive workbench documenting real specimen measurements, digital scale calibrations, vanillin frost blooms, vacuum packaging, and master export shipments.
         </p>
       </div>
 
-      {/* 4-Stage Navigation Strip */}
+      {/* 5-Stage Navigation Strip */}
       <div
         style={{
           display: 'grid',
