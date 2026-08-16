@@ -116,6 +116,18 @@ export const PhysicalInspectionGallery = () => {
       description: 'Multi-layer food-grade EVOH vacuum packaging preventing aroma volatilization and humidity shifts during international air courier and ocean freight.',
       variants: [
         {
+          id: 'packaging-vacuum-master',
+          species: 'Gourmet Export Vacuum Consignment',
+          grade: 'Export Grade Cargo',
+          metric: 'Hermetic Vacuum Packs in Insulated Thermal Box',
+          moisture: 'Preserved 30–35% Moisture Equilibrium',
+          weight: 'Multi-Pouch Export Consolidation',
+          packaging: 'Insulated Thermal Styrofoam + Barrier Vacuum Pouches',
+          aspectRatio: '9/16',
+          note: 'Authentic vacuum-sealed vanilla packages systematically packed inside thermal-insulated export containers ready for direct international air and ocean dispatch.',
+          image: '/images/inspection_proofs/proof_export_packaging_vacuum_cargo.webp'
+        },
+        {
           id: 'packaging-1kg',
           species: '1.00 KG Master Vacuum Pack',
           grade: 'Standard Export Unit',
@@ -126,18 +138,6 @@ export const PhysicalInspectionGallery = () => {
           aspectRatio: '3/4',
           note: 'Authentic 1.00 KG master vacuum-sealed export pack with raffia-tied bundles, ready for customs clearance and direct port departure.',
           image: '/images/inspection_proofs/proof_export_packaging_1kg_vacuum.webp'
-        },
-        {
-          id: 'bulk-bales',
-          species: 'Commercial Extraction Bales',
-          grade: 'Industrial Extraction Lot (Grade C)',
-          metric: 'Bulk Extraction Bundle (Grade C & Cuts)',
-          moisture: 'Natural Low Moisture',
-          weight: 'Custom Bulk Quantities',
-          packaging: 'Bulk Protective Liner',
-          aspectRatio: '9/16',
-          note: 'High-volume commercial grading for industrial flavour extraction, oleoresin processing, and fragrance distillation facilities.',
-          image: '/images/inspection_proofs/proof_bulk_grade_c_bales.webp'
         }
       ]
     }

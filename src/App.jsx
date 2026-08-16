@@ -101,6 +101,35 @@ export function App() {
     document.title = titles[currentRoute] || titles.home;
   }, [currentRoute]);
 
+  // Comprehensive Media Theft Protection (Anti-Save, Anti-RightClick, Anti-Drag)
+  useEffect(() => {
+    const handleContextMenu = (e) => {
+      if (
+        e.target.tagName === 'IMG' ||
+        e.target.tagName === 'VIDEO' ||
+        e.target.closest('img, video, picture, figure, .media-frame, .craft-card, .inspection-proof-card, .gallery-item, .lightbox-image-container')
+      ) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleDragStart = (e) => {
+      if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO' || e.target.closest('img, video')) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('dragstart', handleDragStart);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('dragstart', handleDragStart);
+    };
+  }, []);
+
   return (
     <PageLayout
       currentRoute={currentRoute}

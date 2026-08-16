@@ -704,3 +704,27 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
+/* ==========================================================================
+   COMPREHENSIVE MEDIA THEFT & COPYRIGHT PROTECTION
+   ========================================================================== */
+
+img,
+picture,
+video,
+figure,
+.craft-card img,
+.gallery-item img,
+.inspection-proof-card img,
+.lightbox-image-container img,
+[data-protected-media] {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  user-drag: none !important;
+  -webkit-touch-callout: none !important; /* Prevents long-press save image dialog on iOS/Android */
+  pointer-events: auto;
+}
+
+

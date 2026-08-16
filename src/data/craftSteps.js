@@ -32,18 +32,18 @@ export const craftSteps = [
     step: "03",
     name: "Sun Curing & Sweating",
     tagline: "Alchemy of tropical sun and wooden sweat boxes.",
-    description: "Freshly blanched pods are laid on woven bamboo racks under gentle morning sun for 2–3 hours, then immediately bundled into woolen blankets inside wooden boxes to sweat overnight. This slow cycle repeats for up to 90 days, developing the deep mahogany sheen and vanillin crystals.",
+    description: "Freshly blanched pods are laid on curing tables under the gentle morning tropical sun, then bundled into sweating blankets to develop deep mahogany gloss and complex vanillin crystallization over 60–90 days.",
     image: curingImg,
-    alt: "Traditional sun curing of dark vanilla beans on woven bamboo drying racks in Indonesia"
+    alt: "Authentic slow sun-curing tables with rows of cured Indonesian vanilla beans drying under the tropical sun"
   },
   {
     id: "grading",
     step: "04",
-    name: "Master Grading",
+    name: "Master Grading & Inspection",
     tagline: "Rigorous sorting for moisture, length, and oily luster.",
-    description: "Each cured bean is individually measured, palpated for suppleness, and inspected for skin perfection. Only the plumpest, defect-free pods with rich natural moisture are classified as Gourmet Grade A for fine culinary applications.",
+    description: "Our founders and curation team directly inspect every batch on the drying tables, measuring pod length, testing suppleness, and verifying uniform moisture density before packaging.",
     image: gradingImg,
-    alt: "Artisan measuring and grading long supple Grade A black vanilla beans"
+    alt: "Essence Indonesia founders and quality curation team directly inspecting sun-cured vanilla bean lots"
   }
 ];
 
