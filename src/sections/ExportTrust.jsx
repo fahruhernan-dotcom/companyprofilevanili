@@ -241,7 +241,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
 
             <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
               <a
-                href="#quality"
+                href="/quality"
                 onClick={handleQualityNav}
                 style={{
                   display: 'inline-flex',

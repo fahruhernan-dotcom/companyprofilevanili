@@ -142,7 +142,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
         >
           {/* Brand Logo & Title */}
           <a
-            href="#home"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('home', 'home');
@@ -234,7 +234,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 aria-label="Origins Submenu"
               >
                 <a
-                  href="#vanilla"
+                  href="/vanilla"
                   role="menuitem"
                   className="origins-dropdown-item"
                   onClick={(e) => {
@@ -247,7 +247,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 </a>
 
                 <a
-                  href="#coffee"
+                  href="/coffee"
                   role="menuitem"
                   className="origins-dropdown-item"
                   onClick={(e) => {
@@ -263,7 +263,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
 
             {/* Quality Route */}
             <a
-              href="#quality"
+              href="/quality"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('quality', 'quality');
@@ -283,7 +283,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
 
             {/* About Route */}
             <a
-              href="#about"
+              href="/about"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('about', 'about');
@@ -303,7 +303,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
 
             {/* For Buyers Route */}
             <a
-              href="#buyers"
+              href="/buyers"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('buyers', 'buyers');
@@ -396,7 +396,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
           {/* Origins Header */}
           <div>
             <a
-              href="#origins"
+              href="/#origins"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('origins', 'origins');
@@ -416,7 +416,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             </a>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '8px' }}>
               <a
-                href="#vanilla"
+                href="/vanilla"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('vanilla', 'vanilla');
@@ -439,7 +439,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
               </a>
 
               <a
-                href="#coffee"
+                href="/coffee"
                 onClick={(e) => {
                   e.preventDefault();
                   handleLinkClick('coffee', 'coffee');
@@ -468,7 +468,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
           {/* Direct Section Links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             <a
-              href="#quality"
+              href="/quality"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('quality', 'quality');
@@ -489,7 +489,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             </a>
 
             <a
-              href="#about"
+              href="/about"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('about', 'about');
@@ -510,7 +510,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             </a>
 
             <a
-              href="#buyers"
+              href="/buyers"
               onClick={(e) => {
                 e.preventDefault();
                 handleLinkClick('buyers', 'buyers');

@@ -130,7 +130,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <li>
                   <a
-                    href="#origins"
+                    href="/#origins"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('origins', 'origins');
@@ -149,7 +149,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 </li>
                 <li>
                   <a
-                    href="#vanilla"
+                    href="/vanilla"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('vanilla', 'vanilla');
@@ -172,7 +172,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 </li>
                 <li>
                   <a
-                    href="#coffee"
+                    href="/coffee"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('coffee', 'coffee');
@@ -195,7 +195,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 </li>
                 <li>
                   <a
-                    href="#quality"
+                    href="/quality"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('quality', 'quality');
@@ -223,7 +223,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <li>
                   <a
-                    href="#about"
+                    href="/about"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('about', 'about');
@@ -242,7 +242,7 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 </li>
                 <li>
                   <a
-                    href="#buyers"
+                    href="/buyers"
                     onClick={(e) => {
                       e.preventDefault();
                       handleLinkClick('buyers', 'buyers');

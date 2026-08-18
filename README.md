@@ -173,21 +173,46 @@ npm run preview
 
 ---
 
-## 🚢 Deployment
+## 🚢 Deployment Guide
 
-The project can be deployed instantly to modern static hosting providers:
+The project can be deployed instantly to cPanel / Cloud Hosting, FTP, or modern Jamstack providers.
 
-### Vercel
-1. Push your repository to GitHub.
-2. Import the project into [Vercel](https://vercel.com).
-3. Add the `VITE_*` environment variables in Vercel's **Project Settings → Environment Variables**.
-4. Click **Deploy**.
+### 📦 1. Cloud Hosting / cPanel (Manual ZIP Upload)
 
-### Netlify
-1. Connect your repository to [Netlify](https://netlify.com).
-2. Set Build Command to `npm run build` and Publish Directory to `dist`.
-3. Set your environment variables under **Site configuration > Environment variables**.
-4. Deploy!
+Setiap kali Anda menjalankan build, sistem secara otomatis menghasilkan file arsip siap deploy: `dist-deploy.zip`.
+
+```bash
+# 1. Build project + SSG pre-render + generate dist-deploy.zip
+npm run build
+
+# Atau jika hanya ingin meng-generate ulang zip dari folder dist:
+npm run zip
+```
+
+**Langkah Upload ke cPanel / Cloud Hosting:**
+1. Login ke **cPanel Hosting** Anda.
+2. Buka menu **File Manager** dan masuk ke direktori **`public_html`**.
+3. (Opsional/Disarankan) Backup atau bersihkan file versi sebelumnya di `public_html`.
+4. Klik tombol **Upload** di bagian atas, lalu pilih file **`dist-deploy.zip`** dari root project ini.
+5. Setelah selesai upload (bar 100% hijau), klik kanan pada `dist-deploy.zip` di cPanel dan pilih **Extract** (Ekstrak ke `public_html/`).
+6. Pastikan file `.htaccess`, `index.html`, `sitemap.xml`, `robots.txt`, serta subfolder (`vanilla/`, `coffee/`, `quality/`, `buyers/`, `about/`, `assets/`, `images/`, `videos/`) sudah berada langsung di dalam `public_html/`.
+7. Hapus file `dist-deploy.zip` dari cPanel untuk menghemat storage.
+
+---
+
+### 🚀 2. CI/CD Otomatis via GitHub Actions & FTP
+
+Project ini sudah dilengkapi workflow otomatis di [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+Cukup lakukan `git push origin main`, maka GitHub Actions akan:
+1. Menjalankan `npm run build` (termasuk SSG Pre-rendering ke HTML statis).
+2. Mengunggah folder `dist/` langsung ke cPanel via LFTP dengan *mirror sync*.
+
+---
+
+### 🌐 3. Vercel / Netlify (Alternatif)
+- **Build Command**: `npm run build`
+- **Output / Publish Directory**: `dist`
+- **Node Version**: `20.x` atau `18.x`
 
 ---
 

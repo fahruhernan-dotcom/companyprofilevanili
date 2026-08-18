@@ -83,7 +83,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={200} style={{ display: 'flex' }}>
             <a
-              href="#vanilla"
+              href="/vanilla"
               onClick={(e) => handleNav(e, 'vanilla')}
               className="editorial-door"
               style={{
@@ -230,7 +230,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={300} style={{ display: 'flex' }}>
             <a
-              href="#coffee"
+              href="/coffee"
               onClick={(e) => handleNav(e, 'coffee')}
               className="editorial-door"
               style={{

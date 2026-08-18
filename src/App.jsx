@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { brandConfig } from './config/brandConfig';
 import { PageLayout } from './components/PageLayout';
-import { RoutePlaceholder } from './components/RoutePlaceholder';
+import { updateDocumentMeta } from './utils/updateMeta';
 
 // Dedicated Pages
 import { AboutPage } from './pages/AboutPage';
@@ -18,23 +18,38 @@ import { Philosophy } from './sections/Philosophy';
 import { ExportTrust } from './sections/ExportTrust';
 import { ClosingInquiry } from './sections/ClosingInquiry';
 
-export function App() {
-  // Parse initial route from hash
-  const parseRouteFromHash = useCallback(() => {
+export function App({ initialRoute }) {
+  // Parse current route from path or legacy hash
+  const parseCurrentRoute = useCallback(() => {
+    if (typeof window === 'undefined') {
+      return initialRoute || 'home';
+    }
+
+    const pathname = (window.location.pathname || '/').toLowerCase().replace(/^\/|\/$/g, '');
     const rawHash = (window.location.hash || '').replace(/^#\/?/, '').toLowerCase();
-    
+
+    // Check Clean Path URLs first
+    if (pathname === 'about') return 'about';
+    if (pathname === 'origins') return 'origins';
+    if (pathname === 'vanilla') return 'vanilla';
+    if (pathname === 'coffee') return 'coffee';
+    if (pathname === 'quality') return 'quality';
+    if (pathname === 'buyers' || pathname === 'for-buyers') return 'buyers';
+
+    // Backward compatibility for legacy hashtag URLs (e.g., /#vanilla)
     if (rawHash === 'about') return 'about';
     if (rawHash === 'origins') return 'origins';
     if (rawHash === 'vanilla') return 'vanilla';
     if (rawHash === 'coffee') return 'coffee';
     if (rawHash === 'quality') return 'quality';
     if (rawHash === 'buyers' || rawHash === 'for-buyers') return 'buyers';
-    if (rawHash === 'inquiry') return 'home'; // Inquiry triggers modal
-    return 'home';
-  }, []);
 
-  const [currentRoute, setCurrentRoute] = useState(parseRouteFromHash);
+    return initialRoute || 'home';
+  }, [initialRoute]);
+
+  const [currentRoute, setCurrentRoute] = useState(parseCurrentRoute);
   const [isInquiryOpen, setIsInquiryOpen] = useState(() => {
+    if (typeof window === 'undefined') return false;
     return window.location.hash === '#inquiry';
   });
   const [inquiryCommodity, setInquiryCommodity] = useState('Indonesian Vanilla — Gourmet Grade A Planifolia');
@@ -47,62 +62,66 @@ export function App() {
     setIsInquiryOpen(true);
   };
 
-  // Synchronize hash changes with state
+  // Synchronize browser history (Back / Forward navigation)
   useEffect(() => {
-    const handleHashChange = () => {
-      const route = parseRouteFromHash();
+    const handlePopState = () => {
+      const route = parseCurrentRoute();
       setCurrentRoute(route);
-
-      if (window.location.hash === '#inquiry') {
-        setIsInquiryOpen(true);
-      }
-
-      // Page-level vs In-page section scroll behavior
-      if (['about', 'vanilla', 'coffee', 'quality', 'buyers'].includes(route)) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else if (['origins', 'selected-origins'].includes(route)) {
-        const el = document.getElementById(route);
-        if (el) {
-          setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth' });
-          }, 60);
-        }
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [parseRouteFromHash]);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [parseCurrentRoute]);
 
-  // Navigate handler for links
+  // Clean up legacy hash in address bar if present
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const rawHash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
+      if (['about', 'vanilla', 'coffee', 'quality', 'buyers'].includes(rawHash)) {
+        window.history.replaceState({ route: rawHash }, '', `/${rawHash}`);
+      } else if (rawHash === 'origins') {
+        const el = document.getElementById('origins');
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+        }
+      }
+    }
+  }, []);
+
+  // Navigate handler for internal links
   const navigateTo = (route, targetHash) => {
     setCurrentRoute(route);
-    const hash = targetHash || route;
-    if (hash === 'home') {
-      window.location.hash = 'home';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      window.location.hash = hash;
+
+    if (typeof window !== 'undefined') {
+      const targetPath = route === 'home' ? '/' : `/${route}`;
+
+      // Update URL via HTML5 History API without page reload
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ route }, '', targetPath);
+      }
+
+      if (targetHash === 'origins') {
+        const el = document.getElementById('origins');
+        if (el) {
+          setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 50);
+          return;
+        }
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  // Update document title dynamically based on active route
+  // Dynamically update metadata, canonical URL, and Schema.org JSON-LD
   useEffect(() => {
-    const titles = {
-      home: `${brandConfig.name} — ${brandConfig.heroStatement}`,
-      about: `Our Heritage & Origins — ${brandConfig.name}`,
-      origins: `Indonesian Origins (Vanilla & Coffee) — ${brandConfig.name}`,
-      vanilla: `Indonesian Vanilla Sourcing — ${brandConfig.name}`,
-      coffee: `Indonesian Green Coffee Sourcing — ${brandConfig.name}`,
-      quality: `Quality & Export Standards — ${brandConfig.name}`,
-      buyers: `For International Buyers — ${brandConfig.name}`
-    };
-    document.title = titles[currentRoute] || titles.home;
+    updateDocumentMeta(currentRoute);
   }, [currentRoute]);
 
   // Comprehensive Media Theft Protection (Anti-Save & Anti-Drag on Media)
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     const handleContextMenu = (e) => {
       const isMedia = e.target.tagName === 'IMG' || 
                       e.target.tagName === 'VIDEO' || 
