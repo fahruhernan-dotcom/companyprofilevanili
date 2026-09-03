@@ -22,9 +22,9 @@ export function createDeployZip() {
   }
 
   if (process.platform === 'win32') {
-    // Windows PowerShell Compress-Archive
+    // Windows PowerShell Compress-Archive (include hidden files like .htaccess)
     execSync(
-      `powershell -Command "Compress-Archive -Path dist/* -DestinationPath dist-deploy.zip -Force"`,
+      `powershell -Command "Get-ChildItem -Path dist -Force | Compress-Archive -DestinationPath dist-deploy.zip -Force"`,
       { cwd: rootDir, stdio: 'inherit' }
     );
   } else {

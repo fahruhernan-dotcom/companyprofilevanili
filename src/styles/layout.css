@@ -687,6 +687,85 @@ input:focus, select:focus, textarea:focus {
   }
 }
 
+/* Editorial Luxury Hero Buttons on Vanilla Page */
+.vanilla-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.vanilla-hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.725rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-editorial);
+  white-space: nowrap;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.vanilla-hero-btn-primary {
+  background-color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+  color: var(--bg-dark);
+  padding: 0 22px;
+  box-shadow: 0 4px 16px rgba(200, 169, 107, 0.25);
+}
+
+.vanilla-hero-btn-primary:hover {
+  background-color: #DFC182;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 169, 107, 0.4);
+}
+
+.vanilla-hero-btn-secondary {
+  background-color: rgba(23, 21, 18, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(246, 242, 234, 0.25);
+  color: var(--text-inverse-primary);
+  padding: 0 20px;
+}
+
+.vanilla-hero-btn-secondary:hover {
+  border-color: var(--accent-gold);
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 540px) {
+  .vanilla-hero-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .vanilla-hero-btn {
+    width: 100% !important;
+    padding: 0 8px !important;
+    font-size: 0.6875rem !important;
+    letter-spacing: 0.03em !important;
+    height: 44px !important;
+  }
+
+  .vanilla-scroll-cue {
+    display: none !important;
+  }
+}
+
 /* Print Stylesheet for Official B2B Export Dossier */
 @media print {
   body {

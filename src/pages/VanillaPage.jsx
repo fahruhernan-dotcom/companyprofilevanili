@@ -54,8 +54,8 @@ export const VanillaPage = ({
             inset: 0,
             zIndex: 2,
             background: `
-              radial-gradient(ellipse at 8% 95%, rgba(17, 15, 12, 0.96) 0%, rgba(17, 15, 12, 0.6) 50%, transparent 75%),
-              linear-gradient(180deg, rgba(17, 15, 12, 0.4) 0%, rgba(17, 15, 12, 0.1) 30%, rgba(17, 15, 12, 0.65) 65%, rgba(17, 15, 12, 0.98) 100%)
+              linear-gradient(180deg, rgba(17, 15, 12, 0.5) 0%, rgba(17, 15, 12, 0.1) 20%, rgba(17, 15, 12, 0.45) 50%, rgba(17, 15, 12, 0.88) 78%, rgba(17, 15, 12, 0.98) 100%),
+              radial-gradient(ellipse at 12% 92%, rgba(17, 15, 12, 0.94) 0%, rgba(17, 15, 12, 0.6) 50%, transparent 80%)
             `,
             pointerEvents: 'none'
           }}
@@ -66,24 +66,24 @@ export const VanillaPage = ({
             position: 'relative',
             zIndex: 3,
             width: '100%',
-            paddingLeft: 'clamp(24px, 5vw, 64px)',
-            paddingRight: 'clamp(24px, 5vw, 64px)',
+            paddingLeft: 'clamp(20px, 5.5vw, 64px)',
+            paddingRight: 'clamp(20px, 5.5vw, 64px)',
             boxSizing: 'border-box',
-            marginBottom: 'clamp(8px, 1.5vh, 20px)'
+            paddingBottom: 'clamp(36px, 6.5vh, 64px)'
           }}
         >
-          <div style={{ maxWidth: '540px', textAlign: 'left' }}>
+          <div style={{ maxWidth: '520px', textAlign: 'left' }}>
             
             {/* Editorial Micro-Eyebrow */}
             <ScrollReveal animation="fade-up" delay={50}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-                <span style={{ width: '24px', height: '1px', backgroundColor: 'var(--accent-gold)' }} />
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                <span style={{ width: '20px', height: '1.5px', backgroundColor: 'var(--accent-gold)' }} />
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.6875rem',
                     fontWeight: 600,
-                    letterSpacing: '0.2em',
+                    letterSpacing: '0.18em',
                     textTransform: 'uppercase',
                     color: 'var(--accent-gold)'
                   }}
@@ -98,13 +98,13 @@ export const VanillaPage = ({
               <h1
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(2.6rem, 5.5vw, 4.4rem)',
+                  fontSize: 'clamp(2.35rem, 6.5vw, 4.4rem)',
                   fontWeight: 300,
                   color: 'var(--text-inverse-primary)',
                   lineHeight: 1.05,
-                  margin: '0 0 16px 0',
+                  margin: '0 0 14px 0',
                   letterSpacing: '0.01em',
-                  textShadow: '0 2px 24px rgba(0, 0, 0, 0.85)'
+                  textShadow: '0 2px 24px rgba(0, 0, 0, 0.9)'
                 }}
               >
                 Indonesian <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)', fontWeight: 400 }}>Vanilla.</span>
@@ -116,92 +116,37 @@ export const VanillaPage = ({
               <p
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: 'clamp(0.875rem, 1.1vw, 0.975rem)',
-                  color: 'rgba(246, 242, 234, 0.88)',
-                  lineHeight: 1.7,
-                  margin: '0 0 24px 0',
-                  maxWidth: '480px',
+                  fontSize: 'clamp(0.84rem, 1.05vw, 0.95rem)',
+                  color: 'rgba(246, 242, 234, 0.86)',
+                  lineHeight: 1.65,
+                  margin: '0 0 20px 0',
+                  maxWidth: '460px',
                   letterSpacing: '0.01em',
-                  textShadow: '0 1px 12px rgba(0, 0, 0, 0.8)'
+                  textShadow: '0 1px 16px rgba(0, 0, 0, 0.85)'
                 }}
               >
                 Single-origin <em>Vanilla planifolia</em> and <em>Vanilla tahitensis</em> cured under equatorial sun and slow wooden-box conditioning. Verified with lab-tested vanillin content and statutory export certifications.
               </p>
             </ScrollReveal>
 
-            {/* Harmonious Action Buttons (Gold Pill + Frosted Glass Pill) */}
+            {/* Harmonious Action Buttons (Side-by-side on mobile, elegant row on desktop) */}
             <ScrollReveal animation="fade-up" delay={220}>
-              <div className="mobile-stack" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '12px' }}>
+              <div className="vanilla-hero-actions">
                 <button
                   type="button"
                   onClick={onOpenInquiry}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    backgroundColor: 'var(--accent-gold)',
-                    border: '1px solid var(--accent-gold)',
-                    borderRadius: 'var(--radius-pill)',
-                    padding: '9px 20px',
-                    color: 'var(--bg-dark)',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 16px rgba(200, 169, 107, 0.25)',
-                    transition: 'all 0.3s var(--ease-editorial)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = '#DFC182';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(200, 169, 107, 0.4)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = 'var(--accent-gold)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(200, 169, 107, 0.25)';
-                  }}
+                  className="vanilla-hero-btn vanilla-hero-btn-primary"
                 >
                   <span>Request Quotation</span>
-                  <Sparkles size={13} />
+                  <Sparkles size={12} />
                 </button>
 
                 <button
                   type="button"
                   onClick={onOpenSpecSheet}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    backgroundColor: 'rgba(23, 21, 18, 0.4)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(246, 242, 234, 0.25)',
-                    borderRadius: 'var(--radius-pill)',
-                    padding: '9px 18px',
-                    color: 'var(--text-inverse-primary)',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s var(--ease-editorial)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'var(--accent-gold)';
-                    e.currentTarget.style.color = 'var(--accent-gold)';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(246, 242, 234, 0.25)';
-                    e.currentTarget.style.color = 'var(--text-inverse-primary)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
+                  className="vanilla-hero-btn vanilla-hero-btn-secondary"
                 >
-                  <FileText size={13} />
+                  <FileText size={12} />
                   <span>Spec Dossier</span>
                 </button>
               </div>
@@ -209,8 +154,9 @@ export const VanillaPage = ({
           </div>
         </div>
 
-        {/* Minimalist Scroll Down Cue (Bottom-Right Balance) */}
+        {/* Minimalist Scroll Down Cue (Desktop-Only Cue, Hidden on Mobile to avoid collision) */}
         <div
+          className="vanilla-scroll-cue"
           style={{
             position: 'absolute',
             bottom: 'clamp(24px, 4vh, 36px)',
