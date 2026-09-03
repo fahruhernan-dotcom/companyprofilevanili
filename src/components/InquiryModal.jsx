@@ -464,6 +464,7 @@ export const InquiryModal = ({
                         required
                         value={formData.name}
                         onChange={handleChange}
+                        maxLength={100}
                         placeholder="e.g. Jean-Luc Dubois"
                         className={`inquiry-input ${errors.name ? 'is-invalid' : ''}`}
                       />
@@ -481,6 +482,7 @@ export const InquiryModal = ({
                         required
                         value={formData.company}
                         onChange={handleChange}
+                        maxLength={150}
                         placeholder="e.g. Maison de Pâtisserie Ltd"
                         className={`inquiry-input ${errors.company ? 'is-invalid' : ''}`}
                       />
@@ -513,6 +515,7 @@ export const InquiryModal = ({
                         required
                         value={formData.email}
                         onChange={handleChange}
+                        maxLength={120}
                         placeholder="procurement@company.com"
                         className={`inquiry-input ${errors.email ? 'is-invalid' : ''}`}
                       />
@@ -529,6 +532,7 @@ export const InquiryModal = ({
                         type="text"
                         value={formData.destination}
                         onChange={handleChange}
+                        maxLength={150}
                         placeholder="e.g. Rotterdam, Netherlands / Tokyo, Japan"
                         className="inquiry-input"
                       />
@@ -664,6 +668,7 @@ export const InquiryModal = ({
                     rows={3}
                     value={formData.message}
                     onChange={handleChange}
+                    maxLength={2000}
                     placeholder="Mention desired moisture %, pod length, custom vacuum bag size, or specific phytosanitary lab test requirements..."
                     className="inquiry-textarea"
                   />

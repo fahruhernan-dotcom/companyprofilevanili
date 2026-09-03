@@ -1,6 +1,15 @@
 import React from 'react';
 import { ArrowUpRight, MessageCircle } from 'lucide-react';
 
+const sanitizeUrl = (url) => {
+  if (!url) return '';
+  const trimmed = String(url).trim();
+  if (/^(javascript|vbscript|data):/i.test(trimmed)) {
+    return '#';
+  }
+  return trimmed;
+};
+
 export const Button = ({
   children,
   variant = 'primary',
@@ -50,7 +59,7 @@ export const Button = ({
   if (href) {
     return (
       <a
-        href={href}
+        href={sanitizeUrl(href)}
         className={baseClass}
         onClick={onClick}
         target={target}
