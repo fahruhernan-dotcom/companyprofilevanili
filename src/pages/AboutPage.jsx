@@ -37,12 +37,49 @@ export const AboutPage = ({ onNavigateHome, onOpenInquiry }) => {
       >
         <div className="container">
           <ScrollReveal animation="fade-up">
-
-            <SectionHeader
-              overline={aboutStory.hero.overline}
-              title={aboutStory.hero.title}
-              subtitle={aboutStory.hero.subtitle}
-            />
+            <div
+              className="section-header"
+              style={{
+                textAlign: 'left',
+                maxWidth: '720px',
+                marginBottom: 'clamp(1.25rem, 2.5vh, 2rem)'
+              }}
+            >
+              <div
+                style={{
+                  marginBottom: '10px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px'
+                }}
+              >
+                <span className="overline overline-accent" style={{ color: 'var(--accent-gold-dark)' }}>
+                  {aboutStory.hero.overline}
+                </span>
+                <span style={{ width: '28px', height: '1.5px', backgroundColor: 'var(--border-gold-dark)', display: 'inline-block' }} />
+              </div>
+              <h1
+                className="heading-section"
+                style={{
+                  color: 'var(--text-primary)',
+                  marginBottom: '14px',
+                  lineHeight: 1.15
+                }}
+              >
+                {aboutStory.hero.title}
+              </h1>
+              <p
+                className="body-lead"
+                style={{
+                  color: 'var(--text-secondary)',
+                  margin: 0,
+                  fontSize: 'clamp(0.95rem, 1.3vw, 1.125rem)',
+                  lineHeight: 1.55
+                }}
+              >
+                {aboutStory.hero.subtitle}
+              </p>
+            </div>
           </ScrollReveal>
         </div>
       </section>

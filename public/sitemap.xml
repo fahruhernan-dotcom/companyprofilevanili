@@ -4,7 +4,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://essenceindonesia.com/</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -15,7 +15,7 @@
   </url>
   <url>
     <loc>https://essenceindonesia.com/vanilla</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -26,28 +26,28 @@
   </url>
   <url>
     <loc>https://essenceindonesia.com/quality</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://essenceindonesia.com/images/inspection_proofs/proof_lab_hplc.webp</image:loc>
+      <image:loc>https://essenceindonesia.com/images/inspection_proofs/proof_vanillin_frost_crystallization.webp</image:loc>
       <image:title>Quality Standards, Phytosanitary and CoA Certification</image:title>
       <image:caption>Laboratory CoA, ISO compliance, and hermetic barrier packaging</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://essenceindonesia.com/buyers</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://essenceindonesia.com/about</loc>
-    <lastmod>2026-08-24</lastmod>
+    <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>
-      <image:loc>https://essenceindonesia.com/images/farm_origin/curing_facility_traditional.webp</image:loc>
+      <image:loc>https://essenceindonesia.com/images/farm_origin/vanilla_farm_real.webp</image:loc>
       <image:title>Our Heritage, Terroirs, and Indonesian Vanilla Curing</image:title>
       <image:caption>Generational farmers and sustainable curing craft across Indonesian archipelago</image:caption>
     </image:image>

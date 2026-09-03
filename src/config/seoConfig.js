@@ -193,7 +193,7 @@ export const seoRoutes = {
     description: 'Explore our strict export quarantine protocol, laboratory HPLC Certificate of Analysis (CoA), Indonesian Ministry of Agriculture Phytosanitary Certification, and multi-layer vacuum hermetic packaging.',
     keywords: 'Phytosanitary Certificate Indonesia, Vanilla CoA Testing, HPLC Vanillin Analysis, Export Packaging Standards, Agricultural Commodity Quarantine',
     canonical: `${siteBaseUrl}/quality`,
-    ogImage: `${siteBaseUrl}/images/inspection_proofs/proof_lab_hplc.webp`,
+    ogImage: `${siteBaseUrl}/images/inspection_proofs/proof_vanillin_frost_crystallization.webp`,
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -234,7 +234,7 @@ export const seoRoutes = {
     description: 'International buyer guide for procuring Indonesian vanilla and coffee. Overview of sample evaluation kits, MOQ tiers, Incoterms (FOB, CIF, CFR, DDP air courier), payment terms, and logistics.',
     keywords: 'Vanilla Importers Guide, Indonesian Commodity Procurement, Incoterms FOB CIF Vanilla, B2B Spice Export Indonesia, Sample Evaluation Kit',
     canonical: `${siteBaseUrl}/buyers`,
-    ogImage: `${siteBaseUrl}/images/inspection_proofs/proof_air_freight.webp`,
+    ogImage: `${siteBaseUrl}/images/inspection_proofs/proof_export_packaging_vacuum_cargo.webp`,
     schema: {
       '@context': 'https://schema.org',
       '@graph': [
@@ -296,7 +296,7 @@ export const seoRoutes = {
     description: 'Learn about Essence Indonesia: bridging Indonesian generational farming communities directly to global gastronomy and commodity roasters through transparent, ethical trade.',
     keywords: 'Essence Indonesia Profile, Indonesian Agricultural Terroirs, Ethical Vanilla Sourcing, Direct Trade Indonesia, Spice Exporters Java Bali Papua',
     canonical: `${siteBaseUrl}/about`,
-    ogImage: `${siteBaseUrl}/images/farm_origin/curing_facility_traditional.webp`,
+    ogImage: `${siteBaseUrl}/images/farm_origin/vanilla_farm_real.webp`,
     schema: {
       '@context': 'https://schema.org',
       '@graph': [

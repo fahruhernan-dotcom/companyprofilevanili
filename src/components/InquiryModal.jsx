@@ -42,6 +42,7 @@ export const InquiryModal = ({
 
   const [errors, setErrors] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const modalRef = useRef(null);
 
   // Sync initialCommodity if passed
@@ -61,6 +62,39 @@ export const InquiryModal = ({
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
+
+  // Focus trap: Keep keyboard focus within modal when open
+  useEffect(() => {
+    if (!isOpen || !modalRef.current) return;
+
+    const focusableSelector = 'a[href], button:not([disabled]), textarea, input:not([type="hidden"]):not([tabindex="-1"]), select, [tabindex]:not([tabindex="-1"])';
+
+    const handleTabTrap = (e) => {
+      if (e.key !== 'Tab') return;
+      const focusableEls = modalRef.current.querySelectorAll(focusableSelector);
+      if (focusableEls.length === 0) return;
+
+      const firstEl = focusableEls[0];
+      const lastEl = focusableEls[focusableEls.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    };
+
+    // Auto-focus first focusable element
+    setTimeout(() => {
+      const firstFocusable = modalRef.current?.querySelector(focusableSelector);
+      firstFocusable?.focus();
+    }, 100);
+
+    window.addEventListener('keydown', handleTabTrap);
+    return () => window.removeEventListener('keydown', handleTabTrap);
+  }, [isOpen]);
 
   // Lock body scroll and auto-pause all videos when modal is active to free GPU
   useEffect(() => {
@@ -105,6 +139,11 @@ export const InquiryModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Honeypot check: if filled, it's a bot — silently reject
+    if (honeypot) {
+      setIsSubmitted(true); // Fake success to not alert the bot
+      return;
+    }
     const validation = validateInquiryForm(formData);
     if (!validation.isValid) {
       setErrors(validation.errors);
@@ -387,6 +426,20 @@ export const InquiryModal = ({
 
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 
+                {/* Honeypot anti-bot field — invisible to humans, bots fill it */}
+                <div style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, overflow: 'hidden' }} aria-hidden="true">
+                  <label htmlFor="website_url">Leave this empty</label>
+                  <input
+                    type="text"
+                    id="website_url"
+                    name="website_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 {/* SECTION 1: Client Identity */}
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
