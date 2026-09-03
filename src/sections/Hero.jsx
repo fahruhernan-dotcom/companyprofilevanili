@@ -39,8 +39,7 @@ export const Hero = ({ onOpenInquiry }) => {
       className="section-hero"
       style={{
         position: 'relative',
-        height: '100svh',
-        minHeight: '100svh',
+        minHeight: '100dvh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',

@@ -24,13 +24,13 @@ export const VanillaPage = ({
       {/* Editorial Vanilla Header with Video Background - Bottom-Left Anchored */}
       <section
         style={{
-          paddingTop: 'clamp(120px, 14vh, 160px)',
-          paddingBottom: 'clamp(48px, 8vh, 72px)',
+          paddingTop: 'clamp(110px, 13vh, 160px)',
+          paddingBottom: 'clamp(44px, 7vh, 68px)',
           backgroundColor: 'var(--bg-dark)',
           color: 'var(--text-inverse-primary)',
           position: 'relative',
           overflow: 'hidden',
-          minHeight: '100svh',
+          minHeight: '100dvh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end'
@@ -54,7 +54,7 @@ export const VanillaPage = ({
             inset: 0,
             zIndex: 2,
             background: `
-              linear-gradient(180deg, rgba(17, 15, 12, 0.5) 0%, rgba(17, 15, 12, 0.1) 20%, rgba(17, 15, 12, 0.45) 50%, rgba(17, 15, 12, 0.88) 78%, rgba(17, 15, 12, 0.98) 100%),
+              linear-gradient(180deg, rgba(17, 15, 12, 0.45) 0%, rgba(17, 15, 12, 0.15) 20%, rgba(17, 15, 12, 0.45) 50%, rgba(17, 15, 12, 0.88) 78%, rgba(17, 15, 12, 0.98) 100%),
               radial-gradient(ellipse at 12% 92%, rgba(17, 15, 12, 0.94) 0%, rgba(17, 15, 12, 0.6) 50%, transparent 80%)
             `,
             pointerEvents: 'none'
@@ -69,7 +69,7 @@ export const VanillaPage = ({
             paddingLeft: 'clamp(20px, 5.5vw, 64px)',
             paddingRight: 'clamp(20px, 5.5vw, 64px)',
             boxSizing: 'border-box',
-            paddingBottom: 'clamp(36px, 6.5vh, 64px)'
+            paddingBottom: 'clamp(32px, 5.5vh, 56px)'
           }}
         >
           <div style={{ maxWidth: '520px', textAlign: 'left' }}>
@@ -98,16 +98,16 @@ export const VanillaPage = ({
               <h1
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(2.35rem, 6.5vw, 4.4rem)',
+                  fontSize: 'clamp(2.15rem, 6.2vw, 4.4rem)',
                   fontWeight: 300,
                   color: 'var(--text-inverse-primary)',
-                  lineHeight: 1.05,
+                  lineHeight: 1.12,
                   margin: '0 0 14px 0',
                   letterSpacing: '0.01em',
                   textShadow: '0 2px 24px rgba(0, 0, 0, 0.9)'
                 }}
               >
-                Indonesian <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)', fontWeight: 400 }}>Vanilla.</span>
+                Indonesian <span style={{ fontStyle: 'italic', color: 'var(--accent-gold)', fontWeight: 400, display: 'inline-block', paddingBottom: '2px' }}>Vanilla.</span>
               </h1>
             </ScrollReveal>
 
@@ -129,7 +129,7 @@ export const VanillaPage = ({
               </p>
             </ScrollReveal>
 
-            {/* Harmonious Action Buttons (Side-by-side on mobile, elegant row on desktop) */}
+            {/* Harmonious Action Buttons (Stacked on mobile with ample clearance, row on desktop) */}
             <ScrollReveal animation="fade-up" delay={220}>
               <div className="vanilla-hero-actions">
                 <button
@@ -154,24 +154,13 @@ export const VanillaPage = ({
           </div>
         </div>
 
-        {/* Minimalist Scroll Down Cue (Desktop-Only Cue, Hidden on Mobile to avoid collision) */}
+        {/* Minimalist Scroll Down Cue (Right on Desktop, Centered on Mobile) */}
         <div
           className="vanilla-scroll-cue"
-          style={{
-            position: 'absolute',
-            bottom: 'clamp(24px, 4vh, 36px)',
-            right: 'clamp(20px, 4vw, 48px)',
-            zIndex: 3,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: '6px',
-            opacity: 0.65,
-            pointerEvents: 'none'
-          }}
+          aria-hidden="true"
         >
           <span style={{ fontSize: '0.625rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--text-inverse-secondary)' }}>Scroll</span>
-          <div style={{ width: '1px', height: '24px', backgroundColor: 'var(--accent-gold)' }} />
+          <div className="vanilla-scroll-cue-line" />
         </div>
       </section>
 

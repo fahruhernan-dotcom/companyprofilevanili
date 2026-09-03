@@ -744,27 +744,58 @@ input:focus, select:focus, textarea:focus {
   transform: translateY(-2px);
 }
 
-@media (max-width: 540px) {
+.vanilla-hero-btn:active {
+  transform: scale(0.98);
+}
+
+.vanilla-scroll-cue {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 36px);
+  right: clamp(20px, 4vw, 48px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.75;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vanilla-scroll-cue-line {
+  width: 1px;
+  height: 24px;
+  background-color: var(--accent-gold);
+  animation: scrollLinePulse 2.4s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
   .vanilla-hero-actions {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
     width: 100% !important;
     max-width: 100% !important;
+    gap: 10px !important;
+    margin-bottom: 46px !important; /* Critical clearance: prevents any collision with centered scroll cue */
   }
 
   .vanilla-hero-btn {
     width: 100% !important;
-    padding: 0 8px !important;
-    font-size: 0.6875rem !important;
-    letter-spacing: 0.03em !important;
-    height: 44px !important;
+    height: 46px !important;
+    font-size: 0.725rem !important;
+    letter-spacing: 0.08em !important;
+    padding: 0 16px !important;
   }
 
   .vanilla-scroll-cue {
-    display: none !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    bottom: clamp(14px, 2.2vh, 22px) !important;
+    opacity: 0.85 !important;
   }
 }
+
 
 /* Print Stylesheet for Official B2B Export Dossier */
 @media print {

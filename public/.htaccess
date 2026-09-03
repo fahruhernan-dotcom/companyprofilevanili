@@ -12,12 +12,22 @@
   RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
   RewriteRule ^(.*)$ https://essenceindonesia.com/$1 [R=301,L]
 
-  # 2. Pass existing files & directories directly (Instant serve for SSG & Assets)
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  # 2. Redirect legacy /coffee to /vanilla
+  RewriteRule ^coffee/?$ https://essenceindonesia.com/vanilla [R=301,L]
+
+  # 3. Direct access for existing physical files (CSS, JS, WebP, SVG, ICO, XML, etc.)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # 4. Clean URLs for SSG directories (serve /vanilla, /about, /quality, /buyers directly as 200 OK)
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^([^/]+)/?$ $1/index.html [L]
+
+  # 5. Direct access for existing physical directories
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # 3. Fallback for SPA routing if directory or file does not exist
+  # 6. Fallback for SPA routing if directory or file does not exist
   RewriteRule ^ index.html [L]
 </IfModule>
 
@@ -78,7 +88,8 @@
   Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
 
   # Allow Google Favicon Bot & Web Crawlers to access favicon & manifest across origins
-  <FilesMatch "\.(ico|png|svg|webmanifest|xml|txt)$">
+  <FilesMatch \.(ico|png|svg|webmanifest|xml|txt)$>
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 </IfModule>
+

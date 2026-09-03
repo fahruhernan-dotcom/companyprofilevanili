@@ -183,7 +183,26 @@
   transition: background-color 0.25s ease;
 }
 
-/* Scroll Progress Bar */
+/* Scroll Line Pulse Animation */
+@keyframes scrollLinePulse {
+  0% {
+    transform: scaleY(0.65);
+    transform-origin: top;
+    opacity: 0.45;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.65);
+    transform-origin: bottom;
+    opacity: 0.45;
+  }
+}
+
+/* Scroll Progress Bar (Hidden at top 0% to prevent stray dot on mobile) */
 .scroll-progress-bar {
   position: fixed;
   top: 0;
@@ -191,8 +210,10 @@
   height: 2.5px;
   background: linear-gradient(90deg, var(--accent-gold), #DFC182);
   z-index: 1000;
-  transition: width 0.1s linear;
+  transition: width 0.1s linear, opacity 0.25s ease;
+  pointer-events: none;
 }
+
 
 /* Floating Concierge Quick Pill (Adaptive Mobile & Desktop) */
 .floating-concierge {

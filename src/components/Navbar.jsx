@@ -57,7 +57,10 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
       {/* Top Scroll Reading Progress Line */}
       <div
         className="scroll-progress-bar"
-        style={{ width: `${scrollProgress}%` }}
+        style={{
+          width: `${scrollProgress}%`,
+          opacity: scrollProgress > 1.2 ? 1 : 0
+        }}
         role="progressbar"
         aria-valuenow={Math.round(scrollProgress)}
         aria-valuemin={0}
