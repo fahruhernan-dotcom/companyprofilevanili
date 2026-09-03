@@ -23,7 +23,7 @@ export const generateWhatsAppUrl = ({
   const cleanPhone = normalizePhoneNumber(phoneNumber);
   
   if (!formData.name && !formData.company) {
-    const defaultMsg = `Hello ${brandName} Trade Desk, I would like to inquire about direct export sourcing for Indonesian agricultural commodities (Vanilla / Green Coffee).`;
+    const defaultMsg = `Hello ${brandName} Trade Desk, I would like to inquire about direct export sourcing for Indonesian Vanilla (Beans & Value-Added Derivatives).`;
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(defaultMsg)}`;
   }
 

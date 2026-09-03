@@ -1,6 +1,6 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
-import { ArrowUp, Mail, MessageCircle, ArrowUpRight, Leaf, Coffee } from 'lucide-react';
+import { ArrowUp, Mail, MessageCircle, ArrowUpRight, Leaf } from 'lucide-react';
 
 export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => {
   const scrollToTop = () => {
@@ -168,29 +168,6 @@ export const Footer = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                   >
                     <Leaf size={12} color="var(--accent-gold)" />
                     <span>Vanilla (Planifolia & Tahitensis)</span>
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/coffee"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleLinkClick('coffee', 'coffee');
-                    }}
-                    style={{
-                      color: 'var(--text-inverse-secondary)',
-                      textDecoration: 'none',
-                      fontSize: '0.8125rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      transition: 'color 0.2s ease'
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--accent-gold)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-inverse-secondary)')}
-                  >
-                    <Coffee size={12} color="var(--accent-gold)" />
-                    <span>Coffee (Green Coffee Beans)</span>
                   </a>
                 </li>
                 <li>

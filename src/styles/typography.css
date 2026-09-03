@@ -66,7 +66,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .overline-accent {
-  color: var(--accent-gold);
+  color: var(--accent-gold-dark);
+  font-weight: 600;
 }
 
 /* Editorial Body Text */
@@ -74,7 +75,7 @@ h1, h2, h3, h4, h5, h6,
   font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.25rem);
   line-height: 1.7;
   color: var(--text-secondary);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .body-regular {
@@ -86,16 +87,29 @@ h1, h2, h3, h4, h5, h6,
 .body-small {
   font-size: 0.875rem;
   line-height: 1.6;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 /* Numbers & Serial Identifiers */
 .num-label {
   font-family: var(--font-body);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.12em;
-  color: var(--accent-gold);
+  color: var(--accent-gold-dark);
+}
+
+/* Inverse & Dark Container Contrast Overrides */
+.section-dark .overline-accent,
+[data-theme="dark"] .overline-accent,
+.dark-canvas .overline-accent {
+  color: var(--accent-gold-light);
+}
+
+.section-dark .num-label,
+[data-theme="dark"] .num-label,
+.dark-canvas .num-label {
+  color: var(--accent-gold-light);
 }
 
 /* Text Selection */

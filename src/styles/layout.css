@@ -601,10 +601,10 @@ body::before {
   top: 68px;
   left: var(--space-md);
   right: var(--space-md);
-  background-color: var(--bg-primary);
-  border: 1px solid var(--border-gold);
+  background: linear-gradient(135deg, rgba(248, 241, 227, 0.98) 0%, rgba(239, 229, 206, 0.98) 100%);
+  border: 1px solid rgba(184, 142, 68, 0.45);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-cinematic);
+  box-shadow: 0 16px 40px rgba(92, 70, 32, 0.16);
   padding: 24px;
   z-index: 96;
   transform: translateY(-16px);

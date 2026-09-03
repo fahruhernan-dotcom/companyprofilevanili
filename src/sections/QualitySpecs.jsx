@@ -16,7 +16,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
       id="quality"
       className="section"
       style={{
-        backgroundColor: 'var(--bg-surface)',
+        backgroundColor: 'var(--bg-primary)',
         borderTop: '1px solid var(--border-light)',
         borderBottom: '1px solid var(--border-light)'
       }}
@@ -40,7 +40,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
               <div className="double-bezel-outer">
                 <div
                   className="double-bezel-inner img-container"
-                  style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'var(--bg-primary)' }}
+                  style={{ position: 'relative', aspectRatio: '4/3', backgroundColor: 'var(--bg-surface)' }}
                 >
                   <img
                     key={currentGrade.image}
@@ -88,7 +88,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
               </div>
 
               <div style={{ marginTop: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ShieldCheck size={16} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
+                <ShieldCheck size={16} style={{ color: 'var(--accent-gold-dark)', flexShrink: 0 }} />
                 <span className="body-small" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                   Phytosanitary Certified · Strict Export Moisture Control · Sustainable Agroforestry
                 </span>
@@ -112,18 +112,19 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                       className="grade-btn"
                       style={{
                         flex: 1,
-                        padding: '10px 14px',
+                        padding: '12px 16px',
                         borderRadius: 'var(--radius-xs)',
-                        border: isSelected ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
-                        backgroundColor: isSelected ? 'var(--bg-primary)' : 'transparent',
+                        border: isSelected ? '1.5px solid var(--accent-gold-dark)' : '1px solid var(--border-light)',
+                        backgroundColor: isSelected ? 'var(--bg-surface)' : 'transparent',
                         color: isSelected ? 'var(--text-primary)' : 'var(--text-secondary)',
                         fontWeight: isSelected ? 600 : 400,
+                        boxShadow: isSelected ? 'var(--shadow-card)' : 'none',
                         cursor: 'pointer',
                         transition: 'all 0.25s ease',
                         textAlign: 'left'
                       }}
                     >
-                      <span className="num-label" style={{ fontSize: '0.625rem', display: 'block', marginBottom: '2px' }}>
+                      <span className="num-label" style={{ fontSize: '0.625rem', display: 'block', marginBottom: '2px', color: isSelected ? 'var(--accent-gold-dark)' : 'var(--text-muted)' }}>
                         {gIdx === 0 ? 'RECOMMENDED CULINARY' : 'WHOLESALE EXTRACTION'}
                       </span>
                       <span className="grade-btn-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', display: 'block' }}>
@@ -139,7 +140,7 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                 className="double-bezel-outer"
                 style={{ marginBottom: '16px' }}
               >
-                <div className="double-bezel-inner table-responsive">
+                <div className="double-bezel-inner table-responsive" style={{ backgroundColor: 'var(--bg-surface)', boxShadow: 'var(--shadow-card)' }}>
                   <div style={{ display: 'flex', flexDirection: 'column' }}>
                     {currentGrade.specs.map((spec, idx) => (
                       <div
@@ -148,14 +149,14 @@ export const QualitySpecs = ({ onOpenSpecSheet, onOpenInquiry }) => {
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
-                          padding: '10px 20px',
+                          padding: '12px 20px',
                           borderBottom: idx < currentGrade.specs.length - 1 ? '1px solid var(--border-light)' : 'none',
-                          backgroundColor: idx % 2 === 1 ? 'rgba(239, 233, 223, 0.4)' : 'transparent',
+                          backgroundColor: idx % 2 === 1 ? 'rgba(247, 243, 235, 0.65)' : 'var(--bg-surface)',
                           alignItems: 'center'
                         }}
                       >
-                        <span className="spec-label" style={{ fontSize: '0.8125rem' }}>{spec.label}</span>
-                        <span className="spec-value" style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text-primary)' }}>
+                        <span className="spec-label" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>{spec.label}</span>
+                        <span className="spec-value" style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                           {spec.value}
                         </span>
                       </div>

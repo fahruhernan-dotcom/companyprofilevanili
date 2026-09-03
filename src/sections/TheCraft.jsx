@@ -91,50 +91,57 @@ export const TheCraft = () => {
         <div className="craft-desktop-view" style={{ display: 'block' }}>
           <div className="grid-12" style={{ alignItems: 'center' }}>
             
-            {/* Left: Step Image (Double-Bezel) */}
+            {/* Left: Step Image (Frameless Clean Edge) */}
             <div style={{ gridColumn: 'span 7' }}>
-              <div className="double-bezel-outer">
-                <div
-                  className="double-bezel-inner img-container"
-                  style={{ position: 'relative', aspectRatio: '16/10' }}
-                >
-                  <img
-                    key={activeStep.image}
-                    src={activeStep.image}
-                    alt={activeStep.alt}
-                    className="img-hover-zoom"
-                    loading="lazy"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      animation: 'craftFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
-                    }}
-                  />
+              <div
+                className="img-container"
+                style={{
+                  position: 'relative',
+                  aspectRatio: '16/10',
+                  borderRadius: 'var(--radius-sm)',
+                  overflow: 'hidden',
+                  border: '1px solid var(--border-light)',
+                  boxShadow: 'var(--shadow-medium)',
+                  backgroundColor: 'var(--bg-surface)'
+                }}
+              >
+                <img
+                  key={activeStep.image}
+                  src={activeStep.image}
+                  alt={activeStep.alt}
+                  className="img-hover-zoom"
+                  loading="lazy"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: activeStep.objectPosition || 'center',
+                    animation: 'craftFade 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                  }}
+                />
 
-                  {/* Step Badge */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      bottom: '12px',
-                      left: '12px',
-                      backgroundColor: 'rgba(23, 21, 18, 0.88)',
-                      backdropFilter: 'blur(10px)',
-                      WebkitBackdropFilter: 'blur(10px)',
-                      color: 'var(--text-inverse-primary)',
-                      padding: '6px 12px',
-                      borderRadius: 'var(--radius-xs)',
-                      fontSize: '0.6875rem',
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
-                    <span>Phase {activeStep.step} of 05 · {activeStep.name}</span>
-                  </div>
+                {/* Step Badge */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '12px',
+                    left: '12px',
+                    backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    color: 'var(--text-inverse-primary)',
+                    padding: '6px 12px',
+                    borderRadius: 'var(--radius-xs)',
+                    fontSize: '0.6875rem',
+                    letterSpacing: '0.1em',
+                    textTransform: 'uppercase',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  <Sparkles size={12} style={{ color: 'var(--accent-gold)' }} />
+                  <span>Phase {activeStep.step} of 05 · {activeStep.name}</span>
                 </div>
               </div>
             </div>
@@ -233,7 +240,7 @@ export const TheCraft = () => {
                   <img
                     src={step.image}
                     alt={step.alt}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: step.objectPosition || 'center' }}
                     loading="lazy"
                   />
                   <div

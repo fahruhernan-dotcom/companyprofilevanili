@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { ScrollReveal } from '../components/ScrollReveal';
+import { SeamlessDualVideo } from '../components/SeamlessDualVideo';
 import heroMacroImg from '../assets/images/hero_macro.webp';
 import { ArrowDown, ArrowRight } from 'lucide-react';
 
 export const Hero = ({ onOpenInquiry }) => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [activeVideo, setActiveVideo] = useState(0); // 0: Vanilla, 1: Coffee
-  const videoRef1 = useRef(null);
-  const videoRef2 = useRef(null);
 
   // Check for prefers-reduced-motion media query
   useEffect(() => {
@@ -19,88 +17,6 @@ export const Hero = ({ onOpenInquiry }) => {
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
-
-  // Handle sequential video playback and ultra-smooth morph transition
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    const v1 = videoRef1.current;
-    const v2 = videoRef2.current;
-    if (!v1 || !v2) return;
-
-    let isTransitioning = false;
-
-    // Start with video 1
-    v1.play().catch(() => {});
-
-    const triggerTransitionTo2 = () => {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
-      // 1. Warm up & play video 2 immediately
-      v2.currentTime = 0;
-      v2.play().catch(() => {});
-
-      // 2. Fade in video 2 over 1.6s
-      setActiveVideo(1);
-
-      // 3. Reset transition flag after dissolve finishes
-      setTimeout(() => {
-        isTransitioning = false;
-        if (v1) v1.pause();
-      }, 1600);
-    };
-
-    const triggerTransitionTo1 = () => {
-      if (isTransitioning) return;
-      isTransitioning = true;
-
-      // 1. Warm up & play video 1 immediately
-      v1.currentTime = 0;
-      v1.play().catch(() => {});
-
-      // 2. Fade in video 1 over 1.6s
-      setActiveVideo(0);
-
-      // 3. Reset transition flag after dissolve finishes
-      setTimeout(() => {
-        isTransitioning = false;
-        if (v2) v2.pause();
-      }, 1600);
-    };
-
-    const handleV1TimeUpdate = () => {
-      if (!isTransitioning && v1.duration && v1.currentTime >= v1.duration - 1.5) {
-        triggerTransitionTo2();
-      }
-    };
-
-    const handleV2TimeUpdate = () => {
-      if (!isTransitioning && v2.duration && v2.currentTime >= v2.duration - 1.5) {
-        triggerTransitionTo1();
-      }
-    };
-
-    const handleV1Ended = () => {
-      if (!isTransitioning) triggerTransitionTo2();
-    };
-
-    const handleV2Ended = () => {
-      if (!isTransitioning) triggerTransitionTo1();
-    };
-
-    v1.addEventListener('timeupdate', handleV1TimeUpdate);
-    v1.addEventListener('ended', handleV1Ended);
-    v2.addEventListener('timeupdate', handleV2TimeUpdate);
-    v2.addEventListener('ended', handleV2Ended);
-
-    return () => {
-      v1.removeEventListener('timeupdate', handleV1TimeUpdate);
-      v1.removeEventListener('ended', handleV1Ended);
-      v2.removeEventListener('timeupdate', handleV2TimeUpdate);
-      v2.removeEventListener('ended', handleV2Ended);
-    };
-  }, [prefersReducedMotion]);
 
   const handleScrollToOrigins = (e) => {
     e.preventDefault();
@@ -134,66 +50,16 @@ export const Hero = ({ onOpenInquiry }) => {
       }}
       aria-label="Essence Indonesia Hero"
     >
-      {/* 1. Full-Bleed Atmospheric Background with Ultra-Smooth Morph Video Sequence */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 1,
-          overflow: 'hidden',
-          backgroundColor: '#171512'
-        }}
-      >
-        {/* Track 1: Vanilla Macro Dolly */}
-        <video
-          ref={videoRef1}
-          src="/videos/vanilla_macro_dolly.mp4"
-          poster={heroMacroImg}
-          muted
-          playsInline
-          preload="auto"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 45%',
-            opacity: activeVideo === 0 ? 1 : 0,
-            transform: activeVideo === 0 ? 'scale(1.02)' : 'scale(1.05)',
-            transition: 'opacity 1.6s cubic-bezier(0.25, 1, 0.5, 1), transform 2.0s cubic-bezier(0.25, 1, 0.5, 1)',
-            willChange: 'opacity, transform',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Track 2: Roasted Coffee Beans Cinematic Morph */}
-        <video
-          ref={videoRef2}
-          src="/videos/coffee_roast_hero.mp4"
-          poster={heroMacroImg}
-          muted
-          playsInline
-          preload="auto"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center 45%',
-            opacity: activeVideo === 1 ? 1 : 0,
-            transform: activeVideo === 1 ? 'scale(1.02)' : 'scale(1.05)',
-            transition: 'opacity 1.6s cubic-bezier(0.25, 1, 0.5, 1), transform 2.0s cubic-bezier(0.25, 1, 0.5, 1)',
-            willChange: 'opacity, transform',
-            pointerEvents: 'none'
-          }}
-          aria-hidden="true"
-        />
-      </div>
+      {/* 1. Full-Bleed Atmospheric Background with Seamless Dual-Video Crossfade Reel */}
+      <SeamlessDualVideo
+        videos={[
+          '/videos/vanilla_macro_dolly.mp4',
+          '/videos/vanilla_hero_macro.mp4'
+        ]}
+        poster={heroMacroImg}
+        objectPosition="center 45%"
+        crossfadeTime={1.0}
+      />
 
       {/* 2. Pure Quiet Luxury Scrim (Deep, Seamless & Subtle) */}
       <div

@@ -1,6 +1,6 @@
 import React from 'react';
 import { brandConfig } from '../config/brandConfig';
-import terroirImg from '../assets/images/terroir_origin.webp';
+import terroirImg from '../assets/images/vanilla_farm_real.webp';
 import { ScrollReveal } from '../components/ScrollReveal';
 import { Mountain, Sun, Sparkles, Compass } from 'lucide-react';
 
@@ -43,13 +43,7 @@ export const SelectedOrigins = () => {
       <div className="container">
         {/* Section Header */}
         <div style={{ maxWidth: '680px', marginBottom: 'clamp(40px, 6vh, 60px)' }}>
-          <ScrollReveal animation="fade-up" delay={50}>
-            <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
-              03 · Provenance & Terroir
-            </span>
-          </ScrollReveal>
-
-          <ScrollReveal animation="fade-up" delay={100}>
+          <ScrollReveal animation="fade-up" delay={80}>
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
@@ -83,25 +77,32 @@ export const SelectedOrigins = () => {
         {/* 2-Column Editorial Grid */}
         <div className="grid-12" style={{ alignItems: 'center' }}>
           
-          {/* Left Column (6 cols): Framed Terroir Landscape (Double-Bezel) */}
+          {/* Left Column (6 cols): Terroir Landscape (Frameless Clean Edge) */}
           <div style={{ gridColumn: 'span 6' }}>
             <ScrollReveal animation="fade-right" delay={180}>
-              <div className="double-bezel-outer">
-                <div
-                  className="double-bezel-inner img-container"
-                  style={{ position: 'relative', aspectRatio: '16/11' }}
-                >
-                  <img
-                    src={terroirImg}
-                    alt="Indonesian equatorial highland agricultural terroir"
-                    className="img-hover-zoom"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    loading="lazy"
-                  />
+              <div
+                className="img-container"
+                style={{
+                  position: 'relative',
+                  aspectRatio: '16/11',
+                  borderRadius: 'var(--radius-sm)',
+                  overflow: 'hidden',
+                  border: '1px solid var(--border-light)',
+                  boxShadow: 'var(--shadow-medium)',
+                  backgroundColor: 'var(--bg-surface)'
+                }}
+              >
+                <img
+                  src={terroirImg}
+                  alt="Authentic Indonesian vanilla vine cultivation on trellises in volcanic mineral soil"
+                  className="img-hover-zoom"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                  loading="lazy"
+                />
 
                   {/* Minimalist Coordinate Badge */}
                   <div
@@ -128,112 +129,98 @@ export const SelectedOrigins = () => {
                     <span>0° Equator · {brandConfig.origin}</span>
                   </div>
                 </div>
-              </div>
             </ScrollReveal>
           </div>
 
-          {/* Right Column (6 cols): 3 Terroir Characteristics */}
+          {/* Right Column (6 cols): 3 Terroir Characteristics as Editorial List */}
           <div
             style={{
               gridColumn: 'span 6',
               display: 'flex',
               flexDirection: 'column',
-              gap: '16px',
-              paddingLeft: 'clamp(0px, 2vw, 24px)'
+              paddingLeft: 'clamp(0px, 2.5vw, 28px)'
             }}
           >
             {terroirPillars.map((pillar, idx) => {
               const IconComp = pillar.icon;
               return (
                 <ScrollReveal key={idx} animation="fade-left" delay={idx * 120 + 200}>
+                  <div
+                    className="terroir-pillar-item"
+                    style={{
+                      padding: '20px 0',
+                      borderBottom: idx < terroirPillars.length - 1 ? '1px solid var(--border-light)' : 'none',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: '18px',
+                      transition: 'all 0.3s var(--ease-editorial)'
+                    }}
+                  >
                     <div
-                      className="terroir-pillar-card"
+                      className="terroir-icon-box"
                       style={{
-                        padding: '18px 22px',
-                        backgroundColor: 'var(--bg-primary)',
-                        border: '1px solid var(--border-light)',
-                        borderRadius: 'var(--radius-sm)',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '10px',
+                        backgroundColor: 'rgba(140, 102, 45, 0.08)',
+                        border: '1px solid rgba(140, 102, 45, 0.22)',
+                        color: 'var(--accent-gold-dark)',
                         display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '16px',
-                        transition: 'all 0.25s var(--ease-editorial)',
-                        boxShadow: 'var(--shadow-subtle)'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = 'var(--border-gold)';
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        e.currentTarget.style.boxShadow = 'var(--shadow-medium)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'var(--border-light)';
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = 'var(--shadow-subtle)';
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0
                       }}
                     >
+                      <IconComp size={18} />
+                    </div>
+
+                    <div style={{ flex: 1 }}>
                       <div
-                        className="terroir-icon-box"
                         style={{
-                          width: '36px',
-                          height: '36px',
-                          borderRadius: '50%',
-                          backgroundColor: 'rgba(200, 169, 107, 0.12)',
-                          color: 'var(--accent-gold)',
                           display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0
+                          alignItems: 'baseline',
+                          justifyContent: 'space-between',
+                          gap: '12px',
+                          marginBottom: '6px'
                         }}
                       >
-                        <IconComp size={18} />
-                      </div>
-
-                      <div style={{ flex: 1 }}>
-                        <div
+                        <h3
+                          className="terroir-title"
                           style={{
-                            display: 'flex',
-                            alignItems: 'baseline',
-                            justifyContent: 'space-between',
-                            gap: '10px',
-                            marginBottom: '4px'
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.25rem',
+                            fontWeight: 600,
+                            color: 'var(--text-primary)',
+                            margin: 0
                           }}
                         >
-                          <h3
-                            className="terroir-title"
-                            style={{
-                              fontFamily: 'var(--font-display)',
-                              fontSize: '1.2rem',
-                              fontWeight: 600,
-                              color: 'var(--text-primary)',
-                              margin: 0
-                            }}
-                          >
-                            {pillar.title}
-                          </h3>
-                          <span
-                            className="terroir-tag"
-                            style={{
-                              fontSize: '0.6875rem',
-                              fontWeight: 600,
-                              letterSpacing: '0.08em',
-                              textTransform: 'uppercase',
-                              color: 'var(--accent-gold)'
-                            }}
-                          >
-                            {pillar.tag}
-                          </span>
-                        </div>
-                        <p
-                          className="body-small terroir-desc"
-                          style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.6 }}
+                          {pillar.title}
+                        </h3>
+                        <span
+                          className="terroir-tag"
+                          style={{
+                            fontSize: '0.6875rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.1em',
+                            textTransform: 'uppercase',
+                            color: 'var(--accent-gold-dark)'
+                          }}
                         >
-                          {pillar.description}
-                        </p>
+                          {pillar.tag}
+                        </span>
                       </div>
+                      <p
+                        className="body-small terroir-desc"
+                        style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.65 }}
+                      >
+                        {pillar.description}
+                      </p>
                     </div>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
 
         </div>
 

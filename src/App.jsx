@@ -32,7 +32,7 @@ export function App({ initialRoute }) {
     if (pathname === 'about') return 'about';
     if (pathname === 'origins') return 'origins';
     if (pathname === 'vanilla') return 'vanilla';
-    if (pathname === 'coffee') return 'coffee';
+    if (pathname === 'coffee') return 'vanilla'; // Coffee on hold -> redirect to vanilla
     if (pathname === 'quality') return 'quality';
     if (pathname === 'buyers' || pathname === 'for-buyers') return 'buyers';
 
@@ -40,7 +40,7 @@ export function App({ initialRoute }) {
     if (rawHash === 'about') return 'about';
     if (rawHash === 'origins') return 'origins';
     if (rawHash === 'vanilla') return 'vanilla';
-    if (rawHash === 'coffee') return 'coffee';
+    if (rawHash === 'coffee') return 'vanilla'; // Coffee on hold -> redirect to vanilla
     if (rawHash === 'quality') return 'quality';
     if (rawHash === 'buyers' || rawHash === 'for-buyers') return 'buyers';
 
@@ -78,7 +78,9 @@ export function App({ initialRoute }) {
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
       const rawHash = window.location.hash.replace(/^#\/?/, '').toLowerCase();
-      if (['about', 'vanilla', 'coffee', 'quality', 'buyers'].includes(rawHash)) {
+      if (rawHash === 'coffee') {
+        window.history.replaceState({ route: 'vanilla' }, '', '/vanilla');
+      } else if (['about', 'vanilla', 'quality', 'buyers'].includes(rawHash)) {
         window.history.replaceState({ route: rawHash }, '', `/${rawHash}`);
       } else if (rawHash === 'origins') {
         const el = document.getElementById('origins');

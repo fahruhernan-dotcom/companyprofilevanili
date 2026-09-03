@@ -29,7 +29,6 @@ async function prerender() {
     { key: 'home', routePath: '/', outPath: path.resolve(distDir, 'index.html') },
     { key: 'about', routePath: '/about', outPath: path.resolve(distDir, 'about', 'index.html') },
     { key: 'vanilla', routePath: '/vanilla', outPath: path.resolve(distDir, 'vanilla', 'index.html') },
-    { key: 'coffee', routePath: '/coffee', outPath: path.resolve(distDir, 'coffee', 'index.html') },
     { key: 'quality', routePath: '/quality', outPath: path.resolve(distDir, 'quality', 'index.html') },
     { key: 'buyers', routePath: '/buyers', outPath: path.resolve(distDir, 'buyers', 'index.html') }
   ];

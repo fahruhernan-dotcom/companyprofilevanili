@@ -91,167 +91,183 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
           })}
         </div>
 
-        {/* Product Cards Grid: 4-Col Desktop / 2-Col Mobile Micro-Grid */}
+        {/* Product Cards Grid: Balanced 3-Col Desktop / 2-Col Mobile Micro-Grid */}
         <div
           className="derivatives-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
-            gap: 'clamp(18px, 2.5vw, 28px)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 'clamp(20px, 2.5vw, 30px)',
             alignItems: 'stretch'
           }}
         >
-          {filteredProducts.map((prod, idx) => (
-            <ScrollReveal key={prod.id} animation="fade-up" delay={idx * 50} style={{ display: 'flex' }}>
-              <div
-                className="double-bezel-outer prod-card-outer"
+          {filteredProducts.map((prod, idx) => {
+            const isFeaturedBanner = (filteredProducts.length === 10 && idx === 9) || (filteredProducts.length === 1);
+            return (
+              <ScrollReveal
+                key={prod.id}
+                animation="fade-up"
+                delay={(idx % 3) * 60}
                 style={{
-                  flex: 1,
                   display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+                  ...(isFeaturedBanner ? { gridColumn: '1 / -1' } : {})
                 }}
+                className={isFeaturedBanner ? 'prod-card-featured-banner-wrapper' : ''}
               >
                 <div
-                  className="double-bezel-inner prod-card-inner"
+                  className={`prod-card-outer ${isFeaturedBanner ? 'prod-card-featured-banner' : ''}`}
                   style={{
-                    backgroundColor: 'var(--bg-surface)',
+                    flex: 1,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: '100%',
-                    padding: '16px',
-                    borderRadius: 'var(--radius-xs)'
+                    backgroundColor: 'var(--bg-surface)',
+                    border: '1px solid var(--border-light)',
+                    borderRadius: 'var(--radius-sm)',
+                    boxShadow: 'var(--shadow-card)',
+                    overflow: 'hidden',
+                    transition: 'transform 0.35s var(--ease-editorial), box-shadow 0.35s var(--ease-editorial), border-color 0.3s ease'
                   }}
                 >
-                  {/* Product Image Frame with Ghost Shield */}
                   <div
-                    className="img-container"
+                    className="prod-card-inner"
                     style={{
-                      position: 'relative',
-                      aspectRatio: '4/3',
-                      borderRadius: 'var(--radius-xs)',
-                      overflow: 'hidden',
-                      marginBottom: '14px',
-                      backgroundColor: 'var(--bg-primary)'
+                      display: 'flex',
+                      flexDirection: 'column',
+                      height: '100%',
+                      padding: 'clamp(16px, 2vw, 22px)',
+                      boxSizing: 'border-box'
                     }}
                   >
-                    <img
-                      src={prod.image}
-                      alt={prod.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.4s ease'
-                      }}
-                      loading="lazy"
-                      className="img-hover-zoom"
-                    />
+                    {/* Product Image Frame with Ghost Shield */}
                     <div
-                      className="prod-badge"
+                      className="img-container"
                       style={{
-                        position: 'absolute',
-                        top: '8px',
-                        left: '8px',
-                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
-                        backdropFilter: 'blur(8px)',
-                        color: 'var(--accent-gold)',
-                        padding: '4px 10px',
-                        borderRadius: 'var(--radius-pill)',
-                        fontSize: '0.625rem',
-                        fontWeight: 600,
-                        letterSpacing: '0.06em',
-                        textTransform: 'uppercase'
+                        position: 'relative',
+                        aspectRatio: '4/3',
+                        borderRadius: 'var(--radius-xs)',
+                        overflow: 'hidden',
+                        marginBottom: '14px',
+                        backgroundColor: 'var(--bg-primary)'
                       }}
                     >
-                      {prod.badge}
-                    </div>
-
-                    <div
-                      className="prod-hscode"
-                      style={{
-                        position: 'absolute',
-                        bottom: '8px',
-                        right: '8px',
-                        backgroundColor: 'rgba(23, 21, 18, 0.88)',
-                        color: '#FFF',
-                        padding: '3px 8px',
-                        borderRadius: '4px',
-                        fontSize: '0.5625rem',
-                        fontFamily: 'monospace'
-                      }}
-                    >
-                      HS {prod.hsCode}
-                    </div>
-                  </div>
-
-                  {/* Product Details */}
-                  <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                      <h3
-                        className="prod-title"
-                        style={{
-                          fontFamily: 'var(--font-display)',
-                          fontSize: '1.2rem',
-                          fontWeight: 500,
-                          color: 'var(--text-primary)',
-                          margin: '0 0 6px 0',
-                          lineHeight: 1.2
-                        }}
-                      >
-                        {prod.name}
-                      </h3>
-
-                      <p
-                        className="body-small prod-desc"
-                        style={{
-                          color: 'var(--text-secondary)',
-                          fontSize: '0.75rem',
-                          lineHeight: 1.5,
-                          marginBottom: '12px'
-                        }}
-                      >
-                        {prod.bestUse}
-                      </p>
-                    </div>
-
-                    {/* Metadata Tags */}
-                    <div>
-                      <div className="prod-meta-box" style={{ borderTop: '1px solid var(--border-light)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '12px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem' }}>
-                          <span style={{ color: 'var(--text-muted)' }}>Packaging:</span>
-                          <strong style={{ color: 'var(--text-primary)' }}>{prod.packaging}</strong>
-                        </div>
-                        {prod.vanillinContent && prod.vanillinContent !== 'Available Upon Inquiry' && (
-                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem' }}>
-                            <span style={{ color: 'var(--text-muted)' }}>Vanillin:</span>
-                            <strong style={{ color: 'var(--accent-gold)' }}>{prod.vanillinContent}</strong>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Direct Inquire Action Button */}
-                      <button
-                        type="button"
-                        onClick={onOpenInquiry}
-                        className="btn btn-primary prod-inquire-btn"
+                      <img
+                        src={prod.image}
+                        alt={prod.name}
                         style={{
                           width: '100%',
-                          padding: '7px 12px',
-                          fontSize: '0.6875rem',
-                          justifyContent: 'center',
-                          gap: '6px'
+                          height: '100%',
+                          objectFit: 'cover',
+                          transition: 'transform 0.4s ease'
+                        }}
+                        loading="lazy"
+                        className="img-hover-zoom"
+                      />
+                      <div
+                        className="prod-badge"
+                        style={{
+                          position: 'absolute',
+                          top: '8px',
+                          left: '8px',
+                          backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                          backdropFilter: 'blur(8px)',
+                          color: 'var(--accent-gold)',
+                          padding: '4px 10px',
+                          borderRadius: 'var(--radius-pill)',
+                          fontSize: '0.625rem',
+                          fontWeight: 600,
+                          letterSpacing: '0.06em',
+                          textTransform: 'uppercase'
                         }}
                       >
-                        <span>Inquire Lot</span>
-                        <ArrowRight size={11} />
-                      </button>
+                        {prod.badge}
+                      </div>
+
+                      <div
+                        className="prod-hscode"
+                        style={{
+                          position: 'absolute',
+                          bottom: '8px',
+                          right: '8px',
+                          backgroundColor: 'rgba(23, 21, 18, 0.88)',
+                          color: '#FFF',
+                          padding: '3px 8px',
+                          borderRadius: '4px',
+                          fontSize: '0.5625rem',
+                          fontFamily: 'monospace'
+                        }}
+                      >
+                        HS {prod.hsCode}
+                      </div>
+                    </div>
+
+                    {/* Product Details */}
+                    <div className="prod-content-wrap" style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                      <div>
+                        <h3
+                          className="prod-title"
+                          style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.15rem',
+                            fontWeight: 500,
+                            color: 'var(--text-primary)',
+                            margin: '0 0 6px 0',
+                            lineHeight: 1.25
+                          }}
+                        >
+                          {prod.name}
+                        </h3>
+
+                        <p
+                          className="body-small prod-desc"
+                          style={{
+                            color: 'var(--text-secondary)',
+                            fontSize: '0.75rem',
+                            lineHeight: 1.5,
+                            marginBottom: '14px'
+                          }}
+                        >
+                          {prod.bestUse}
+                        </p>
+                      </div>
+
+                      {/* Metadata Tags */}
+                      <div>
+                        <div className="prod-meta-box" style={{ borderTop: '1px solid var(--border-light)', paddingTop: '10px', display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '14px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem' }}>
+                            <span style={{ color: 'var(--text-secondary)' }}>Packaging:</span>
+                            <strong style={{ color: 'var(--text-primary)' }}>{prod.packaging}</strong>
+                          </div>
+                          {prod.vanillinContent && prod.vanillinContent !== 'Available Upon Inquiry' && (
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem' }}>
+                              <span style={{ color: 'var(--text-secondary)' }}>Vanillin:</span>
+                              <strong style={{ color: 'var(--accent-gold-dark)', fontWeight: 700 }}>{prod.vanillinContent}</strong>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Direct Inquire Action Button */}
+                        <button
+                          type="button"
+                          onClick={onOpenInquiry}
+                          className="btn btn-primary prod-inquire-btn"
+                          style={{
+                            width: '100%',
+                            padding: '8px 14px',
+                            fontSize: '0.6875rem',
+                            justifyContent: 'center',
+                            gap: '6px'
+                          }}
+                        >
+                          <span>Inquire Lot</span>
+                          <ArrowRight size={11} />
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
 
         {/* CTA Footer */}
@@ -275,6 +291,64 @@ export const VanillaDerivativesCatalog = ({ onOpenSpecSheet, onOpenInquiry }) =>
       </div>
 
       <style>{`
+        .prod-card-outer:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 28px -6px rgba(23, 21, 18, 0.12), 0 4px 12px -2px rgba(200, 169, 107, 0.18);
+          border-color: rgba(200, 169, 107, 0.45);
+        }
+
+        @media (min-width: 1024px) {
+          .derivatives-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+          .prod-card-featured-banner-wrapper {
+            grid-column: 1 / -1 !important;
+          }
+          .prod-card-featured-banner .prod-card-inner {
+            display: grid !important;
+            grid-template-columns: 360px 1fr !important;
+            gap: 32px !important;
+            align-items: center !important;
+            padding: 24px 30px !important;
+          }
+          .prod-card-featured-banner .img-container {
+            aspect-ratio: 16/11 !important;
+            margin-bottom: 0 !important;
+            height: 100% !important;
+          }
+          .prod-card-featured-banner .prod-title {
+            font-size: 1.35rem !important;
+            margin-bottom: 8px !important;
+          }
+          .prod-card-featured-banner .prod-desc {
+            font-size: 0.875rem !important;
+            max-width: 620px !important;
+            margin-bottom: 16px !important;
+          }
+          .prod-card-featured-banner .prod-meta-box {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 12px 24px !important;
+            margin-bottom: 16px !important;
+          }
+          .prod-card-featured-banner .prod-inquire-btn {
+            width: auto !important;
+            display: inline-flex !important;
+            padding: 10px 24px !important;
+            font-size: 0.8125rem !important;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .derivatives-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+          .prod-card-featured-banner-wrapper {
+            grid-column: 1 / -1 !important;
+          }
+        }
+
         @media (max-width: 767px) {
           .derivatives-category-bar {
             flex-wrap: nowrap !important;

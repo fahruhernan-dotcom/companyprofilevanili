@@ -1,9 +1,9 @@
 import React from 'react';
 import { ScrollReveal } from '../components/ScrollReveal';
-import coffeeTerroirImg from '../assets/images/terroir_origin.webp';
 import { ArrowRight } from 'lucide-react';
 
-const vanillaImg = '/images/catalog_products/origin_planifolia_hero.webp';
+const planifoliaImg = '/images/catalog_products/origin_planifolia_hero.webp';
+const tahitensisImg = '/images/catalog_products/origin_tahitensis_hero.webp';
 
 export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
   const handleNav = (e, targetRoute) => {
@@ -26,18 +26,12 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
         position: 'relative',
         overflow: 'hidden'
       }}
-      aria-label="Two Origins: Vanilla and Coffee"
+      aria-label="Two Botanical Species: Vanilla Planifolia and Vanilla Tahitensis"
     >
       <div className="container">
         {/* Section Editorial Header */}
-        <div style={{ maxWidth: '640px', marginBottom: 'clamp(40px, 6vh, 64px)' }}>
-          <ScrollReveal animation="fade-up" delay={50}>
-            <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
-              02 · Dual Origins
-            </span>
-          </ScrollReveal>
-
-          <ScrollReveal animation="fade-up" delay={100}>
+        <div style={{ maxWidth: '680px', marginBottom: 'clamp(40px, 6vh, 64px)' }}>
+          <ScrollReveal animation="fade-up" delay={80}>
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
@@ -49,7 +43,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 letterSpacing: '0.02em'
               }}
             >
-              TWO ORIGINS.
+              TWO BOTANICAL SPECIES.
             </h2>
           </ScrollReveal>
 
@@ -63,7 +57,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 margin: 0
               }}
             >
-              Two Indonesian origins, presented for international buyers.
+              Two world-class Indonesian vanilla varieties, grown in nutrient-dense volcanic soils and cured under traditional equatorial artisanal methods for global culinary artisans and industrial extractors.
             </p>
           </ScrollReveal>
         </div>
@@ -79,7 +73,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
           }}
         >
           {/* =========================================================================
-              PANEL 01: VANILLA (Entire Box Clickable)
+              PANEL 01: VANILLA PLANIFOLIA (Entire Box Clickable)
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={200} style={{ display: 'flex' }}>
             <a
@@ -103,7 +97,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 cursor: 'pointer',
                 transition: 'transform 0.4s var(--ease-editorial), border-color 0.3s ease, box-shadow 0.4s var(--ease-editorial)'
               }}
-              aria-label="Explore Vanilla planifolia and tahitensis dossier"
+              aria-label="Explore Vanilla planifolia specifications"
             >
               {/* Background Image Layer */}
               <div
@@ -115,8 +109,8 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 }}
               >
                 <img
-                  src={vanillaImg}
-                  alt="Indonesian cured vanilla pods on natural linen"
+                  src={planifoliaImg}
+                  alt="Indonesian cured Vanilla planifolia pods on natural linen"
                   loading="lazy"
                   style={{
                     width: '100%',
@@ -148,10 +142,10 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
               {/* Top Quick Metrics Bar */}
               <div style={{ position: 'relative', zIndex: 3, display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 <span style={{ fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(200, 169, 107, 0.22)', color: 'var(--accent-gold)', border: '1px solid rgba(200, 169, 107, 0.4)', backdropFilter: 'blur(6px)' }}>
-                  Vanillin ≥ 2.0%
+                  Vanillin 2.0% – 3.0%
                 </span>
                 <span style={{ fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(23, 21, 18, 0.65)', color: 'rgba(246, 242, 234, 0.9)', border: '1px solid rgba(255, 255, 255, 0.12)', backdropFilter: 'blur(6px)' }}>
-                  Gourmet Grade A
+                  Gourmet Grade A (13–21 cm)
                 </span>
               </div>
 
@@ -169,7 +163,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     marginBottom: '8px'
                   }}
                 >
-                  COMMODITY I · VANILLA
+                  SPECIES I · BOURBON TYPE
                 </span>
 
                 <h3
@@ -185,7 +179,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 >
                   Vanilla planifolia<br />
                   <span style={{ fontStyle: 'italic', color: 'rgba(246, 242, 234, 0.85)' }}>
-                    & tahitensis
+                    Rich, Balsamic & Sweet
                   </span>
                 </h3>
 
@@ -199,7 +193,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     maxWidth: '380px'
                   }}
                 >
-                  Single-origin Gourmet Grade A beans and pure natural derivatives (caviar, paste, ground powder) cured under 90-day equatorial conditioning.
+                  Thick, supple, dark oily pods with prominent vanillin crystal potential. The international benchmark for luxury chocolaterie, fine baking, and high-yield extraction.
                 </p>
 
                 <div
@@ -219,19 +213,19 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   }}
                   className="door-cta"
                 >
-                  <span>Explore Vanilla Dossier ↗</span>
+                  <span>Explore Planifolia Specs ↗</span>
                 </div>
               </div>
             </a>
           </ScrollReveal>
 
           {/* =========================================================================
-              PANEL 02: COFFEE (Entire Box Clickable)
+              PANEL 02: VANILLA TAHITENSIS (Entire Box Clickable)
               ========================================================================= */}
           <ScrollReveal animation="fade-up" delay={300} style={{ display: 'flex' }}>
             <a
-              href="/coffee"
-              onClick={(e) => handleNav(e, 'coffee')}
+              href="/vanilla"
+              onClick={(e) => handleNav(e, 'vanilla')}
               className="editorial-door"
               style={{
                 flex: 1,
@@ -250,7 +244,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 cursor: 'pointer',
                 transition: 'transform 0.4s var(--ease-editorial), border-color 0.3s ease, box-shadow 0.4s var(--ease-editorial)'
               }}
-              aria-label="Explore Selected Indonesian Green Coffee Beans dossier"
+              aria-label="Explore Vanilla tahitensis specifications"
             >
               {/* Background Image Layer */}
               <div
@@ -262,8 +256,8 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                 }}
               >
                 <img
-                  src={coffeeTerroirImg}
-                  alt="Indonesian volcanic highland terroir landscape"
+                  src={tahitensisImg}
+                  alt="Indonesian cured Vanilla tahitensis pods"
                   loading="lazy"
                   style={{
                     width: '100%',
@@ -295,10 +289,10 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
               {/* Top Quick Metrics Bar */}
               <div style={{ position: 'relative', zIndex: 3, display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 <span style={{ fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(200, 169, 107, 0.22)', color: 'var(--accent-gold)', border: '1px solid rgba(200, 169, 107, 0.4)', backdropFilter: 'blur(6px)' }}>
-                  Selected Green Coffee
+                  Vanillin 1.0% – 1.5%
                 </span>
                 <span style={{ fontSize: '0.625rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', backgroundColor: 'rgba(23, 21, 18, 0.65)', color: 'rgba(246, 242, 234, 0.9)', border: '1px solid rgba(255, 255, 255, 0.12)', backdropFilter: 'blur(6px)' }}>
-                  1,200+ MASL High Terroir
+                  Gourmet Grade A (13–16 cm)
                 </span>
               </div>
 
@@ -316,7 +310,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     marginBottom: '8px'
                   }}
                 >
-                  COMMODITY II · COFFEE
+                  SPECIES II · TAHITIAN TYPE
                 </span>
 
                 <h3
@@ -330,9 +324,9 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     letterSpacing: '0.02em'
                   }}
                 >
-                  Selected Indonesian Coffee<br />
+                  Vanilla tahitensis<br />
                   <span style={{ fontStyle: 'italic', color: 'rgba(246, 242, 234, 0.85)' }}>
-                    Export Grade Green Beans
+                    Floral, Fruity & Anisic
                   </span>
                 </h3>
 
@@ -346,7 +340,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                     maxWidth: '380px'
                   }}
                 >
-                  High-altitude Indonesian green coffee sourced from volcanic microclimates. Screen size grading and FOB/CIF contracting upon commercial request.
+                  Naturally plump pods featuring high anisyl alcohol and heliotropin aromatics. Cherished by Michelin-starred pastry chefs for fruit desserts, custards, and artisan gelato.
                 </p>
 
                 <div
@@ -366,7 +360,7 @@ export const TwoOrigins = ({ onNavigate, onOpenInquiry }) => {
                   }}
                   className="door-cta"
                 >
-                  <span>Explore Coffee Dossier ↗</span>
+                  <span>Explore Tahitensis Specs ↗</span>
                 </div>
               </div>
             </a>

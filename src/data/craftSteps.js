@@ -43,7 +43,8 @@ export const craftSteps = [
     tagline: "Rigorous sorting for moisture, length, and oily luster.",
     description: "Our founders and curation team directly inspect every batch on the drying tables, measuring pod length, testing suppleness, and verifying uniform moisture density before packaging.",
     image: gradingImg,
-    alt: "Essence Indonesia founders and quality curation team directly inspecting sun-cured vanilla bean lots"
+    alt: "Essence Indonesia founders and quality curation team directly inspecting sun-cured vanilla bean lots",
+    objectPosition: "center 25%"
   },
   {
     id: "packaging",

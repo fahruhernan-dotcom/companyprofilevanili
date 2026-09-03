@@ -5,32 +5,36 @@
 
 :root {
   /* Surface & Background Colors */
-  --bg-primary: #F6F2EA;           /* Warm Ivory — primary breathing canvas */
-  --bg-surface: #EFE9DF;           /* Soft Sandstone — delicate alternating surface */
-  --bg-surface-elevated: #FAF7F2;  /* Slightly lighter ivory for subtle elevated areas */
+  --bg-primary: #F7F3EB;           /* Warm Ivory — primary breathing canvas */
+  --bg-surface: #FFFFFF;           /* Crisp Porcelain White — distinct, high-contrast surface for cards */
+  --bg-surface-sand: #EFE9DF;      /* Soft Sandstone — delicate alternating section background */
+  --bg-surface-elevated: #FAF8F4;  /* Refined off-white for subtle nested panels */
   --bg-dark: #171512;              /* Obsidian Charcoal — dramatic closing canvas */
   --bg-dark-surface: #221E19;      /* Elevated dark surface */
 
-  /* Text & Ink */
-  --text-primary: #241C17;         /* Deep Roasted Espresso — high contrast, warm ink */
-  --text-secondary: #5E544A;       /* Warm Earth — body copy and narrative */
-  --text-muted: #8E8478;           /* Warm Taupe — overlines, index numbers, metadata */
-  --text-inverse-primary: #F6F2EA; /* Ivory text on dark canvas */
-  --text-inverse-secondary: #C5BCB1;/* Muted ivory on dark canvas */
-  --text-inverse-muted: #8E8478;   /* Taupe on dark canvas */
+  /* Text & Ink (High-Contrast Editorial Legibility) */
+  --text-primary: #1D1713;         /* Deep Roasted Espresso — commanding, high-contrast headline ink */
+  --text-secondary: #362E27;       /* Deep Roasted Umber — crisp, effortless readability for body copy */
+  --text-muted: #5C5247;           /* Warm Slate Umber — legible overlines, metadata, and supporting labels */
+  --text-inverse-primary: #F8F5EE; /* Crisp Ivory text on dark canvas */
+  --text-inverse-secondary: #D4CBC0;/* Muted ivory on dark canvas */
+  --text-inverse-muted: #9E9487;   /* Taupe on dark canvas */
 
-  /* Accent & Materiality (Gold strictly as ~5% accent) */
-  --accent-gold: #C8A96B;          /* Vanilla Gold */
-  --accent-gold-hover: #B89758;
-  --accent-gold-subtle: rgba(200, 169, 107, 0.12);
+  /* Accent & Materiality (Dual-Tone Gold System for True WCAG AA Contrast) */
+  --accent-gold: #B88E44;          /* Satin Gold — balanced accent and buttons */
+  --accent-gold-dark: #8C662D;     /* Antique Bronze Gold — high-contrast gold for text/overlines on light canvas (>5:1) */
+  --accent-gold-light: #DFC182;    /* Gleaming Gold — for accents against obsidian dark canvas */
+  --accent-gold-hover: #9E7734;
+  --accent-gold-subtle: rgba(140, 102, 45, 0.10);
   --accent-pod: #3D2D24;           /* Cured bean deep umber */
 
   /* Structural Borders */
-  --border-light: rgba(36, 28, 23, 0.08);
-  --border-medium: rgba(36, 28, 23, 0.16);
-  --border-gold: rgba(200, 169, 107, 0.4);
-  --border-dark: rgba(246, 242, 234, 0.1);
-  --border-dark-gold: rgba(200, 169, 107, 0.25);
+  --border-light: rgba(36, 28, 23, 0.11);
+  --border-medium: rgba(36, 28, 23, 0.18);
+  --border-gold: rgba(184, 142, 68, 0.45);
+  --border-gold-dark: rgba(140, 102, 45, 0.35);
+  --border-dark: rgba(246, 242, 234, 0.12);
+  --border-dark-gold: rgba(223, 193, 130, 0.3);
 
   /* Typography Families */
   --font-display: 'Cormorant Garamond', Georgia, serif;
@@ -60,10 +64,11 @@
   --radius-lg: 16px;
   --radius-pill: 9999px;
 
-  /* Shadows (Quiet & Diffused) */
-  --shadow-subtle: 0 4px 20px rgba(36, 28, 23, 0.04);
-  --shadow-medium: 0 12px 36px rgba(36, 28, 23, 0.08);
-  --shadow-cinematic: 0 24px 60px rgba(23, 21, 18, 0.12);
+  /* Shadows (Quiet & Diffused Architectural Depth) */
+  --shadow-subtle: 0 4px 20px rgba(36, 28, 23, 0.05);
+  --shadow-card: 0 8px 28px rgba(36, 28, 23, 0.06), 0 1px 3px rgba(36, 28, 23, 0.04);
+  --shadow-medium: 0 14px 38px rgba(36, 28, 23, 0.09);
+  --shadow-cinematic: 0 24px 60px rgba(23, 21, 18, 0.14);
 
   /* Motion & Easing (80% Static, 20% Calm Motion) */
   --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);

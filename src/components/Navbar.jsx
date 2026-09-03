@@ -1,35 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { brandConfig } from '../config/brandConfig';
 import { useScrollHeader } from '../hooks/useScrollHeader';
 import { useScrollProgress } from '../hooks/useScrollProgress';
-import { Menu, X, ArrowUpRight, ChevronDown, Leaf, Coffee, ShieldCheck, Info, Briefcase } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Leaf, ShieldCheck, Info, Briefcase } from 'lucide-react';
 
 export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => {
   const isScrolled = useScrollHeader(40);
   const scrollProgress = useScrollProgress();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [originsDropdownOpen, setOriginsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
-  const closeTimeoutRef = useRef(null);
 
-  const handleMouseEnterOrigins = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
-    setOriginsDropdownOpen(true);
-  };
-
-  const handleMouseLeaveOrigins = () => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-    }
-    closeTimeoutRef.current = setTimeout(() => {
-      setOriginsDropdownOpen(false);
-    }, 250);
-  };
-
-  // Close mobile menu and dropdown on resize to desktop
+  // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 992) {
@@ -37,10 +17,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
       }
     };
     window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Prevent background scroll when mobile menu is open
@@ -52,23 +29,11 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
     }
   }, [mobileMenuOpen]);
 
-  // Handle click outside dropdown to close
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setOriginsDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  // Handle Escape key to close open menus
+  // Handle Escape key to close open menu
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         setMobileMenuOpen(false);
-        setOriginsDropdownOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -76,12 +41,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
   }, []);
 
   const handleLinkClick = (route, hash) => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
-    }
     setMobileMenuOpen(false);
-    setOriginsDropdownOpen(false);
     if (document.activeElement && typeof document.activeElement.blur === 'function') {
       document.activeElement.blur();
     }
@@ -91,8 +51,6 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
       window.location.hash = hash;
     }
   };
-
-  const isOriginsActive = currentRoute === 'origins' || currentRoute === 'vanilla' || currentRoute === 'coffee';
 
   return (
     <>
@@ -127,12 +85,16 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             width: '100%',
             maxWidth: '1160px',
             height: '48px',
-            backgroundColor: isScrolled ? 'rgba(246, 242, 234, 0.95)' : 'rgba(246, 242, 234, 0.85)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            border: isScrolled ? '1px solid var(--border-gold)' : '1px solid var(--border-light)',
+            background: isScrolled
+              ? 'linear-gradient(135deg, rgba(246, 238, 222, 0.97) 0%, rgba(236, 224, 198, 0.97) 100%)'
+              : 'linear-gradient(135deg, rgba(249, 242, 228, 0.94) 0%, rgba(240, 229, 205, 0.94) 100%)',
+            backdropFilter: 'blur(20px) saturate(150%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(150%)',
+            border: isScrolled ? '1px solid rgba(184, 142, 68, 0.55)' : '1px solid rgba(184, 142, 68, 0.40)',
             borderRadius: 'var(--radius-pill)',
-            boxShadow: isScrolled ? 'var(--shadow-medium)' : 'var(--shadow-subtle)',
+            boxShadow: isScrolled
+              ? '0 10px 30px rgba(92, 70, 32, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(184, 142, 68, 0.2)'
+              : '0 6px 20px rgba(92, 70, 32, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(184, 142, 68, 0.15)',
             padding: '0 12px 0 18px',
             display: 'flex',
             alignItems: 'center',
@@ -171,7 +133,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             <span
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(0.875rem, 3.6vw, 1.05rem)',
+                fontSize: 'clamp(0.95rem, 3.6vw, 1.1rem)',
                 fontWeight: 600,
                 letterSpacing: '0.08em',
                 color: 'var(--text-primary)',
@@ -187,79 +149,29 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             className="desktop-nav"
             aria-label="Main Navigation"
           >
-            {/* Origins with Dropdown */}
-            <div
-              className="origins-nav-group"
-              ref={dropdownRef}
-              onMouseEnter={handleMouseEnterOrigins}
-              onMouseLeave={handleMouseLeaveOrigins}
+            {/* Vanilla Route */}
+            <a
+              href="/vanilla"
+              onClick={(e) => {
+                e.preventDefault();
+                handleLinkClick('vanilla', 'vanilla');
+              }}
+              style={{
+                fontSize: '0.8125rem',
+                fontWeight: currentRoute === 'vanilla' ? 600 : 500,
+                color: currentRoute === 'vanilla' ? 'var(--text-primary)' : 'var(--text-secondary)',
+                textDecoration: 'none',
+                letterSpacing: '0.02em',
+                padding: '6px 8px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px',
+                transition: 'color 0.2s ease'
+              }}
             >
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOriginsDropdownOpen(prev => !prev);
-                }}
-                aria-expanded={originsDropdownOpen}
-                aria-haspopup="true"
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '0.8125rem',
-                  fontWeight: isOriginsActive ? 600 : 500,
-                  color: isOriginsActive ? 'var(--text-primary)' : 'var(--text-secondary)',
-                  cursor: 'pointer',
-                  padding: '6px 4px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  letterSpacing: '0.02em',
-                  transition: 'color 0.2s ease'
-                }}
-              >
-                <span>Origins</span>
-                <ChevronDown
-                  size={12}
-                  style={{
-                    transform: originsDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                    transition: 'transform 0.25s ease'
-                  }}
-                />
-              </button>
-
-              {/* Sub-menu Dropdown */}
-              <div
-                className={`origins-dropdown ${originsDropdownOpen ? 'is-open' : ''}`}
-                role="menu"
-                aria-label="Origins Submenu"
-              >
-                <a
-                  href="/vanilla"
-                  role="menuitem"
-                  className="origins-dropdown-item"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('vanilla', 'vanilla');
-                  }}
-                >
-                  <Leaf size={14} color="var(--accent-gold)" />
-                  <span>Vanilla</span>
-                </a>
-
-                <a
-                  href="/coffee"
-                  role="menuitem"
-                  className="origins-dropdown-item"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('coffee', 'coffee');
-                  }}
-                >
-                  <Coffee size={14} color="var(--accent-gold)" />
-                  <span>Coffee</span>
-                </a>
-              </div>
-            </div>
+              <Leaf size={14} color={currentRoute === 'vanilla' ? 'var(--accent-gold-dark)' : 'var(--accent-gold)'} />
+              <span>Vanilla</span>
+            </a>
 
             {/* Quality Route */}
             <a
@@ -274,7 +186,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 color: currentRoute === 'quality' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
-                padding: '6px 4px',
+                padding: '6px 8px',
                 transition: 'color 0.2s ease'
               }}
             >
@@ -294,7 +206,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 color: currentRoute === 'about' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
-                padding: '6px 4px',
+                padding: '6px 8px',
                 transition: 'color 0.2s ease'
               }}
             >
@@ -314,7 +226,7 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
                 color: currentRoute === 'buyers' ? 'var(--text-primary)' : 'var(--text-secondary)',
                 textDecoration: 'none',
                 letterSpacing: '0.02em',
-                padding: '6px 4px',
+                padding: '6px 8px',
                 transition: 'color 0.2s ease'
               }}
             >
@@ -392,81 +304,30 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
         aria-label="Mobile Navigation"
         aria-modal="true"
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          {/* Origins Header */}
-          <div>
-            <a
-              href="/#origins"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick('origins', 'origins');
-              }}
-              style={{
-                display: 'block',
-                textDecoration: 'none',
-                color: 'var(--accent-gold)',
-                fontSize: '0.6875rem',
-                fontWeight: 600,
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                marginBottom: '8px'
-              }}
-            >
-              Origins Overview →
-            </a>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '8px' }}>
-              <a
-                href="/vanilla"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick('vanilla', 'vanilla');
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  textDecoration: 'none',
-                  color: 'var(--text-primary)',
-                  fontSize: '0.9375rem',
-                  fontWeight: 600,
-                  padding: '8px 10px',
-                  borderRadius: 'var(--radius-xs)',
-                  backgroundColor: currentRoute === 'vanilla' ? 'rgba(200, 169, 107, 0.15)' : 'transparent'
-                }}
-              >
-                <Leaf size={16} color="var(--accent-gold)" />
-                <span>Vanilla</span>
-              </a>
-
-              <a
-                href="/coffee"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleLinkClick('coffee', 'coffee');
-                }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  textDecoration: 'none',
-                  color: 'var(--text-primary)',
-                  fontSize: '0.9375rem',
-                  fontWeight: 600,
-                  padding: '8px 10px',
-                  borderRadius: 'var(--radius-xs)',
-                  backgroundColor: currentRoute === 'coffee' ? 'rgba(200, 169, 107, 0.15)' : 'transparent'
-                }}
-              >
-                <Coffee size={16} color="var(--accent-gold)" />
-                <span>Coffee</span>
-              </a>
-            </div>
-          </div>
-
-          <hr style={{ border: 'none', height: '1px', backgroundColor: 'var(--border-light)', margin: '4px 0' }} />
-
-          {/* Direct Section Links */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          {/* Direct Navigation Links */}
+          <a
+            href="/vanilla"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('vanilla', 'vanilla');
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              textDecoration: 'none',
+              color: currentRoute === 'vanilla' ? 'var(--accent-gold-dark)' : 'var(--text-primary)',
+              fontSize: '0.9375rem',
+              fontWeight: 600,
+              padding: '8px 10px',
+              borderRadius: 'var(--radius-xs)',
+              backgroundColor: currentRoute === 'vanilla' ? 'rgba(140, 102, 45, 0.12)' : 'transparent'
+            }}
+          >
+            <Leaf size={16} color={currentRoute === 'vanilla' ? 'var(--accent-gold-dark)' : 'var(--accent-gold)'} />
+            <span>Indonesian Vanilla</span>
+          </a>
             <a
               href="/quality"
               onClick={(e) => {
@@ -561,9 +422,8 @@ export const Navbar = ({ currentRoute = 'home', onNavigate, onOpenInquiry }) => 
             <ArrowUpRight size={15} color="var(--accent-gold)" />
           </button>
         </div>
-      </div>
-    </>
-  );
-};
+      </>
+    );
+  };
 
 export default Navbar;

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "lint": "vite build",
     "build": "node scripts/generate-favicons.mjs && vite build && vite build --ssr src/entry-server.jsx --outDir dist/server && node scripts/prerender.mjs && node scripts/zip-dist.mjs",
     "favicon": "node scripts/generate-favicons.mjs",
     "zip": "node scripts/zip-dist.mjs",

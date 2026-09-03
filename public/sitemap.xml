@@ -4,18 +4,18 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://essenceindonesia.com/</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://essenceindonesia.com/images/catalog_products/origin_planifolia_hero.webp</image:loc>
-      <image:title>Essence Indonesia - Premium Indonesian Vanilla and Coffee Commodities</image:title>
-      <image:caption>Direct export sourcing of single-origin Indonesian Vanilla and Selected Green Coffee</image:caption>
+      <image:title>Essence Indonesia - Premium Single-Origin Indonesian Vanilla Exporter</image:title>
+      <image:caption>Direct export sourcing of single-origin Indonesian Vanilla (Planifolia &amp; Tahitensis) and value-added derivatives</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://essenceindonesia.com/vanilla</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
     <image:image>
@@ -25,19 +25,8 @@
     </image:image>
   </url>
   <url>
-    <loc>https://essenceindonesia.com/coffee</loc>
-    <lastmod>2026-08-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.90</priority>
-    <image:image>
-      <image:loc>https://essenceindonesia.com/images/farm_origin/farm_green_coffee_plantation.webp</image:loc>
-      <image:title>Indonesian Selected Green Coffee Beans</image:title>
-      <image:caption>Single-origin volcanic terroir green coffee for commercial roasters</image:caption>
-    </image:image>
-  </url>
-  <url>
     <loc>https://essenceindonesia.com/quality</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -48,13 +37,13 @@
   </url>
   <url>
     <loc>https://essenceindonesia.com/buyers</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://essenceindonesia.com/about</loc>
-    <lastmod>2026-08-18</lastmod>
+    <lastmod>2026-08-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
     <image:image>

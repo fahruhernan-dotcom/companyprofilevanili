@@ -8,9 +8,9 @@ export const siteBaseUrl = 'https://essenceindonesia.com';
 export const seoRoutes = {
   home: {
     path: '/',
-    title: 'Essence Indonesia — Premium Indonesian Vanilla & Coffee Commodity Exporter',
-    description: 'Direct export sourcing of single-origin Indonesian Vanilla (Planifolia & Tahitensis) and Selected Green Coffee. Verified with laboratory CoA, phytosanitary quarantine certification, and hermetic barrier packaging.',
-    keywords: 'Indonesian Vanilla, Planifolia Vanilla, Tahitensis Vanilla, Indonesian Green Coffee, Single-Origin Vanilla Beans, Agricultural Commodity Exporter, B2B Vanilla Supplier Indonesia, Indonesian Specialty Coffee',
+    title: 'Essence Indonesia — Single-Origin Indonesian Vanilla Exporter (Planifolia & Tahitensis)',
+    description: 'Direct export sourcing of single-origin Indonesian Vanilla (Planifolia & Tahitensis) and value-added derivatives. Verified with laboratory CoA, phytosanitary quarantine certification, and hermetic barrier packaging.',
+    keywords: 'Indonesian Vanilla, Planifolia Vanilla, Tahitensis Vanilla, Single-Origin Vanilla Beans, Agricultural Commodity Exporter, B2B Vanilla Supplier Indonesia, Gourmet Vanilla Grade A, Vanilla Caviar, Vanilla Extract',
     canonical: `${siteBaseUrl}/`,
     ogImage: `${siteBaseUrl}/images/catalog_products/origin_planifolia_hero.webp`,
     schema: {
@@ -23,14 +23,14 @@ export const seoRoutes = {
           'legalName': 'Essence Indonesia Commodity',
           'url': siteBaseUrl,
           'logo': `${siteBaseUrl}/favicon.svg`,
-          'description': 'Direct export sourcing of single-origin Indonesian agricultural commodities including Vanilla Planifolia, Vanilla Tahitensis, and Selected Green Coffee.',
+          'description': 'Direct export sourcing of single-origin Indonesian agricultural commodities including Vanilla Planifolia, Vanilla Tahitensis, and value-added derivatives.',
           'knowsAbout': [
             'Vanilla planifolia',
             'Vanilla tahitensis',
-            'Indonesian Green Coffee',
             'Agricultural Export Logistics',
             'Phytosanitary Certification',
-            'ISO 22000 Standards'
+            'ISO 22000 Standards',
+            'Vanilla Caviar and Derivatives'
           ],
           'contactPoint': {
             '@type': 'ContactPoint',
@@ -45,6 +45,11 @@ export const seoRoutes = {
           '@id': `${siteBaseUrl}/#website`,
           'url': siteBaseUrl,
           'name': 'Essence Indonesia',
+          'alternateName': [
+            'Essence Indonesia Commodity',
+            'Essence Indonesia Vanilla',
+            'Essence Indonesia Exporter'
+          ],
           'publisher': {
             '@id': `${siteBaseUrl}/#organization`
           }

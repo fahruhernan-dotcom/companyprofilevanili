@@ -4,7 +4,7 @@ import { ScrollReveal } from './ScrollReveal';
 import { Button } from './Button';
 import { ShieldCheck, CheckCircle2, Award, FileText, ArrowRight, Leaf } from 'lucide-react';
 
-export const OrganicCertificationsShowcase = ({ onOpenInquiry }) => {
+export const OrganicCertificationsShowcase = ({ onOpenInquiry, showBottomAction = true }) => {
   return (
     <div
       className="organic-certifications-showcase"
@@ -193,52 +193,54 @@ export const OrganicCertificationsShowcase = ({ onOpenInquiry }) => {
       </div>
 
       {/* Bottom Procurement Quick-Action Bar */}
-      <ScrollReveal animation="fade-up" delay={120}>
-        <div
-          className="double-bezel-outer"
-          style={{
-            backgroundColor: 'var(--bg-primary)',
-            borderRadius: 'var(--radius-xs)'
-          }}
-        >
+      {showBottomAction && (
+        <ScrollReveal animation="fade-up" delay={120}>
           <div
-            className="double-bezel-inner"
+            className="double-bezel-outer"
             style={{
-              padding: '16px 24px',
-              display: 'flex',
-              flexWrap: 'wrap',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: '16px'
+              backgroundColor: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xs)'
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <ShieldCheck size={20} style={{ color: 'var(--accent-gold)' }} />
-              <div>
-                <strong style={{ fontSize: '0.875rem', color: 'var(--text-primary)', display: 'block' }}>
-                  Audited Lots & Organic Certificate of Analysis Available
-                </strong>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
-                  Accredited batch COA, USDA NOP compliance certificates, and EU import documentation provided with sample and commercial shipments.
-                </span>
-              </div>
-            </div>
-
-            <Button
-              variant="gold"
-              onClick={onOpenInquiry}
+            <div
+              className="double-bezel-inner"
               style={{
-                minHeight: '44px',
-                padding: '0 24px',
-                fontSize: '0.75rem',
-                flexShrink: 0
+                padding: '16px 24px',
+                display: 'flex',
+                flexWrap: 'wrap',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: '16px'
               }}
             >
-              Request Certified Organic Lot
-            </Button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <ShieldCheck size={20} style={{ color: 'var(--accent-gold)' }} />
+                <div>
+                  <strong style={{ fontSize: '0.875rem', color: 'var(--text-primary)', display: 'block' }}>
+                    Audited Lots & Organic Certificate of Analysis Available
+                  </strong>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
+                    Accredited batch COA, USDA NOP compliance certificates, and EU import documentation provided with sample and commercial shipments.
+                  </span>
+                </div>
+              </div>
+
+              <Button
+                variant="gold"
+                onClick={onOpenInquiry}
+                style={{
+                  minHeight: '44px',
+                  padding: '0 24px',
+                  fontSize: '0.75rem',
+                  flexShrink: 0
+                }}
+              >
+                Request Certified Organic Lot
+              </Button>
+            </div>
           </div>
-        </div>
-      </ScrollReveal>
+        </ScrollReveal>
+      )}
     </div>
   );
 };

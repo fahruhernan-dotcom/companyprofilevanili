@@ -25,11 +25,6 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
       <div className="container-narrow" style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
         
         <ScrollReveal animation="fade-up">
-          {/* Section Overline */}
-          <span className="overline overline-accent" style={{ display: 'block', marginBottom: '16px' }}>
-            06 · Global Sourcing Concierge
-          </span>
-
           {/* Dramatic Closing Heading */}
           <h2
             style={{
@@ -37,16 +32,16 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
               fontSize: 'clamp(1.85rem, 5vw, 4rem)',
               fontWeight: 300,
               color: 'var(--text-inverse-primary)',
-              maxWidth: '820px',
+              maxWidth: '860px',
               margin: '0 auto 24px',
               lineHeight: 1.15,
               letterSpacing: '0.02em',
               wordBreak: 'break-word'
             }}
           >
-            INDONESIAN ORIGINS.<br />
+            DIRECT EQUATORIAL HARVESTS.<br />
             <span style={{ fontStyle: 'italic', fontWeight: 300, color: 'var(--accent-gold)' }}>
-              Sourced for the World.
+              Shipped to Global Ports.
             </span>
           </h2>
 
@@ -61,7 +56,7 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
               lineHeight: 1.75
             }}
           >
-            Direct commercial export of single-origin Indonesian Vanilla and Selected Green Coffee. Pre-shipment sample evaluation kits (100g–500g) dispatched internationally via express air courier within 48–72 hours.
+            Direct commercial export of single-origin Indonesian Vanilla (Planifolia & Tahitensis) and value-added derivatives. Pre-shipment sample evaluation kits (100g–500g) dispatched internationally via express air courier within 48–72 hours.
           </p>
 
           {/* Main CTA Actions Bar */}
@@ -86,7 +81,7 @@ export const ClosingInquiry = ({ onOpenInquiry }) => {
                 fontWeight: 600
               }}
             >
-              Request Commercial Quotation
+              Start Sourcing Inquiry
             </Button>
 
             <Button

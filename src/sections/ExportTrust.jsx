@@ -59,13 +59,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
         
         {/* Section Header */}
         <div style={{ maxWidth: '720px', marginBottom: 'clamp(32px, 5vh, 60px)' }}>
-          <ScrollReveal animation="fade-up" delay={50}>
-            <span className="overline overline-accent" style={{ display: 'block', marginBottom: '12px' }}>
-              05 · Export Assurance & Standards
-            </span>
-          </ScrollReveal>
-
-          <ScrollReveal animation="fade-up" delay={100}>
+          <ScrollReveal animation="fade-up" delay={80}>
             <h2
               style={{
                 fontFamily: 'var(--font-display)',
@@ -96,13 +90,10 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
           </ScrollReveal>
         </div>
 
-        {/* 4-Column on Desktop / 2-Column on Mobile Grid of Export Trust Cards */}
+        {/* 4-Column on Desktop / 2-Column on Tablet Grid of Export Trust Cards */}
         <div
           className="trust-grid"
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-            gap: 'clamp(12px, 2.5vw, 28px)',
             marginBottom: 'clamp(36px, 5vh, 56px)'
           }}
         >
@@ -113,54 +104,56 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                 <div
                   className="trust-card"
                   style={{
-                    backgroundColor: 'var(--bg-primary)',
+                    backgroundColor: 'var(--bg-surface)',
                     border: '1px solid var(--border-light)',
                     borderRadius: 'var(--radius-sm)',
-                    padding: 'clamp(20px, 3.5vw, 32px)',
+                    padding: 'clamp(20px, 2.5vw, 26px)',
                     height: '100%',
                     boxSizing: 'border-box',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    boxShadow: 'var(--shadow-subtle)',
-                    transition: 'all 0.3s var(--ease-editorial)'
+                    boxShadow: 'var(--shadow-card)',
+                    transition: 'all 0.35s var(--ease-editorial)'
                   }}
                 >
                   <div>
-                    {/* Top Row: Icon & Tag */}
+                    {/* Top Meta: Left-Aligned Unified Anchor (Icon + Tag) */}
                     <div
                       className="trust-meta"
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginBottom: '20px'
+                        gap: '10px',
+                        marginBottom: '14px'
                       }}
                     >
                       <div
                         className="trust-icon-box"
                         style={{
-                          width: '38px',
-                          height: '38px',
-                          borderRadius: '50%',
-                          backgroundColor: 'rgba(200, 169, 107, 0.12)',
+                          width: '34px',
+                          height: '34px',
+                          borderRadius: '8px',
+                          backgroundColor: 'rgba(140, 102, 45, 0.08)',
+                          border: '1px solid rgba(140, 102, 45, 0.22)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          color: 'var(--accent-gold)'
+                          color: 'var(--accent-gold-dark)',
+                          flexShrink: 0
                         }}
                       >
-                        <IconComp size={18} />
+                        <IconComp size={16} />
                       </div>
 
                       <span
                         className="trust-tag"
                         style={{
                           fontSize: '0.6875rem',
-                          fontWeight: 600,
+                          fontWeight: 700,
                           letterSpacing: '0.1em',
                           textTransform: 'uppercase',
-                          color: 'var(--accent-gold)'
+                          color: 'var(--accent-gold-dark)'
                         }}
                       >
                         {item.tag}
@@ -172,7 +165,7 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
                       className="trust-title"
                       style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: '1.35rem',
+                        fontSize: '1.3rem',
                         fontWeight: 600,
                         color: 'var(--text-primary)',
                         margin: '0 0 10px 0',
@@ -201,10 +194,10 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
         </div>
 
         {/* Global Organic & Sustainability Accreditations Showcase */}
-        <OrganicCertificationsShowcase onOpenInquiry={onOpenInquiry} />
+        <OrganicCertificationsShowcase onOpenInquiry={onOpenInquiry} showBottomAction={false} />
 
-        {/* Editorial Action Row */}
-        <ScrollReveal animation="fade-up" delay={300} style={{ marginTop: 'clamp(32px, 5vh, 56px)' }}>
+        {/* Unified Quality & Statutory Dossier Action Row */}
+        <ScrollReveal animation="fade-up" delay={300} style={{ marginTop: 'clamp(32px, 5vh, 48px)' }}>
           <div
             className="mobile-stack"
             style={{
@@ -216,26 +209,30 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
               padding: '24px 28px',
               backgroundColor: 'var(--bg-primary)',
               border: '1px solid var(--border-medium)',
-              borderRadius: 'var(--radius-sm)'
+              borderRadius: 'var(--radius-sm)',
+              boxShadow: 'var(--shadow-card)'
             }}
           >
-            <div>
-              <h4
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.2rem',
-                  fontWeight: 600,
-                  color: 'var(--text-primary)',
-                  margin: '0 0 4px 0'
-                }}
-              >
-                Comprehensive Quality & Compliance Dossier
-              </h4>
+            <div style={{ maxWidth: '640px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                <ShieldCheck size={18} style={{ color: 'var(--accent-gold)' }} />
+                <h4
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.25rem',
+                    fontWeight: 600,
+                    color: 'var(--text-primary)',
+                    margin: 0
+                  }}
+                >
+                  Comprehensive Quality & Statutory Dossier
+                </h4>
+              </div>
               <p
                 className="body-small"
-                style={{ margin: 0, color: 'var(--text-secondary)' }}
+                style={{ margin: 0, color: 'var(--text-secondary)', lineHeight: 1.6 }}
               >
-                Access export specifications, statutory documentation, and sample evaluation protocols.
+                Accredited batch Certificate of Analysis (CoA), statutory phytosanitary clearance, and certified organic documentation provided with all sample evaluation kits and commercial shipments.
               </p>
             </div>
 
@@ -307,10 +304,25 @@ export const ExportTrust = ({ onNavigate, onOpenInquiry }) => {
       </div>
 
       <style>{`
+        .trust-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: clamp(14px, 2vw, 24px);
+        }
         .trust-card:hover {
           transform: translateY(-4px);
-          border-color: var(--border-gold) !important;
-          box-shadow: var(--shadow-medium);
+          border-color: var(--border-gold-dark) !important;
+          box-shadow: var(--shadow-medium) !important;
+        }
+        .trust-card:hover .trust-icon-box {
+          background-color: rgba(140, 102, 45, 0.16) !important;
+          border-color: var(--accent-gold-dark) !important;
+        }
+        @media (max-width: 1024px) {
+          .trust-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
         }
         @media (max-width: 767px) {
           .trust-grid {

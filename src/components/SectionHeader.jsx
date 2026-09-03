@@ -34,14 +34,17 @@ export const SectionHeader = ({
             gap: '10px'
           }}
         >
-          <span className="overline overline-accent" style={{ color: 'var(--accent-gold)' }}>
+          <span
+            className="overline overline-accent"
+            style={{ color: isDarkTheme ? 'var(--accent-gold-light)' : 'var(--accent-gold-dark)' }}
+          >
             {overline}
           </span>
           <span
             style={{
               width: '28px',
-              height: '1px',
-              backgroundColor: isDarkTheme ? 'var(--border-dark-gold)' : 'var(--border-gold)',
+              height: '1.5px',
+              backgroundColor: isDarkTheme ? 'var(--border-dark-gold)' : 'var(--border-gold-dark)',
               display: 'inline-block'
             }}
           />
